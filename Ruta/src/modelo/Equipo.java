@@ -1,7 +1,6 @@
 package modelo;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Stack;
 
 public class Equipo {
 
@@ -9,9 +8,9 @@ public class Equipo {
     public Consultor consultor;
     public List<Jugador> miembrosE;
     public List<Carta> seguridad;
-    public Stack<Carta> pilaBatalla;
-    public Stack<Carta> pilaVelocidad;
-    public Stack<Carta> pilaDistancia;
+    public Pila pilaBatalla;
+    public Pila pilaVelocidad;
+    public Pila pilaDistancia;
 
     public Equipo(){
         anotador = new Anotador();

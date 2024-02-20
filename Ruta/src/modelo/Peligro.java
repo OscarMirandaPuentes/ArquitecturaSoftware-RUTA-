@@ -9,7 +9,13 @@ public class Peligro extends Carta{
     }
 
     public void accion(Equipo e){
-        e.pilaBatalla.add(this);
-        //e.pilaDistancia
+
+        if (tipo=="Limite de velocidad") {
+            e.pilaVelocidad.ponerCarta(this);
+            // Funcion que limita las cartas que se ponen en pila de Distancia
+        }else{
+            e.pilaBatalla.ponerCarta(this);
+            e.pilaDistancia.bloquearPila();
+        }
     }
 }
