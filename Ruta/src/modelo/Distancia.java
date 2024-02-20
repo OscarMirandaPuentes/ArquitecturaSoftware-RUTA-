@@ -13,7 +13,7 @@ public class Distancia extends Carta{
             if (puntos<51) {
                 e.pilaDistancia.ponerCarta(this);
             }else{
-                System.out.println("Tienes límite de velocidad, :(.");
+                System.out.println("Tienes límite de velocidad :(");
             }
         }else{
             e.pilaDistancia.ponerCarta(this);

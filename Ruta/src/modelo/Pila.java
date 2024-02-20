@@ -45,6 +45,10 @@ public class Pila {
         bloqueada = true;
     }
 
+    public void desbloquearPila(){
+        bloqueada = false;
+    }
+
     public void enviarAlMazo(Mazo mazo) {
         while (!cartas.isEmpty()) {
             // Sacar la carta de la pila y enviarla al mazo
