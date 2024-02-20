@@ -1,10 +1,9 @@
 package modelo;
 
 public class Defensa extends Carta{
-    public String tipo;
 
     public Defensa(String t){
-        puntos=0;
+        this.puntos=0;
         this.tipo = t;
     }
 

@@ -1,21 +1,27 @@
 package modelo;
 
 public class Peligro extends Carta{
-    public String tipo;
 
     public Peligro(String t){
-        puntos=0;
+        this.puntos=0;
         this.tipo = t;
     }
 
     public void accion(Equipo eC){
 
-        if (tipo=="Limite de velocidad") {
+        if (this.tipo=="Limite de velocidad"&& !eC.revisionDeSeguridad("Vía libre")) {
             eC.pilaVelocidad.ponerCarta(this);
         }else{
-            //Añadir revisióna area de seguridad antes de usar
-            eC.pilaBatalla.ponerCarta(this);
-            eC.pilaDistancia.bloquearPila();
+            if (eC.revisionDeSeguridad("Cisterna") && this.tipo == "Sin gasolina") {
+                System.out.println("El equipo contrario tiene una cisterna");
+            } else if (eC.revisionDeSeguridad("Llanta irrompible") && this.tipo == "Pinchazo") {
+                System.out.println("El equipo contrario tiene una llanta irrompible");
+            } else if (eC.revisionDeSeguridad("As al volante") && this.tipo == "Accidente") {
+                System.out.println("El equipo contrario tiene un as al volante");
+            } else{
+                eC.pilaBatalla.ponerCarta(this);
+                eC.pilaDistancia.bloquearPila();
+            }
         }
     }
 }

@@ -19,7 +19,7 @@ public class Equipo {
     }
 
     public int obtenerPuntaje(){
-        return 1;
+        return anotador.puntuacion;
     }
 
     public void agregarJugador(Jugador jugador){
@@ -36,6 +36,15 @@ public class Equipo {
 
     public void atacar(Carta carta, Equipo e2){
         // Hacer if con tipos de ataques posibles y en que pila van -cv
+    }
+
+    public boolean revisionDeSeguridad(String tipo) {
+        for (Carta carta : seguridad) {
+            if (carta.tipo == tipo) {
+                return true; // Si se encuentra una carta del tipo especificado, retorna true
+            }
+        }
+        return false; // Si no se encuentra ninguna carta del tipo especificado, retorna false
     }
 
 }
