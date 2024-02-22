@@ -59,9 +59,11 @@ public class Jugador {
             System.out.println("Ha seleccionado jugar la carta: " + cartaSeleccionada.tipo);
             
             if (cartaSeleccionada.getClass() == Peligro.class) {
+                e.anotador.aumentarPuntuacion(cartaSeleccionada);
                 e.atacar(cartaSeleccionada, eC);
             } else {
                 System.err.println(cartaSeleccionada.getClass());
+                e.anotador.aumentarPuntuacion(cartaSeleccionada);
                 cartaSeleccionada.accion(e);
             }
 

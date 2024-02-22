@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class Juego {
     List<Equipo> equipos;
-    int maxPuntuacion;
+    int maxPuntuacion = 1000;
     Equipo equipo1;
     Equipo equipo2;
     Mazo m;

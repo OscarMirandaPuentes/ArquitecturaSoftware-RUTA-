@@ -10,7 +10,10 @@ public class Administrador {
     public void iniciarJuego(){
         j.iniciar();
         j.repartir();
-        gestionarTurno();
+        while (j.equipo1.obtenerPuntaje()<1000) {
+            gestionarTurno();
+        }
+        
     }
 
     public void gestionarTurno(){
