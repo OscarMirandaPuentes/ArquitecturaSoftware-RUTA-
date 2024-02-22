@@ -7,16 +7,20 @@ public class Seguridad extends Carta{
         this.tipo=t;
     }
 
-    public void accion(Equipo e) {
+    public boolean accion(Equipo e) {
         e.seguridad.add(this);
-        if (this.tipo=="Cisterna" && e.pilaBatalla.cimaCarta().tipo=="Sin Gasolina") {
-            e.pilaDistancia.desbloquearPila();
-        } else if (this.tipo=="Llanta irrompible" && e.pilaBatalla.cimaCarta().tipo=="Pinchazo"){
-            e.pilaDistancia.desbloquearPila();
-        } else if (this.tipo=="As al volante" && e.pilaVelocidad.cimaCarta().tipo=="Accidente"){
-            e.pilaDistancia.desbloquearPila();
+        Carta cimaBatalla = e.pilaBatalla.cimaCarta();
+        if (cimaBatalla!=null) {
+            if (this.tipo=="Cisterna" && cimaBatalla.tipo=="Sin Gasolina") {
+                e.pilaDistancia.desbloquearPila();
+            } else if (this.tipo=="Llanta irrompible" && cimaBatalla.tipo=="Pinchazo"){
+                e.pilaDistancia.desbloquearPila();
+            } else if (this.tipo=="As al volante" && cimaBatalla.tipo=="Accidente"){
+                e.pilaDistancia.desbloquearPila();
+            }
         }
-
+       
+        return true;
     }
     
 }

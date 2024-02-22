@@ -64,7 +64,10 @@ public class Jugador {
             } else {
                 System.err.println(cartaSeleccionada.getClass());
                 e.anotador.aumentarPuntuacion(cartaSeleccionada);
-                cartaSeleccionada.accion(e);
+                System.out.println(e.obtenerPuntaje());
+                if(!cartaSeleccionada.accion(e)){
+                    descartar(o);
+                }
             }
 
         } else if (opcionAccion == 2) {

@@ -36,7 +36,7 @@ public class Pila {
         try {
             return cartas.peek(); // Obtener la carta en la cima sin quitarla de la pila
         } catch (EmptyStackException e) {
-            System.out.println("La pila está vacía.");
+            //System.out.println("La pila está vacía.");
             return null;
         }
     }

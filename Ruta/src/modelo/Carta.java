@@ -4,5 +4,5 @@ public abstract class Carta {
 
     public int puntos;
     public String tipo;
-    public void accion(Equipo e){}
+    public boolean accion(Equipo e){return true;}
 }

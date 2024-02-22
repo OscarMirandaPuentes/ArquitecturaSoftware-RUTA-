@@ -7,20 +7,25 @@ public class Peligro extends Carta{
         this.tipo = t;
     }
 
-    public void accion(Equipo eC){
+    public boolean accion(Equipo eC){
 
         if (this.tipo=="Límite de velocidad"&& !eC.revisionDeSeguridad("Vía libre")) {
             eC.pilaVelocidad.ponerCarta(this);
+            return true;
         }else{
             if (eC.revisionDeSeguridad("Cisterna") && this.tipo == "Sin gasolina") {
                 System.out.println("El equipo contrario tiene una cisterna");
+                return false;
             } else if (eC.revisionDeSeguridad("Llanta irrompible") && this.tipo == "Pinchazo") {
                 System.out.println("El equipo contrario tiene una llanta irrompible");
+                return false;
             } else if (eC.revisionDeSeguridad("As al volante") && this.tipo == "Accidente") {
                 System.out.println("El equipo contrario tiene un as al volante");
+                return false;
             } else{
                 eC.pilaBatalla.ponerCarta(this);
                 eC.pilaDistancia.bloquearPila();
+                return true;
             }
         }
     }
