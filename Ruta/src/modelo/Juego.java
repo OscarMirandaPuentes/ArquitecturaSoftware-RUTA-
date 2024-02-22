@@ -7,11 +7,17 @@ import java.util.Scanner;
 public class Juego {
     List<Equipo> equipos;
     int maxPuntuacion;
+    Equipo equipo1;
+    Equipo equipo2;
     Mazo m;
     Descarte d;
 
     public Juego(){
+        equipo1 = new Equipo();
+        equipo2 = new Equipo();
         equipos = new ArrayList<Equipo>();
+        equipos.add(equipo1);
+        equipos.add(equipo2);
     }
 
     public void iniciar(){
@@ -21,12 +27,6 @@ public class Juego {
             System.out.print("Ingrese el número de jugadores (2, 4 o 6): ");
             numJugadores = scanner.nextInt();
         } while (numJugadores != 2 && numJugadores != 4 && numJugadores != 6);
-
-        /// Crear los dos equipos
-        Equipo equipo1 = new Equipo();
-        Equipo equipo2 = new Equipo();
-        equipos.add(equipo1);
-        equipos.add(equipo2);
         
         for (int i = 0; i < numJugadores; i++) {
             if (i % 2 == 0) {
@@ -37,7 +37,7 @@ public class Juego {
                 equipo2.agregarJugador(jugador);
             }
         }
-
+        
         // Mostrar los equipos y sus miembros
         for (int i = 0; i < equipos.size(); i++) {
             System.out.println("Equipo " + (i + 1) + ":");
