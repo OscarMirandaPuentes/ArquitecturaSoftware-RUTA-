@@ -10,7 +10,6 @@ public class Juego {
     Equipo equipo1;
     Equipo equipo2;
     Mazo m;
-    Descarte d;
 
     public Juego(){
         equipo1 = new Equipo();
@@ -18,6 +17,7 @@ public class Juego {
         equipos = new ArrayList<Equipo>();
         equipos.add(equipo1);
         equipos.add(equipo2);
+        m = new Mazo();
     }
 
     public void iniciar(){
@@ -37,7 +37,7 @@ public class Juego {
                 equipo2.agregarJugador(jugador);
             }
         }
-        
+
         // Mostrar los equipos y sus miembros
         for (int i = 0; i < equipos.size(); i++) {
             System.out.println("Equipo " + (i + 1) + ":");
@@ -47,6 +47,17 @@ public class Juego {
         }
     }
     
+    public void repartir() {
+        for (Equipo equipo : equipos) {
+            List<Jugador> jugadores = equipo.getJugadores();
+            for (int i = 0; i < 6; i++) { // Repartir 6 cartas
+                for (Jugador jugador : jugadores) {
+                    jugador.recibirCarta(m.dar()); // Entregar la carta al jugador
+                }
+            }
+        }
+    }
+
     private Jugador crearJugador(Scanner scanner) {
         System.out.print("Ingrese el nombre del jugador: ");
         String nombre = scanner.next();

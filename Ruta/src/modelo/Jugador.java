@@ -14,11 +14,15 @@ public class Jugador {
         mano = new ArrayList<Carta>();
     }
 
+    public void recibirCarta(Carta c){
+        mano.add(c);
+    }
+
     public void jugar(Equipo e, Equipo eC){
         robar();
 
         // Mostrar la mano del jugador
-        System.out.println("Su mano:");
+        System.out.println("Jugador "+this.nombre+" su mano:");
         for (int i = 0; i < mano.size(); i++) {
             System.out.println((i+1) + ". " + mano.get(i).tipo); 
         }
@@ -32,8 +36,6 @@ public class Jugador {
         } else {
             System.out.println("Opción inválida. Por favor, seleccione un número válido.");
         }
-
-        scanner.close();  
     }
 
     private void robar(){
@@ -44,8 +46,7 @@ public class Jugador {
     private void descartar(int o) {
         Descarte descarte=new Descarte();
         descarte.recibirCarta(mano.remove(o));
-        
-    }
+    } 
 
     private void tipoAccion(int o, Equipo e, Equipo eC) {
         Carta cartaSeleccionada = mano.get(o);
@@ -60,6 +61,7 @@ public class Jugador {
             if (cartaSeleccionada.getClass() == Peligro.class) {
                 e.atacar(cartaSeleccionada, eC);
             } else {
+                System.err.println(cartaSeleccionada.getClass());
                 cartaSeleccionada.accion(e);
             }
 

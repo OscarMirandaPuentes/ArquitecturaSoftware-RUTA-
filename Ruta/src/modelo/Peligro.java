@@ -9,7 +9,7 @@ public class Peligro extends Carta{
 
     public void accion(Equipo eC){
 
-        if (this.tipo=="Limite de velocidad"&& !eC.revisionDeSeguridad("Vía libre")) {
+        if (this.tipo=="Límite de velocidad"&& !eC.revisionDeSeguridad("Vía libre")) {
             eC.pilaVelocidad.ponerCarta(this);
         }else{
             if (eC.revisionDeSeguridad("Cisterna") && this.tipo == "Sin gasolina") {

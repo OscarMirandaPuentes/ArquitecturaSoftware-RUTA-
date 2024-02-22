@@ -43,14 +43,14 @@ public class Mazo {
     private void crearCartasSoluciones() {
 
         for (int i = 0; i < 6; i++) {
-            mazo.add(new Seguridad("Gasolina"));
-            mazo.add(new Seguridad("Llanta de repuesto"));
-            mazo.add(new Seguridad("Reparación"));
-            mazo.add(new Seguridad("Fin de límite"));
+            mazo.add(new Defensa("Gasolina"));
+            mazo.add(new Defensa("Llanta de repuesto"));
+            mazo.add(new Defensa("Reparación"));
+            mazo.add(new Defensa("Fin de límite"));
         }
         
         for (int i = 0; i < 14; i++) {
-            mazo.add(new Seguridad("Siga"));
+            mazo.add(new Defensa("Siga"));
         }
         
     }
@@ -59,7 +59,7 @@ public class Mazo {
         mazo.add(new Seguridad("Cisterna"));
         mazo.add(new Seguridad("Llanta irrompible"));
         mazo.add(new Seguridad("As al volante"));
-        mazo.add(new Seguridad("Vía Libre"));
+        mazo.add(new Seguridad("Vía libre"));
     }
 
     private void crearCartasDistancia() {

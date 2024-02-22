@@ -8,12 +8,14 @@ public class Defensa extends Carta{
     }
 
     public void accion(Equipo e){
-        if (tipo=="Fin de limite" && e.pilaVelocidad.cimaCarta().tipo=="Limite de velocidad") {
+        System.err.println("Hola    ");
+        if (tipo=="Fin de límite" && e.pilaVelocidad.cimaCarta().tipo=="Límite de velocidad") {
             e.pilaVelocidad.ponerCarta(this);
         }else{
             if (tipo=="Gasolina" && e.pilaBatalla.cimaCarta().tipo=="Sin Gasolina") {
                 e.pilaBatalla.ponerCarta(this);
                 e.pilaDistancia.desbloquearPila();
+                System.err.println("Se ha puesto la carta sin ");
             } else if (tipo=="Llanta de repuesto" && e.pilaBatalla.cimaCarta().tipo=="Pinchazo") {
                 e.pilaBatalla.ponerCarta(this);
                 e.pilaDistancia.desbloquearPila();
@@ -22,6 +24,7 @@ public class Defensa extends Carta{
                 e.pilaDistancia.desbloquearPila();
             } else if (tipo=="Siga") {
                 e.pilaBatalla.ponerCarta(this);
+                System.err.println("Se ha puesto una carta Siga");
                 e.pilaDistancia.desbloquearPila();
             }
         }
