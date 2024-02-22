@@ -19,22 +19,24 @@ public class Jugador {
     }
 
     public void jugar(Equipo e, Equipo eC){
+        boolean turno = false;
         robar();
+        while (!turno) {
+            // Mostrar la mano del jugador
+            System.out.println("Jugador " + this.nombre + " su mano:");
+            for (int i = 0; i < mano.size(); i++) {
+                System.out.println((i + 1) + ". " + mano.get(i).tipo);
+            }
 
-        // Mostrar la mano del jugador
-        System.out.println("Jugador "+this.nombre+" su mano:");
-        for (int i = 0; i < mano.size(); i++) {
-            System.out.println((i+1) + ". " + mano.get(i).tipo); 
-        }
+            // Pedir al jugador que elija una carta
+            System.out.print("Por favor, elija una carta (ingrese el número correspondiente): ");
+            int opcion = scanner.nextInt();
 
-        // Pedir al jugador que elija una carta
-        System.out.print("Por favor, elija una carta (ingrese el número correspondiente): ");
-        int opcion = scanner.nextInt();
-
-        if (opcion >= 1 && opcion <= mano.size()) {
-            tipoAccion(opcion-1, e, eC);
-        } else {
-            System.out.println("Opción inválida. Por favor, seleccione un número válido.");
+            if (opcion >= 1 && opcion <= mano.size()) {
+                turno = tipoAccion(opcion - 1, e, eC);
+            } else {
+                System.out.println("Opción inválida. Por favor, seleccione un número válido.");
+            }
         }
     }
 
@@ -48,7 +50,7 @@ public class Jugador {
         descarte.recibirCarta(mano.remove(o));
     } 
 
-    private void tipoAccion(int o, Equipo e, Equipo eC) {
+    private boolean tipoAccion(int o, Equipo e, Equipo eC) {
         Carta cartaSeleccionada = mano.get(o);
             
         System.out.print("¿Qué desea hacer con la carta seleccionada?\n1. Jugar\n2. Descartar\nSeleccione una opción: ");
@@ -60,14 +62,26 @@ public class Jugador {
             
             if (cartaSeleccionada.getClass() == Peligro.class) {
                 e.anotador.aumentarPuntuacion(cartaSeleccionada);
-                e.atacar(cartaSeleccionada, eC);
+                boolean posible = e.atacar(cartaSeleccionada, eC);
+                if (posible)
+                    descartar(o);
+                return posible;
+            }
+            else if (cartaSeleccionada.getClass() == Defensa.class) {
+                e.anotador.aumentarPuntuacion(cartaSeleccionada);
+                boolean posible = cartaSeleccionada.accion(e);
+                if (posible)
+                    descartar(o);
+                return posible;
             } else {
                 System.err.println(cartaSeleccionada.getClass());
-                e.anotador.aumentarPuntuacion(cartaSeleccionada);
-                System.out.println(e.obtenerPuntaje());
-                if(!cartaSeleccionada.accion(e)){
+                boolean posible = cartaSeleccionada.accion(e);
+                if (posible) {
+                    e.anotador.aumentarPuntuacion(cartaSeleccionada);
+                    System.out.println(e.obtenerPuntaje());
                     descartar(o);
                 }
+                return posible;
             }
 
         } else if (opcionAccion == 2) {
@@ -78,7 +92,9 @@ public class Jugador {
         } else {
 
             System.out.println("Opción inválida. Por favor, seleccione una opción válida.");
+            return false;
 
         }
+        return false;
     }
 }

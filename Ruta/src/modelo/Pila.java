@@ -48,4 +48,6 @@ public class Pila {
     public void desbloquearPila(){
         bloqueada = false;
     }
+
+    public boolean isEmpty(){return cartas.isEmpty();}
 }

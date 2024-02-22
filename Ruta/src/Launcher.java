@@ -1,8 +1,8 @@
-import modelo.Administrador;
+import controlador.Controlador;
 
 public class Launcher {
     public static void main(String[] args) throws Exception {
-        Administrador a = new Administrador();
-        a.iniciarJuego();
+        Controlador eve = new Controlador();
+        eve.iniciar();
     }
 }
