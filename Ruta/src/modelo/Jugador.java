@@ -11,6 +11,7 @@ public class Jugador {
 
     public Jugador(String n){
         this.nombre = n;
+        mano = new ArrayList<Carta>();
     }
 
     public void jugar(Equipo e, Equipo eC){
@@ -41,8 +42,9 @@ public class Jugador {
     }
 
     private void descartar(int o) {
-        mano.remove(o);
-        //Añadir la carta al descarte
+        Descarte descarte=new Descarte();
+        descarte.recibirCarta(mano.remove(o));
+        
     }
 
     private void tipoAccion(int o, Equipo e, Equipo eC) {
