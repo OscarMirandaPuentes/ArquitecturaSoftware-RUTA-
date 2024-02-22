@@ -16,6 +16,7 @@ public class Equipo {
         anotador = new Anotador();
         consultor = new Consultor();
         seguridad = new ArrayList<Carta>();
+        miembrosE = new ArrayList<Jugador>();
     }
 
     public int obtenerPuntaje(){
@@ -26,16 +27,16 @@ public class Equipo {
         miembrosE.add(jugador);
     }
 
-    public void verificarJugada(Carta carta){
-
+    public List<Jugador> getJugadores() {
+        return miembrosE;
     }
 
-    public void recibirAtaque(Carta carta){
+    public void verificarJugada(){
 
     }
 
     public void atacar(Carta carta, Equipo e2){
-        // Hacer if con tipos de ataques posibles y en que pila van -cv
+        carta.accion(e2);
     }
 
     public boolean revisionDeSeguridad(String tipo) {

@@ -5,46 +5,71 @@ import java.util.Scanner;
 
 public class Jugador {
 
+    public String nombre;
     public List<Carta> mano;
+    Scanner scanner = new Scanner(System.in);
 
-    public void jugar(){
+    public Jugador(String n){
+        this.nombre = n;
+    }
+
+    public void jugar(Equipo e, Equipo eC){
         robar();
-        /**
-         * Se muestra la mano del jugador para que elija que hacer, se hacen comprobaciones necesarias
-         * Segun la accion del jugador se opta por caminos diferentes
-         * */  
+
+        // Mostrar la mano del jugador
+        System.out.println("Su mano:");
+        for (int i = 0; i < mano.size(); i++) {
+            System.out.println((i+1) + ". " + mano.get(i).tipo); 
+        }
+
+        // Pedir al jugador que elija una carta
+        System.out.print("Por favor, elija una carta (ingrese el número correspondiente): ");
+        int opcion = scanner.nextInt();
+
+        if (opcion >= 1 && opcion <= mano.size()) {
+            tipoAccion(opcion-1, e, eC);
+        } else {
+            System.out.println("Opción inválida. Por favor, seleccione un número válido.");
+        }
+
+        scanner.close();  
     }
 
     private void robar(){
-        // Arreglar acceso al mazo
         Mazo m = new Mazo();
-        Carta c= m.dar();
-        //Llamada a método para tomar carta del mazo
-        if (aceptar()) {
-            mano.add(c);
-            // Mostrar mano al usuario
-            descartar();
-        }
+        mano.add(m.dar());
     }
 
-    private void descartar() {
-        /**
-         * Código para dejar la carta que se elige del mazo en el descarte.
-         * La mano del jugador debe finalizar con 6 cartas
-         *  */ 
-
+    private void descartar(int o) {
+        mano.remove(o);
+        //Añadir la carta al descarte
     }
 
-    private boolean aceptar() {
-        System.out.println("Desea aceptar la carta robada");
-        System.out.println("1. Si");
-        System.out.println("2. No");
-        String o = new Scanner(System.in).nextLine(); 
+    private void tipoAccion(int o, Equipo e, Equipo eC) {
+        Carta cartaSeleccionada = mano.get(o);
+            
+        System.out.print("¿Qué desea hacer con la carta seleccionada?\n1. Jugar\n2. Descartar\nSeleccione una opción: ");
+        int opcionAccion = scanner.nextInt();
 
-        if (o == "1") {
-            return true;
+        if (opcionAccion == 1) {
+
+            System.out.println("Ha seleccionado jugar la carta: " + cartaSeleccionada.tipo);
+            
+            if (cartaSeleccionada.getClass() == Peligro.class) {
+                e.atacar(cartaSeleccionada, eC);
+            } else {
+                cartaSeleccionada.accion(e);
+            }
+
+        } else if (opcionAccion == 2) {
+
+            descartar(o);
+            System.out.println("Ha seleccionado descartar la carta.");
+
         } else {
-            return false;
+
+            System.out.println("Opción inválida. Por favor, seleccione una opción válida.");
+
         }
     }
 }
