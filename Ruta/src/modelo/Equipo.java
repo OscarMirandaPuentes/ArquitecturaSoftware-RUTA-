@@ -31,8 +31,8 @@ public class Equipo {
         return miembrosE;
     }
 
-    public void atacar(Carta carta, Equipo e2){
-        carta.accion(e2);
+    public boolean atacar(Carta carta, Equipo e2){
+        return carta.accion(e2);
     }
 
     public boolean revisionDeSeguridad(String tipo) {
