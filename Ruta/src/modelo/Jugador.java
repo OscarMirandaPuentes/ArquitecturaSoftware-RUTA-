@@ -18,22 +18,13 @@ public class Jugador {
         mano.add(c);
     }
 
-    public void jugar(Equipo e, Equipo eC){
+    public void jugar(Equipo e, Equipo eC, int opcion){
         boolean turno = false;
         robar();
         while (!turno) {
-            // Mostrar la mano del jugador
-            System.out.println("Jugador " + this.nombre + " su mano:");
-            for (int i = 0; i < mano.size(); i++) {
-                System.out.println((i + 1) + ". " + mano.get(i).tipo);
-            }
-
-            // Pedir al jugador que elija una carta
-            System.out.print("Por favor, elija una carta (ingrese el número correspondiente): ");
-            int opcion = scanner.nextInt();
 
             if (opcion >= 1 && opcion <= mano.size()) {
-                turno = tipoAccion(opcion - 1, e, eC);
+                turno = tipoAccion(opcion - 1, e, eC, opcion);
             } else {
                 System.out.println("Opción inválida. Por favor, seleccione un número válido.");
             }
@@ -48,13 +39,12 @@ public class Jugador {
     private void descartar(int o) {
         Descarte descarte=new Descarte();
         descarte.recibirCarta(mano.remove(o));
-    } 
+    }
 
-    private boolean tipoAccion(int o, Equipo e, Equipo eC) {
+
+    private boolean tipoAccion(int o, Equipo e, Equipo eC, int opcionAccion) {
         Carta cartaSeleccionada = mano.get(o);
-            
-        System.out.print("¿Qué desea hacer con la carta seleccionada?\n1. Jugar\n2. Descartar\nSeleccione una opción: ");
-        int opcionAccion = scanner.nextInt();
+
 
         if (opcionAccion == 1) {
 
@@ -96,5 +86,21 @@ public class Jugador {
 
         }
         return false;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public List<Carta> getMano() {
+        return mano;
+    }
+
+    public void setMano(List<Carta> mano) {
+        this.mano = mano;
     }
 }

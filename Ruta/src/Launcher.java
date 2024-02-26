@@ -1,8 +1,11 @@
 import controlador.Controlador;
+import vista.Ventana;
 
 public class Launcher {
     public static void main(String[] args) throws Exception {
         Controlador eve = new Controlador();
-        eve.iniciar();
+
+        Ventana v=new Ventana(eve);
+        eve.cargarVista(v);
     }
 }
