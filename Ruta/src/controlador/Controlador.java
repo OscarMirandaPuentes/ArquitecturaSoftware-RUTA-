@@ -1,10 +1,12 @@
 package controlador;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import modelo.Administrador;
 import modelo.Jugador;
 import vista.Ventana;
 
-public class Controlador {
+public class Controlador implements ActionListener{
     Administrador a;
     Ventana view;
 
@@ -32,4 +34,21 @@ public class Controlador {
     //TODO:hacer los cambios de escenas
     //     Mandar info a logica
     //
+
+    public void actionPerformed(ActionEvent e) {
+        String comando = e.getActionCommand();
+        switch (comando) {
+            case "2 Jugadores":
+                iniciar(2);
+                break;
+            case "En Parejas":
+                iniciar(4);
+                break;
+            case "En Trios":
+                iniciar(6);
+                break;
+            default:
+                break;
+        }
+    }
 }
