@@ -90,7 +90,7 @@ public class Ventana extends JFrame {
 
     /*
     TO-DO: crear cartas 
-    La sumatoria de los km avanzados debe estar en display todo el tiempo para que los oponentes y aliados sepan cuánto se ha avanzado. 
+    La sumatoria de los puntos avanzados debe estar en display todo el tiempo para que los oponentes y aliados sepan cuánto se ha avanzado. 
     */
 
 }
