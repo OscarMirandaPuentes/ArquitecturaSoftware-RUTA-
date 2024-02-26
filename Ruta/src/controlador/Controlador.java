@@ -6,9 +6,14 @@ import modelo.Administrador;
 import modelo.Jugador;
 import vista.Ventana;
 
+import javax.swing.*;
+
 public class Controlador implements ActionListener{
     Administrador a;
     Ventana view;
+    int jugadorActualPos = 0;
+    int actualPos = 0;
+    Jugador jugadorActual;
 
     public Controlador() {
         this.a = new Administrador();
@@ -24,26 +29,32 @@ public class Controlador implements ActionListener{
                 a.getJ().getEquipo2().agregarJugador(jugador);
             }
         }
+        view.getTb().setVisible(true);
+        view.setVisible(false);
         a.iniciarJuego();
+        jugadorActual = obtenerJugadorActual();
     }
 
-    public void gestionarTurno(){
-        int totalJugadores = a.getJ().getEquipos().get(0).getJugadores().size(); // Obtener el número total de jugadores
-
-        // Iterar sobre cada jugador, intercalando entre los equipos
-        for (int i = 0; i < totalJugadores; i++) {
-            // Jugador del equipo 1
-            Jugador jugadorEquipo1 = a.getJ().getEquipos().get(0).getJugadores().get(i);
-            jugadorEquipo1.jugar(a.getJ().getEquipo1(), a.getJ().getEquipo2(),1);
-            // Jugador del equipo 2
-            Jugador jugadorEquipo2 = a.getJ().getEquipos().get(1).getJugadores().get(i);
-            jugadorEquipo2.jugar(a.getJ().getEquipo2(), a.getJ().getEquipo1(),1);
+    public Jugador obtenerJugadorActual(){
+        if (actualPos<0 && (actualPos % 2 == 0)){
+            jugadorActualPos++;
         }
+            if (jugadorActualPos % 2 == 0){
+                jugadorActual = a.getJ().getEquipos().get(0).getJugadores().get(jugadorActualPos);
+            }
+            else {
+                jugadorActual = a.getJ().getEquipos().get(1).getJugadores().get(jugadorActualPos);
+            }
+            if (jugadorActual.getMano().size()<7)
+                jugadorActual.robar();
+            view.getTb().setButtonIcons(jugadorActual.getMano());
+            return jugadorActual;
     }
 
     public void cargarVista (Ventana ev){
         this.view = ev;
     }
+
 
     //TODO:hacer los cambios de escenas
     //     Mandar info a logica
@@ -66,6 +77,21 @@ public class Controlador implements ActionListener{
                 break;
             default:
                 break;
+        }
+
+        for (JButton boton : view.getTb().getCardButtons()) {
+            if (e.getSource() == boton) {
+                Jugador jugadorActual = obtenerJugadorActual();
+                System.out.println(1);
+                // Obtener el jugador actual según el estado del juego
+                int indiceBoton = view.getTb().getCardButtons().indexOf(boton);
+                int opt = view.getTb().accion();
+                if(jugadorActual.tipoAccion(indiceBoton,a.getJ().getEquipo1(), a.getJ().getEquipo2(), opt)){
+                    actualPos++;
+                    obtenerJugadorActual();
+                }
+                break;
+            }
         }
     }
 }

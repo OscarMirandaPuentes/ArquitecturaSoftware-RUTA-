@@ -16,20 +16,7 @@ public class Jugador {
         mano.add(c);
     }
 
-    public void jugar(Equipo e, Equipo eC, int opcion){
-        boolean turno = false;
-        robar();
-        while (!turno) {
-
-            if (opcion >= 1 && opcion <= mano.size()) {
-                turno = tipoAccion(opcion - 1, e, eC, opcion);
-            } else {
-                System.out.println("Opción inválida. Por favor, seleccione un número válido.");
-            }
-        }
-    }
-
-    private void robar(){
+    public void robar(){
         Mazo m = new Mazo();
         mano.add(m.dar());
     }
@@ -40,10 +27,10 @@ public class Jugador {
     }
 
 
-    private boolean tipoAccion(int o, Equipo e, Equipo eC, int opcionAccion) {
+    public boolean tipoAccion(int o, Equipo e, Equipo eC, int opcionAccion) {
         Carta cartaSeleccionada = mano.get(o);
 
-        if (opcionAccion == 1) {
+        if (opcionAccion == 0) {
 
             System.out.println("Ha seleccionado jugar la carta: " + cartaSeleccionada.tipo);
             
@@ -71,7 +58,7 @@ public class Jugador {
                 return posible;
             }
 
-        } else if (opcionAccion == 2) {
+        } else if (opcionAccion == 1) {
 
             descartar(o);
             System.out.println("Ha seleccionado descartar la carta.");

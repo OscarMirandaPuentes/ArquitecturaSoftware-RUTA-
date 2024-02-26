@@ -26,8 +26,7 @@ public class Ventana extends JFrame {
     public void initComponets(){
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(1920, 1080);
-        this.tb = new Tablero();
-        this.add(tb);
+        this.tb = new Tablero(ev);
 
         cargarFondo();
         // Crear el JPanel personalizado para dibujar la imagen de fondo
@@ -86,6 +85,14 @@ public class Ventana extends JFrame {
     public String pedirNombre() {
         // Pedir al usuario que ingrese su nombre
         return JOptionPane.showInputDialog(null, "Por favor, ingrese su nombre:");
+    }
+
+    public Tablero getTb() {
+        return tb;
+    }
+
+    public void setTb(Tablero tb) {
+        this.tb = tb;
     }
 
     /*
