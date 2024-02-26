@@ -43,7 +43,6 @@ public class Jugador {
     private boolean tipoAccion(int o, Equipo e, Equipo eC, int opcionAccion) {
         Carta cartaSeleccionada = mano.get(o);
 
-
         if (opcionAccion == 1) {
 
             System.out.println("Ha seleccionado jugar la carta: " + cartaSeleccionada.tipo);
