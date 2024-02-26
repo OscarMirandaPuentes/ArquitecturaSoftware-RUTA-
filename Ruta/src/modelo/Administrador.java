@@ -9,7 +9,7 @@ public class Administrador {
 
     public void iniciarJuego(){
         j.repartir();
-        while (j.equipo1.obtenerPuntaje()<1000 && j.equipo2.obtenerPuntaje()<1000) {
+        while (!finJuego()) {
             gestionarTurno();
         }
     }
@@ -26,6 +26,13 @@ public class Administrador {
             Jugador jugadorEquipo2 = j.equipos.get(1).getJugadores().get(i);
             jugadorEquipo2.jugar(j.equipo2, j.equipo1,1);
         }
+    }
+
+    public boolean finJuego(){
+        if (j.equipo1.obtenerPuntaje()>1000 || j.equipo2.obtenerPuntaje()>1000) {
+            return true;
+        }
+        return false;
     }
 
     public Juego getJ() {
