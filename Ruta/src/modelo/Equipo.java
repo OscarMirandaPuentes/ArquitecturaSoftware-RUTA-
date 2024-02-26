@@ -5,18 +5,17 @@ import java.util.List;
 public class Equipo {
 
     public Anotador anotador;
-    public Consultor consultor;
     public List<Jugador> miembrosE;
-    public List<Carta> seguridad = new ArrayList<Carta>();
-    public Pila pilaBatalla = new Pila();
-    public Pila pilaVelocidad = new Pila();
-    public Pila pilaDistancia = new Pila();
+    public List<Carta> seguridad;
+    public Pila pilaBatalla, pilaVelocidad, pilaDistancia;
 
     public Equipo(){
-        anotador = new Anotador();
-        consultor = new Consultor();
+        anotador = new Anotador(this);
         seguridad = new ArrayList<Carta>();
         miembrosE = new ArrayList<Jugador>();
+        pilaBatalla = new Pila();
+        pilaDistancia = new Pila();
+        pilaVelocidad = new Pila();
     }
 
     public int obtenerPuntaje(){
