@@ -1,3 +1,17 @@
 /.idea
 /workspace.xml
 /out
+/lib
+
+
+# Ignorar archivos generados automáticamente
+*.class
+*.jar
+
+# Ignorar archivos de configuración local
+.vscode/
+.idea/
+
+# Ignorar archivos de compilación
+/target/
+/out/

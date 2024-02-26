@@ -9,9 +9,9 @@ public class Administrador {
 
     public void iniciarJuego(){
         j.repartir();
-        while (j.equipo1.obtenerPuntaje()<1000 && j.equipo2.obtenerPuntaje()<1000) {
+        /*while (j.equipo1.obtenerPuntaje()<1000 && j.equipo2.obtenerPuntaje()<1000) {
             gestionarTurno();
-        }
+        }*/
     }
 
     public void gestionarTurno(){

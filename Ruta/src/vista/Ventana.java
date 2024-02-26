@@ -12,10 +12,10 @@ public class Ventana extends JFrame {
 
     Controlador ev;
     Tablero tb;
-
     private ImageIcon imagenDeFondo;
-
     private JPanel panel;
+    PaletaColores c = new PaletaColores();
+
 
     public Ventana(Controlador e){
         super("Ruta");
@@ -58,18 +58,16 @@ public class Ventana extends JFrame {
         enParejasButton.addActionListener(ev);
         enTriosButton.addActionListener(ev);
 
-        Color colorBotones = Color.decode("#FF3131");
         // Cambiar el color de fondo de los botones
-        dosJugadoresButton.setBackground(colorBotones);
-        enParejasButton.setBackground(colorBotones);
-        enTriosButton.setBackground(colorBotones);
+        dosJugadoresButton.setBackground(c.rojo);
+        enParejasButton.setBackground(c.rojo);
+        enTriosButton.setBackground(c.rojo);
 
-        Color colorB = Color.decode("#022135");
-        dosJugadoresButton.setForeground(colorB);
-        enParejasButton.setForeground(colorB);
-        enTriosButton.setForeground(colorB);
+        dosJugadoresButton.setForeground(c.azul);
+        enParejasButton.setForeground(c.azul);
+        enTriosButton.setForeground(c.azul);
 
-        Font font = new Font("Arial", Font.ITALIC, 16); // Fuente Arial, negrita, tamaño 16
+        Font font = new Font("Arial", Font.ITALIC, 16);
         dosJugadoresButton.setFont(font);
         enParejasButton.setFont(font);
         enTriosButton.setFont(font);
