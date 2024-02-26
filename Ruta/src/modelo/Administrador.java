@@ -1,7 +1,7 @@
 package modelo;
 
 public class Administrador {
-    Juego j;
+    public Juego j;
 
     public Administrador(){
         this.j=new Juego();
@@ -29,7 +29,7 @@ public class Administrador {
     }
 
     public boolean finJuego(){
-        if (j.equipo1.obtenerPuntaje()>1000 || j.equipo2.obtenerPuntaje()>1000) {
+        if (j.equipo1.obtenerPuntaje()>j.getMaxPuntuacion() || j.equipo2.obtenerPuntaje()>j.getMaxPuntuacion()) {
             return true;
         }
         return false;

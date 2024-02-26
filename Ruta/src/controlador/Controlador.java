@@ -39,12 +39,15 @@ public class Controlador implements ActionListener{
         String comando = e.getActionCommand();
         switch (comando) {
             case "2 Jugadores":
+                a.j.setMaxPuntuacion(1000);
                 iniciar(2);
                 break;
             case "En Parejas":
+                a.j.setMaxPuntuacion(3000);
                 iniciar(4);
                 break;
             case "En Trios":
+                a.j.setMaxPuntuacion(4000);
                 iniciar(6);
                 break;
             default:
