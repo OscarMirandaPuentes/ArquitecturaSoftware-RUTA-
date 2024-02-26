@@ -25,6 +25,20 @@ public class Controlador {
         }
     }
 
+    public void gestionarTurno(){
+        int totalJugadores = a.getJ().getEquipos().get(0).getJugadores().size(); // Obtener el número total de jugadores
+
+        // Iterar sobre cada jugador, intercalando entre los equipos
+        for (int i = 0; i < totalJugadores; i++) {
+            // Jugador del equipo 1
+            Jugador jugadorEquipo1 = a.getJ().getEquipos().get(0).getJugadores().get(i);
+            jugadorEquipo1.jugar(a.getJ().getEquipo1(), a.getJ().getEquipo2(),1);
+            // Jugador del equipo 2
+            Jugador jugadorEquipo2 = a.getJ().getEquipos().get(1).getJugadores().get(i);
+            jugadorEquipo2.jugar(a.getJ().getEquipo2(), a.getJ().getEquipo1(),1);
+        }
+    }
+
     public void cargarVista (Ventana ev){
         this.view = ev;
     }
