@@ -1,13 +1,11 @@
 package modelo;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;   
 
 public class Jugador {
 
     public String nombre;
     public List<Carta> mano;
-    Scanner scanner = new Scanner(System.in);
 
     public Jugador(String n){
         this.nombre = n;
