@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Juego {
     List<Equipo> equipos;
-    int maxPuntuacion = 1000;
+    int maxPuntuacion;
     Equipo equipo1;
     Equipo equipo2;
     Mazo m;
