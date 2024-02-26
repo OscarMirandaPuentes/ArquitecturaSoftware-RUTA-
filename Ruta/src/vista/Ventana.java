@@ -67,10 +67,9 @@ public class Ventana extends JFrame {
         enParejasButton.setForeground(c.azul);
         enTriosButton.setForeground(c.azul);
 
-        Font font = new Font("Arial", Font.ITALIC, 16);
-        dosJugadoresButton.setFont(font);
-        enParejasButton.setFont(font);
-        enTriosButton.setFont(font);
+        dosJugadoresButton.setFont(c.font);
+        enParejasButton.setFont(c.font);
+        enTriosButton.setFont(c.font);
 
         panel2.add(dosJugadoresButton);
         panel2.add(enParejasButton);
