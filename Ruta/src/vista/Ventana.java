@@ -22,6 +22,7 @@ public class Ventana extends JFrame {
         this.ev=e;
         initComponets();
     }
+
     public void initComponets(){
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(1920, 1080);
@@ -38,10 +39,28 @@ public class Ventana extends JFrame {
                     g.drawImage(imagenDeFondo.getImage(), 0, 0, getWidth(), getHeight(), this);
                 }
             }
-        };
+        }; 
         panel.setLayout(new FlowLayout(FlowLayout.CENTER, 50, 50));
         this.add(panel);
+        botones(panel);
         this.setVisible(true);
+    }
+
+    private void botones(JPanel panel2) {
+
+        panel2.setLayout(new FlowLayout(FlowLayout.CENTER, 100, 500));
+
+        JButton dosJugadoresButton = new JButton("2 Jugadores");
+        JButton enParejasButton = new JButton("En parejas");
+        JButton enTriosButton = new JButton("En trios");
+
+        dosJugadoresButton.addActionListener(ev);
+        enParejasButton.addActionListener(ev);
+        enTriosButton.addActionListener(ev);
+
+        panel2.add(dosJugadoresButton);
+        panel2.add(enParejasButton);
+        panel2.add(enTriosButton);
     }
 
     public void cargarFondo(){
@@ -56,6 +75,6 @@ public class Ventana extends JFrame {
         return JOptionPane.showInputDialog(null, "Por favor, ingrese su nombre:");
     }
 
-    //TODO: Hacer Botones, crear cartas
+    //TODO: crear cartas
 
 }
