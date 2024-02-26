@@ -51,12 +51,28 @@ public class Ventana extends JFrame {
         panel2.setLayout(new FlowLayout(FlowLayout.CENTER, 100, 500));
 
         JButton dosJugadoresButton = new JButton("2 Jugadores");
-        JButton enParejasButton = new JButton("En parejas");
-        JButton enTriosButton = new JButton("En trios");
+        JButton enParejasButton = new JButton("En Parejas");
+        JButton enTriosButton = new JButton("En Trios");
 
         dosJugadoresButton.addActionListener(ev);
         enParejasButton.addActionListener(ev);
         enTriosButton.addActionListener(ev);
+
+        Color colorBotones = Color.decode("#FF3131");
+        // Cambiar el color de fondo de los botones
+        dosJugadoresButton.setBackground(colorBotones);
+        enParejasButton.setBackground(colorBotones);
+        enTriosButton.setBackground(colorBotones);
+
+        Color colorB = Color.decode("#022135");
+        dosJugadoresButton.setForeground(colorB);
+        enParejasButton.setForeground(colorB);
+        enTriosButton.setForeground(colorB);
+
+        Font font = new Font("Arial", Font.ITALIC, 16); // Fuente Arial, negrita, tamaño 16
+        dosJugadoresButton.setFont(font);
+        enParejasButton.setFont(font);
+        enTriosButton.setFont(font);
 
         panel2.add(dosJugadoresButton);
         panel2.add(enParejasButton);

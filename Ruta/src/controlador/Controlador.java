@@ -23,8 +23,8 @@ public class Controlador implements ActionListener{
                 Jugador jugador = a.getJ().crearJugador(view.pedirNombre());
                 a.getJ().getEquipo2().agregarJugador(jugador);
             }
-            a.iniciarJuego();
         }
+        a.iniciarJuego();
     }
 
     public void cargarVista (Ventana ev){
