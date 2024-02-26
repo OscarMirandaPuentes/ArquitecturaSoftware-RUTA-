@@ -88,6 +88,9 @@ public class Ventana extends JFrame {
         return JOptionPane.showInputDialog(null, "Por favor, ingrese su nombre:");
     }
 
-    //TODO: crear cartas
+    /*
+    TO-DO: crear cartas 
+    La sumatoria de los km avanzados debe estar en display todo el tiempo para que los oponentes y aliados sepan cuánto se ha avanzado. 
+    */
 
 }
