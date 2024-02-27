@@ -91,7 +91,7 @@ public class Tablero  extends JFrame{
 
     private void initComponents(){
         JPanel tablePanel = new JPanel();
-        tablePanel.setBackground(c.amarillo);
+        tablePanel.setBackground(c.blanco);
         tablePanel.setLayout(new GridLayout(2, 2));
 
         // Panel para la mano del jugador
@@ -116,6 +116,7 @@ public class Tablero  extends JFrame{
         // JPanel para las pilas del equipo 1
         JPanel equipo1Panel = new JPanel();
         equipo1Panel.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
+        equipo1Panel.setBackground(c.amarillo);
         equipo1Panel.add(labelImagenBEq1);
         equipo1Panel.add(labelImagenDEq1);
         equipo1Panel.add(labelImagenpilaVEq1);
@@ -132,6 +133,7 @@ public class Tablero  extends JFrame{
         // JPanel para las pilas del equipo 2
         JPanel equipo2Panel = new JPanel();
         equipo2Panel.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
+        equipo2Panel.setBackground(c.amarillo);
         equipo2Panel.add(labelImagenBEq2);
         equipo2Panel.add(labelImagenDEq2);
         equipo2Panel.add(labelImagenpilaVEq2);
