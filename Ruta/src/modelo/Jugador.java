@@ -62,6 +62,7 @@ public class Jugador {
 
             descartar(o);
             System.out.println("Ha seleccionado descartar la carta.");
+            return true;
 
         } else {
 
@@ -69,7 +70,6 @@ public class Jugador {
             return false;
 
         }
-        return false;
     }
 
     public String getNombre() {

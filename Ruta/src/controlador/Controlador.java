@@ -37,16 +37,25 @@ public class Controlador implements ActionListener{
 
     public Jugador obtenerJugadorActual(){
         if (actualPos<0 && (actualPos % 2 == 0)){
-            jugadorActualPos++;
+            if(actualPos > a.getJ().getEquipo2().getJugadores().size() * 2){
+                jugadorActualPos = 0;
+                actualPos = 0;
+            }
+            else {
+                jugadorActualPos++;
+            }
         }
-            if (jugadorActualPos % 2 == 0){
+            if (actualPos % 2 == 0){
                 jugadorActual = a.getJ().getEquipos().get(0).getJugadores().get(jugadorActualPos);
             }
             else {
                 jugadorActual = a.getJ().getEquipos().get(1).getJugadores().get(jugadorActualPos);
             }
-            if (jugadorActual.getMano().size()<7)
+            if (jugadorActual.getMano().size()<7) {
                 jugadorActual.robar();
+                view.getTb().setPilas(a.getJ().getEquipo1(), a.getJ().getEquipo2(), jugadorActual.getNombre());
+            }
+
             view.getTb().setButtonIcons(jugadorActual.getMano());
             return jugadorActual;
     }

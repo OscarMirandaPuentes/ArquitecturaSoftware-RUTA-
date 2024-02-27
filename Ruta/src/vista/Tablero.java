@@ -2,6 +2,7 @@ package vista;
 
 import controlador.Controlador;
 import modelo.Carta;
+import modelo.Equipo;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,34 +20,29 @@ public class Tablero  extends JFrame{
     JButton jButton6;
     JButton jButton7;
     Controlador ev;
+
+    ImageIcon pilaBEq1 = new ImageIcon();
+    ImageIcon pilaBEq2 = new ImageIcon();
+    ImageIcon pilaDEq1 = new ImageIcon();
+    ImageIcon pilaDEq2 = new ImageIcon();
+    ImageIcon pilaVEq1 = new ImageIcon();
+    ImageIcon pilaVEq2 = new ImageIcon();
+
+    JLabel labelImagenBEq1 = new JLabel(pilaBEq1);
+    JLabel labelImagenBEq2 = new JLabel(pilaBEq2);
+    JLabel labelImagenDEq1 = new JLabel(pilaDEq1);
+    JLabel labelImagenDEq2 = new JLabel(pilaDEq2);
+    JLabel labelImagenpilaVEq1 = new JLabel(pilaVEq1);
+    JLabel labelImagenpilaVEq2 = new JLabel(pilaVEq2);
+
+    JLabel name;
+
+
     public Tablero(Controlador e){
         super("Ruta");
         this.ev=e;
         setSize(1920, 1080);
-        JPanel tablePanel = new JPanel();
-        tablePanel.setBackground(Color.GREEN);
-        add(tablePanel, BorderLayout.CENTER);
-
-        // Panel para la mano del jugador
-        JPanel playerHandPanel = new JPanel();
-        playerHandPanel.setBackground(Color.LIGHT_GRAY);
-        playerHandPanel.setLayout(new FlowLayout());
-        add(playerHandPanel, BorderLayout.SOUTH);
-
-        // Panel para la pila de cartas
-        JPanel discardPilePanel = new JPanel();
-        discardPilePanel.setBackground(Color.WHITE);
-        JLabel discardPileLabel = new JLabel("Discard Pile");
-        discardPilePanel.add(discardPileLabel);
-        add(discardPilePanel, BorderLayout.NORTH);
-
-        // Panel para el mazo de cartas
-        JPanel drawPilePanel = new JPanel();
-        drawPilePanel.setBackground(Color.WHITE);
-        JLabel drawPileLabel = new JLabel("Draw Pile");
-        drawPilePanel.add(drawPileLabel);
-        add(drawPilePanel, BorderLayout.EAST);
-        botones(playerHandPanel);
+        initComponents();
     }
 
     private void botones(JPanel panel) {
@@ -84,6 +80,44 @@ public class Tablero  extends JFrame{
 
 
     }
+
+    private void initComponents(){
+        JPanel tablePanel = new JPanel();
+        tablePanel.setBackground(Color.GREEN);
+        add(tablePanel, BorderLayout.CENTER);
+
+        // Panel para la mano del jugador
+        JPanel playerHandPanel = new JPanel();
+        playerHandPanel.setBackground(Color.LIGHT_GRAY);
+        playerHandPanel.setLayout(new FlowLayout());
+        add(playerHandPanel, BorderLayout.SOUTH);
+
+        // Panel para la pila de cartas
+        JPanel discardPilePanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 150, 0));
+        discardPilePanel.setBackground(Color.WHITE);
+        JLabel discardPileLabel = new JLabel("Discard Pile");
+        discardPilePanel.add(discardPileLabel);
+        add(discardPilePanel, BorderLayout.NORTH);
+
+        // Panel para el mazo de cartas
+        JPanel drawPilePanel = new JPanel();
+        drawPilePanel.setBackground(Color.WHITE);
+        JLabel drawPileLabel = new JLabel("Draw Pile");
+        this.name = new JLabel("");
+        drawPilePanel.add(drawPileLabel);
+        add(drawPilePanel, BorderLayout.EAST);
+        add(name, BorderLayout.EAST);
+
+        botones(playerHandPanel);
+
+        // Inicializar labels de las pilas
+        discardPilePanel.add(labelImagenBEq1);
+        discardPilePanel.add(labelImagenBEq2);
+        discardPilePanel.add(labelImagenDEq1);
+        discardPilePanel.add(labelImagenDEq2);
+        discardPilePanel.add(labelImagenpilaVEq1);
+        discardPilePanel.add(labelImagenpilaVEq2);
+    }
     public void setButtonIcons(List<Carta> mano) {
         for (int i = 0; i < mano.size(); i++) {
             ImageIcon iconoOriginal = cartas.obtenerImagen(mano.get(i).tipo);
@@ -97,6 +131,56 @@ public class Tablero  extends JFrame{
 
             // Establecer el icono redimensionado en el botón
             cardButtons.get(i).setIcon(iconoRedimensionado);
+        }
+    }
+
+    public void setPilas(Equipo eq1, Equipo eq2, String name) {
+        this.name.setText(name);
+        if(!eq1.pilaBatalla.isEmpty()){
+            pilaBEq1 = cartas.obtenerImagen(eq1.pilaBatalla.cimaCarta().tipo);
+            Image imagenRedimensionadaBEq1 = redimensionarImagen(pilaBEq1);
+            establecerImagen(labelImagenBEq1, imagenRedimensionadaBEq1, "Pila Batalla Equipo 1 vacía");
+        }
+        if(!eq2.pilaBatalla.isEmpty()){
+            pilaBEq2 = cartas.obtenerImagen(eq2.pilaBatalla.cimaCarta().tipo);
+            Image imagenRedimensionadaBEq2 = redimensionarImagen(pilaBEq2);
+            establecerImagen(labelImagenBEq2, imagenRedimensionadaBEq2, "Pila Batalla Equipo 1 vacía");
+        }
+
+        if(!eq1.pilaDistancia.isEmpty()){
+            pilaDEq1 = cartas.obtenerImagen(eq1.pilaDistancia.cimaCarta().tipo);
+            Image imagenRedimensionadaDEq1 = redimensionarImagen(pilaDEq1);
+            establecerImagen(labelImagenDEq1, imagenRedimensionadaDEq1, "Pila Batalla Equipo 1 vacía");
+        }
+        if(!eq2.pilaDistancia.isEmpty()){
+            pilaDEq2 = cartas.obtenerImagen(eq2.pilaDistancia.cimaCarta().tipo);
+            Image imagenRedimensionadaDEq2 = redimensionarImagen(pilaDEq2);
+            establecerImagen(labelImagenDEq2, imagenRedimensionadaDEq2, "Pila Batalla Equipo 1 vacía");
+        }
+
+        if(!eq1.pilaVelocidad.isEmpty()){
+            pilaVEq1 = cartas.obtenerImagen(eq1.pilaVelocidad.cimaCarta().tipo);
+            Image imagenRedimensionadaVEq1 = redimensionarImagen(pilaVEq1);
+            establecerImagen(labelImagenpilaVEq1, imagenRedimensionadaVEq1, "Pila Batalla Equipo 1 vacía");
+        }
+        if(!eq2.pilaVelocidad.isEmpty()){
+            pilaVEq2 = cartas.obtenerImagen(eq2.pilaVelocidad.cimaCarta().tipo);
+            Image imagenRedimensionadaVEq2 = redimensionarImagen(pilaVEq2);
+            establecerImagen(labelImagenpilaVEq2, imagenRedimensionadaVEq2, "Pila Batalla Equipo 1 vacía");
+        }
+    }
+
+    // Método para redimensionar una imagen
+    private Image redimensionarImagen(ImageIcon imagen) {
+        return imagen.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+    }
+
+    // Método para establecer una imagen en un JLabel o un texto si la imagen está vacía
+    private void establecerImagen(JLabel label, Image imagen, String textoVacio) {
+        if (imagen != null) {
+            label.setIcon(new ImageIcon(imagen));
+        } else {
+            label.setText(textoVacio);
         }
     }
 
