@@ -43,4 +43,13 @@ public class Equipo {
         return false; // Si no se encuentra ninguna carta del tipo especificado, retorna false
     }
 
+    public boolean encuentraJugador(String nombre){
+        for (Jugador j : miembrosE) {
+            if (j.nombre == nombre) {
+                return true; // Si se encuentra 
+            }
+        }
+        return false; // Si no se encuentra 
+    }
+
 }

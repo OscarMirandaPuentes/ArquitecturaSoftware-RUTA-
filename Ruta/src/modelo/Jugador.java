@@ -50,7 +50,6 @@ public class Jugador {
                     descartar(o);
                 return posible;
             } else {
-                System.err.println(cartaSeleccionada.getClass());
                 boolean posible = cartaSeleccionada.accion(e);
                 if (posible) {
                     e.anotador.aumentarPuntuacion(cartaSeleccionada);

@@ -89,11 +89,20 @@ public class Controlador implements ActionListener{
                 // Obtener el jugador actual según el estado del juego
                 int indiceBoton = view.getTb().getCardButtons().indexOf(boton);
                 int opt = view.getTb().accion();
-                if(jugadorActual.tipoAccion(indiceBoton,a.getJ().getEquipo1(), a.getJ().getEquipo2(), opt)){
-                    actualPos++;
-                    obtenerJugadorActual();
+
+                if (a.getJ().getEquipo1().encuentraJugador(jugadorActual.nombre)) {
+                    if(jugadorActual.tipoAccion(indiceBoton,a.getJ().getEquipo1(), a.getJ().getEquipo2(), opt)){
+                        actualPos++;
+                        obtenerJugadorActual();
+                    }
+                    break;
+                }else{
+                    if(jugadorActual.tipoAccion(indiceBoton,a.getJ().getEquipo2(), a.getJ().getEquipo1(), opt)){
+                        actualPos++;
+                        obtenerJugadorActual();
+                    }
+                    break;
                 }
-                break;
             }
         }
     }

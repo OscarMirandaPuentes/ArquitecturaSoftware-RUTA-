@@ -92,20 +92,13 @@ public class Tablero  extends JFrame{
     private void initComponents(){
         JPanel tablePanel = new JPanel();
         tablePanel.setBackground(c.amarillo);
-        add(tablePanel, BorderLayout.CENTER);
+        tablePanel.setLayout(new GridLayout(2, 2));
 
         // Panel para la mano del jugador
         JPanel playerHandPanel = new JPanel();
         playerHandPanel.setBackground(c.azul);
         playerHandPanel.setLayout(new FlowLayout());
         add(playerHandPanel, BorderLayout.SOUTH);
-
-        // Panel para la pila de cartas
-        JPanel discardPilePanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 150, 0));
-        discardPilePanel.setBackground(Color.WHITE);
-        JLabel discardPileLabel = new JLabel("Discard Pile");
-        discardPilePanel.add(discardPileLabel);
-        add(discardPilePanel, BorderLayout.NORTH);
 
         this.name = new JLabel("");
         this.name.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
@@ -115,13 +108,40 @@ public class Tablero  extends JFrame{
 
         botones(playerHandPanel);
 
-        // Inicializar labels de las pilas
-        discardPilePanel.add(labelImagenBEq1);
-        discardPilePanel.add(labelImagenDEq1);
-        discardPilePanel.add(labelImagenpilaVEq1);
-        discardPilePanel.add(labelImagenBEq2);
-        discardPilePanel.add(labelImagenDEq2);
-        discardPilePanel.add(labelImagenpilaVEq2);
+        // JLabel para indicar Equipo 1
+        JLabel equipo1Label = new JLabel("Equipo 1");
+        equipo1Label.setFont(c.font);
+        equipo1Label.setHorizontalAlignment(SwingConstants.CENTER);
+
+        // JPanel para las pilas del equipo 1
+        JPanel equipo1Panel = new JPanel();
+        equipo1Panel.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
+        equipo1Panel.add(labelImagenBEq1);
+        equipo1Panel.add(labelImagenDEq1);
+        equipo1Panel.add(labelImagenpilaVEq1);
+
+        // Agregar el JLabel y el JPanel de equipo 1 al tablePanel
+        tablePanel.add(equipo1Label);
+        tablePanel.add(equipo1Panel);
+
+        // JLabel para indicar Equipo 2
+        JLabel equipo2Label = new JLabel("Equipo 2");
+        equipo2Label.setFont(c.font);
+        equipo2Label.setHorizontalAlignment(SwingConstants.CENTER);
+
+        // JPanel para las pilas del equipo 2
+        JPanel equipo2Panel = new JPanel();
+        equipo2Panel.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
+        equipo2Panel.add(labelImagenBEq2);
+        equipo2Panel.add(labelImagenDEq2);
+        equipo2Panel.add(labelImagenpilaVEq2);
+
+        // Agregar el JLabel y el JPanel de equipo 2 al tablePanel
+        tablePanel.add(equipo2Label);
+        tablePanel.add(equipo2Panel);
+
+        add(tablePanel, BorderLayout.CENTER);
+
     }
 
     public void setButtonIcons(List<Carta> mano) {
@@ -179,7 +199,7 @@ public class Tablero  extends JFrame{
 
     // Método para redimensionar una imagen
     private Image redimensionarImagen(ImageIcon imagen) {
-        return imagen.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+        return imagen.getImage().getScaledInstance(150, 200, Image.SCALE_SMOOTH);
     }
 
     // Método para establecer una imagen en un JLabel o un texto si la imagen está vacía
