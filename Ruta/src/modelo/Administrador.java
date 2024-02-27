@@ -10,12 +10,6 @@ public class Administrador {
     public void iniciarJuego(){
         j.repartir();
     }
-    public boolean finJuego(){
-        if (j.equipo1.obtenerPuntaje()>j.getMaxPuntuacion() || j.equipo2.obtenerPuntaje()>j.getMaxPuntuacion()) {
-            return true;
-        }
-        return false;
-    }
 
     public boolean finJuego(){
         if (j.equipo1.obtenerPuntaje()>j.getMaxPuntuacion() || j.equipo2.obtenerPuntaje()>j.getMaxPuntuacion()) {

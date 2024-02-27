@@ -2,11 +2,10 @@ package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JButton;
 import modelo.Administrador;
 import modelo.Jugador;
 import vista.Ventana;
-
-import javax.swing.*;
 
 public class Controlador implements ActionListener{
     Administrador a;
@@ -63,11 +62,6 @@ public class Controlador implements ActionListener{
     public void cargarVista (Ventana ev){
         this.view = ev;
     }
-
-
-    //TODO:hacer los cambios de escenas
-    //     Mandar info a logica
-    //
 
     public void actionPerformed(ActionEvent e) {
         String comando = e.getActionCommand();

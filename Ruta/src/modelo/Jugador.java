@@ -1,4 +1,5 @@
 package modelo;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,8 +38,9 @@ public class Jugador {
             if (cartaSeleccionada.getClass() == Peligro.class) {
                 e.anotador.aumentarPuntuacion(cartaSeleccionada);
                 boolean posible = e.atacar(cartaSeleccionada, eC);
-                if (posible)
+                if (posible){
                     descartar(o);
+                }
                 return posible;
             }
             else if (cartaSeleccionada.getClass() == Defensa.class) {

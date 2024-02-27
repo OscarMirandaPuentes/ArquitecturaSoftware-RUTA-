@@ -49,5 +49,7 @@ public class Pila {
         bloqueada = false;
     }
 
-    public boolean isEmpty(){return cartas.isEmpty();}
+    public boolean isEmpty(){
+        return cartas.isEmpty();
+    }
 }

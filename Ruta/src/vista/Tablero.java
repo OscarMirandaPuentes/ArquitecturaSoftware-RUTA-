@@ -36,6 +36,7 @@ public class Tablero  extends JFrame{
     JLabel labelImagenpilaVEq2 = new JLabel(pilaVEq2);
 
     JLabel name;
+    PaletaColores c = new PaletaColores();
 
 
     public Tablero(Controlador e){
@@ -53,6 +54,14 @@ public class Tablero  extends JFrame{
         jButton5 = new JButton("5");
         jButton6 = new JButton("6");
         jButton7 = new JButton("7");
+
+        jButton1.setText(""); 
+        jButton2.setText(""); 
+        jButton3.setText(""); 
+        jButton4.setText(""); 
+        jButton5.setText(""); 
+        jButton6.setText(""); 
+        jButton7.setText(""); 
 
         cardButtons.add(jButton1);
         cardButtons.add(jButton2);
@@ -77,18 +86,17 @@ public class Tablero  extends JFrame{
         panel.add(jButton5);
         panel.add(jButton6);
         panel.add(jButton7);
-
-
+        
     }
 
     private void initComponents(){
         JPanel tablePanel = new JPanel();
-        tablePanel.setBackground(Color.GREEN);
+        tablePanel.setBackground(c.amarillo);
         add(tablePanel, BorderLayout.CENTER);
 
         // Panel para la mano del jugador
         JPanel playerHandPanel = new JPanel();
-        playerHandPanel.setBackground(Color.LIGHT_GRAY);
+        playerHandPanel.setBackground(c.azul);
         playerHandPanel.setLayout(new FlowLayout());
         add(playerHandPanel, BorderLayout.SOUTH);
 
@@ -99,32 +107,30 @@ public class Tablero  extends JFrame{
         discardPilePanel.add(discardPileLabel);
         add(discardPilePanel, BorderLayout.NORTH);
 
-        // Panel para el mazo de cartas
-        JPanel drawPilePanel = new JPanel();
-        drawPilePanel.setBackground(Color.WHITE);
-        JLabel drawPileLabel = new JLabel("Draw Pile");
         this.name = new JLabel("");
-        drawPilePanel.add(drawPileLabel);
-        add(drawPilePanel, BorderLayout.EAST);
+        this.name.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        this.name.setOpaque(true);
+        this.name.setBackground(c.rojo);
         add(name, BorderLayout.EAST);
 
         botones(playerHandPanel);
 
         // Inicializar labels de las pilas
         discardPilePanel.add(labelImagenBEq1);
-        discardPilePanel.add(labelImagenBEq2);
         discardPilePanel.add(labelImagenDEq1);
-        discardPilePanel.add(labelImagenDEq2);
         discardPilePanel.add(labelImagenpilaVEq1);
+        discardPilePanel.add(labelImagenBEq2);
+        discardPilePanel.add(labelImagenDEq2);
         discardPilePanel.add(labelImagenpilaVEq2);
     }
+
     public void setButtonIcons(List<Carta> mano) {
         for (int i = 0; i < mano.size(); i++) {
             ImageIcon iconoOriginal = cartas.obtenerImagen(mano.get(i).tipo);
             Image imagenOriginal = iconoOriginal.getImage();
 
             // Redimensionar la imagen a un tamaño más pequeño
-            Image imagenRedimensionada = imagenOriginal.getScaledInstance(100, 100, Image.SCALE_SMOOTH); // Cambia el tamaño como desees
+            Image imagenRedimensionada = imagenOriginal.getScaledInstance(150, 200, Image.SCALE_SMOOTH); // Cambia el tamaño como desees
 
             // Crear un nuevo ImageIcon con la imagen redimensionada
             ImageIcon iconoRedimensionado = new ImageIcon(imagenRedimensionada);
@@ -135,6 +141,7 @@ public class Tablero  extends JFrame{
     }
 
     public void setPilas(Equipo eq1, Equipo eq2, String name) {
+
         this.name.setText(name);
         if(!eq1.pilaBatalla.isEmpty()){
             pilaBEq1 = cartas.obtenerImagen(eq1.pilaBatalla.cimaCarta().tipo);
@@ -186,7 +193,7 @@ public class Tablero  extends JFrame{
 
     public int accion() {
         String[] options = {"Usar", "Descartar"};
-        int opt = JOptionPane.showOptionDialog(null, "Escoge",
+        int opt = JOptionPane.showOptionDialog(null, "¿Qué acción deseas hacer?",
                 "Click a button",
                 JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
         return opt;
