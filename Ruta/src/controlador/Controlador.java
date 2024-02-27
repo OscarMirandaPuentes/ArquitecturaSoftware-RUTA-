@@ -35,15 +35,6 @@ public class Controlador implements ActionListener{
     }
 
     public Jugador obtenerJugadorActual(){
-        if (actualPos<0 && (actualPos % 2 == 0)){
-            if(actualPos > a.getJ().getEquipo2().getJugadores().size() * 2){
-                jugadorActualPos = 0;
-                actualPos = 0;
-            }
-            else {
-                jugadorActualPos++;
-            }
-        }
             if (actualPos % 2 == 0){
                 jugadorActual = a.getJ().getEquipos().get(0).getJugadores().get(jugadorActualPos);
             }
@@ -56,7 +47,20 @@ public class Controlador implements ActionListener{
             }
 
             view.getTb().setButtonIcons(jugadorActual.getMano());
+
+
             return jugadorActual;
+    }
+
+    public void validarPosicionJugador() {
+        actualPos++;
+        if (actualPos == a.getJ().getEquipo1().getJugadores().size() * 2) {
+            jugadorActualPos = 0;
+            actualPos = 0;
+        }
+        else if (actualPos % 2 == 0 && actualPos != 0) {
+            jugadorActualPos++;
+        }
     }
 
     public void cargarVista (Ventana ev){
@@ -85,20 +89,19 @@ public class Controlador implements ActionListener{
         for (JButton boton : view.getTb().getCardButtons()) {
             if (e.getSource() == boton) {
                 Jugador jugadorActual = obtenerJugadorActual();
-                System.out.println(1);
                 // Obtener el jugador actual según el estado del juego
                 int indiceBoton = view.getTb().getCardButtons().indexOf(boton);
                 int opt = view.getTb().accion();
 
                 if (a.getJ().getEquipo1().encuentraJugador(jugadorActual.nombre)) {
                     if(jugadorActual.tipoAccion(indiceBoton,a.getJ().getEquipo1(), a.getJ().getEquipo2(), opt)){
-                        actualPos++;
+                        validarPosicionJugador();
                         obtenerJugadorActual();
                     }
                     break;
                 }else{
                     if(jugadorActual.tipoAccion(indiceBoton,a.getJ().getEquipo2(), a.getJ().getEquipo1(), opt)){
-                        actualPos++;
+                        validarPosicionJugador();
                         obtenerJugadorActual();
                     }
                     break;
