@@ -111,12 +111,14 @@ public class Tablero  extends JFrame{
         // JLabel para indicar Equipo 1
         JLabel equipo1Label = new JLabel("Equipo 1");
         equipo1Label.setFont(c.font);
+        equipo1Label.setOpaque(true);
+        equipo1Label.setBackground(c.amarillo);
         equipo1Label.setHorizontalAlignment(SwingConstants.CENTER);
 
         // JPanel para las pilas del equipo 1
         JPanel equipo1Panel = new JPanel();
         equipo1Panel.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
-        equipo1Panel.setBackground(c.amarillo);
+        equipo1Panel.setBackground(c.blanco);
         equipo1Panel.add(labelImagenBEq1);
         equipo1Panel.add(labelImagenDEq1);
         equipo1Panel.add(labelImagenpilaVEq1);
