@@ -6,7 +6,7 @@ import java.util.List;
 public class Jugador {
 
     public String nombre;
-    Mazo m = new Mazo();
+    Mazo m = Mazo.getInstance();
     public List<Carta> mano;
 
     public Jugador(String n){

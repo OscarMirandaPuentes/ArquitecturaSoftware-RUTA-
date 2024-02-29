@@ -10,7 +10,9 @@ public class Peligro extends Carta{
     public boolean accion(Equipo eC){
 
         if (this.tipo=="Límite de velocidad"&& !eC.revisionDeSeguridad("Vía libre")) {
+            
             eC.pilaVelocidad.ponerCarta(this);
+
             return true;
         }else{
             if (eC.revisionDeSeguridad("Cisterna") && this.tipo == "Sin gasolina") {
@@ -23,9 +25,16 @@ public class Peligro extends Carta{
                 System.out.println("El equipo contrario tiene un as al volante");
                 return false;
             } else{
-                eC.pilaBatalla.ponerCarta(this);
-                eC.pilaDistancia.bloquearPila();
-                return true;
+                if(!eC.pilaBatalla.isEmpty() && !(eC.pilaBatalla.cimaCarta().tipo == "Sin gasolina" || 
+                eC.pilaBatalla.cimaCarta().tipo == "Pinchazo" || eC.pilaBatalla.cimaCarta().tipo == "Accidente")){
+
+                    eC.pilaBatalla.ponerCarta(this);
+                    eC.pilaDistancia.bloquearPila();
+                    return true;
+
+                }else{
+                    return false;
+                }
             }
         }
     }

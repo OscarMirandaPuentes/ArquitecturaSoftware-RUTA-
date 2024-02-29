@@ -16,7 +16,7 @@ public class Juego {
         equipos = new ArrayList<Equipo>();
         equipos.add(equipo1);
         equipos.add(equipo2);
-        m = new Mazo();
+        m = Mazo.getInstance();
     }
     
     public void repartir() {

@@ -36,7 +36,7 @@ public class Cartas {
 
     // Obtener la ubicación de la imagen de una carta dado su nombre
     public String obtenerRuta(String nombreCarta) {
-        return imagenesCartas.getOrDefault(nombreCarta, "Ruta/Imagenes/RUTA.png");
+        return imagenesCartas.getOrDefault(nombreCarta, "Ruta/Imagenes/Cartas/20.png");
     }
 
     public ImageIcon obtenerImagen(String nombreCarta) {

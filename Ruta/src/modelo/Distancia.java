@@ -23,12 +23,14 @@ public class Distancia extends Carta{
                         System.out.println("Tienes límite de velocidad :(");
                         return false;
                     }
+                } else{
+                    e.pilaDistancia.ponerCarta(this);
+                    return true;
                 }
             }
         } else {
             System.out.println("No puedes avanzar :(");
             return false;
         }
-        return false;
     }
 }

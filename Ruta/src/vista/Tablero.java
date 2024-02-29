@@ -204,12 +204,12 @@ public class Tablero  extends JFrame{
         return imagen.getImage().getScaledInstance(150, 200, Image.SCALE_SMOOTH);
     }
 
-    // Método para establecer una imagen en un JLabel o un texto si la imagen está vacía
+    // Método para establecer una imagen en un JLabel si la imagen está vacía
     private void establecerImagen(JLabel label, Image imagen, String textoVacio) {
         if (imagen != null) {
             label.setIcon(new ImageIcon(imagen));
         } else {
-            label.setText(textoVacio);
+            label.setIcon(new ImageIcon(redimensionarImagen(new ImageIcon("Ruta/Imagenes/Cartas/20.png"))));
         }
     }
 

@@ -7,11 +7,19 @@ import java.util.Collections;
 
 public class Mazo {
 
+    private static Mazo instancia = null;
     private List<Carta> mazo = new ArrayList<Carta>();
     Stack<Carta> pilaCartas = new Stack<>();
 
-    public Mazo(){
+    private Mazo(){
         mazo();
+    }
+
+     public static Mazo getInstance() {
+        if (instancia == null) {
+            instancia = new Mazo();
+        }
+        return instancia;
     }
 
     private void mazo() {
