@@ -6,6 +6,7 @@ import java.util.List;
 public class Jugador {
 
     public String nombre;
+    Mazo m = new Mazo();
     public List<Carta> mano;
 
     public Jugador(String n){
@@ -18,7 +19,7 @@ public class Jugador {
     }
 
     public void robar(){
-        Mazo m = new Mazo();
+
         mano.add(m.dar());
     }
 
