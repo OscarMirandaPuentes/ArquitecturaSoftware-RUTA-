@@ -17,7 +17,7 @@ public class Defensa extends Carta{
 
         }else{
 
-            if (tipo=="Gasolina" && (!e.pilaBatalla.isEmpty() && e.pilaBatalla.cimaCarta().tipo=="Sin Gasolina")) {
+            if (tipo=="Gasolina" && (!e.pilaBatalla.isEmpty() && e.pilaBatalla.cimaCarta().tipo=="Sin gasolina")) {
 
                 e.pilaBatalla.ponerCarta(this);
                 e.pilaDistancia.desbloquearPila();
