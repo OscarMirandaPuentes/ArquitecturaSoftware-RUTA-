@@ -8,8 +8,9 @@
 # Ignorar archivos generados automáticamente
 *.class
 *.jar
-.classpath
-.project
+*.form
+*.classpath
+*.project
 
 # Ignorar archivos de configuración local
 .vscode/
@@ -18,4 +19,3 @@
 # Ignorar archivos de compilación
 /target/
 /out/
-/bin/
