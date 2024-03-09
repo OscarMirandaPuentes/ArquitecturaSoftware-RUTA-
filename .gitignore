@@ -2,11 +2,14 @@
 /workspace.xml
 /out
 /lib
+/bin
 
 
 # Ignorar archivos generados automáticamente
 *.class
 *.jar
+.classpath
+.project
 
 # Ignorar archivos de configuración local
 .vscode/
@@ -15,3 +18,4 @@
 # Ignorar archivos de compilación
 /target/
 /out/
+/bin/
