@@ -4,13 +4,14 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
-import java.util.LinkedList;
+import java.util.HashMap;
 
 public class HiloServidor implements Runnable {
     private final Socket socket;
+    String nombre;
     private final DataInputStream in;
     private final DataOutputStream out;
-    private static final LinkedList<Socket> usuarios = new LinkedList<>(); // Use 'final' for shared resources
+    private static final HashMap<Socket, DataOutputStream> usuarios = new HashMap<>(); // Use 'final' for shared resources
 
     public HiloServidor(Socket soc) {
         socket = soc;
@@ -18,11 +19,20 @@ public class HiloServidor implements Runnable {
             in = new DataInputStream(socket.getInputStream());
             out = new DataOutputStream(socket.getOutputStream());
             out.writeUTF("<h2>Bienvenido....</h2>");
-            usuarios.add(socket); // Add the socket to the list of connected users
+            usuarios.put(socket, out); // Add the socket and its output stream to the map
+            
         } catch (IOException e) {
             throw new RuntimeException("Error initializing thread", e);
         }
     }
+
+    public String getNombre() {
+		return nombre;
+	}
+	
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
 
     @Override
     public void run() {
@@ -31,28 +41,29 @@ public class HiloServidor implements Runnable {
             while (true) {
                 String received = in.readUTF();
                 System.out.println("Mensaje recibido del cliente (" + socket.getInetAddress() + "): " + received);
+                //System.out.println("cliente (" + socket. + ")");
 
                 // Broadcast the received message to all connected users
-                for (Socket userSocket : usuarios) {
+                for (DataOutputStream userOut : usuarios.values()) {
                     try {
-                        DataOutputStream userOut = new DataOutputStream(userSocket.getOutputStream());
                         userOut.writeUTF(received);
                     } catch (IOException ex) {
-                        // Handle the exception, e.g., remove the disconnected user from the list
+                        // Handle the exception, e.g., remove the disconnected user from the map
                         ex.printStackTrace();
                     }
                 }
             }
         } catch (IOException e) {
-            
             usuarios.remove(socket);
             System.out.println("Cliente desconectado: " + socket.getInetAddress());
         } finally {
             try {
-                socket.close(); 
+                socket.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
     }
+
+   
 }

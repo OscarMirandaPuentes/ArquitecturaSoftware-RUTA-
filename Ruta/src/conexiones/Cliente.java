@@ -7,20 +7,35 @@ import java.net.Socket;
 
 public class Cliente implements Runnable {
     private Socket cliente;
+    private String nombre ;
     private DataInputStream in;
     private DataOutputStream out;
     private int puerto = 2027;
+
     private String host = "localhost";
 
     public Cliente() {
         try {
             cliente = new Socket(host, puerto);
+            
             in = new DataInputStream(cliente.getInputStream());
             out = new DataOutputStream(cliente.getOutputStream());
+
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
+    public Socket getSocket() {
+        return cliente;
+    }
+    public String getNombre() {
+		return nombre;
+	}
+	
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
 
     @Override
     public void run() {
@@ -45,10 +60,13 @@ public class Cliente implements Runnable {
         }
     }
 
+    public void limpiarSalida(){
+        try {
+            out.flush();
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
 
-public static void main(String[] args) throws IOException {
-    Cliente cliente = new Cliente();
-    cliente.run();
 
-}
 }

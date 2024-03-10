@@ -7,6 +7,8 @@ import conexiones.Servidor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import vista.MenuInicio;
+import vista.Tablero;
+import vista.TableroCliente;
 import vista.Ventana;
 
 public class ControllerMenu implements ActionListener {
@@ -33,21 +35,26 @@ public class ControllerMenu implements ActionListener {
         if (e.getSource().equals(this.vista.unirseButton)) {
             this.vista.dispose();
             
-            //******* AQUI ESTA EL PROBLEMA DE QUE ME APARECE EL CONTROLLER SERVER COMO NULL ***********
-
-            controlador = new ControllerCliente();
-            controlador.cargarVista(eve.view.getTb());
+            //****** SE DEBE TENER LA COMUNICACION ENTRE SERVIDOR CLIENTE, SE ACTUALIZA LAS VISTAS SEGUN CORRESPONDA ***********
+            String nombre = JOptionPane.showInputDialog(this.vista, "Nombre jugador 2", "Nombre jugador", JOptionPane.QUESTION_MESSAGE);
+            controlador = new ControllerCliente(nombre);
+            TableroCliente v=new TableroCliente(controlador);
+            controlador.cargarVista(v);
             controlador.inicia();
+            System.out.println("desde menu inicial");
             controlador.enviarMensajeAlServidor();
+            //controlador.enviarMensajeAlServidor();
 
 
         } else if (e.getSource().equals(this.vista.crearSalaButton)) {
 
             this.vista.dispose();
-
-            eve = new ControllerServidor();
+            String nombre = JOptionPane.showInputDialog(this.vista, "Nombre jugador 1", "Nombre jugador", JOptionPane.QUESTION_MESSAGE);
+            eve = new ControllerServidor(nombre);
             Ventana v=new Ventana(eve);
             eve.cargarVista(v);
+            //eve.iniciarServidor(0);
+            //eve.realizarAccionEnJuego();
 
 
         } else if ((e.getSource().equals(this.vista.salirButton))) {

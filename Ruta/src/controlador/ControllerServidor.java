@@ -31,8 +31,10 @@ public class ControllerServidor implements ActionListener{
     public Servidor serv;
     public boolean bandera = false;
     public HiloServidor hilo;
+    String nombre;
 
-    public ControllerServidor() {
+    public ControllerServidor(String nombre) {
+        this.nombre = nombre;
         this.a = new Administrador();
     }
 
@@ -40,23 +42,29 @@ public class ControllerServidor implements ActionListener{
         serv = new Servidor(); //Se crea el servidor
         System.out.println("Iniciando servidor\n");
         serv.cantidadConexiones(i);
+        serv.setNombre(nombre);
         bandera = serv.escuchar();
     }
 
-    
-    // Method to send a message to all connected clients
-    private void enviarMensajeAlServidor(String mensaje) {
-        serv.broadcastMessage(mensaje);
-    }
 
     // ...
+
+    public void realizarAccionEnCliente() {
+        // ... perform game action ...
+        // Send a message to all connected clients
+        serv.enviarMensajeACliente(serv.getNombre(),"Alguna acción ha ocurrido en el juego.");
+
+    }
 
     // Example game action where a message is sent to all clients
     public void realizarAccionEnJuego() {
         // ... perform game action ...
         // Send a message to all connected clients
-        enviarMensajeAlServidor("Alguna acción ha ocurrido en el juego.");
+        serv.enviarMensajeATodos("Alguna acción ha ocurrido en el juego.");
+
     }
+
+
     public void iniciar(int numJugadores) {
         for (int i = 0; i < numJugadores; i++) {
             if (i % 2 == 0) {
@@ -113,8 +121,11 @@ public class ControllerServidor implements ActionListener{
             case "2 Jugadores":
                 JOptionPane.showMessageDialog(this.view, "jugadores", "Esperando", JOptionPane.INFORMATION_MESSAGE);
                 this.iniciarServidor(2);
+                System.out.println("sigue a realizae");
+                this.realizarAccionEnJuego();
 	            a.j.setMaxPuntuacion(1000);
 	            iniciar(2);
+
 	            break;
 	        case "En Parejas":
                 JOptionPane.showMessageDialog(this.view, "jugadores", "Esperando", JOptionPane.INFORMATION_MESSAGE);

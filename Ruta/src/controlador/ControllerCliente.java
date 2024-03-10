@@ -20,44 +20,56 @@ import modelo.Administrador;
 import modelo.Jugador;
 
 import vista.Tablero;
+import vista.TableroCliente;
 import vista.Ventana;
 
 public class ControllerCliente implements ActionListener {
 	
  
     Administrador a;
+    String nombre;
     int jugadorActualPos = 0;
     int actualPos = 0;
     Jugador jugadorActual;
-    public Tablero tb;
+    public TableroCliente tb;
     Cliente cli;
 
-    public ControllerCliente() {    
+    public ControllerCliente(String nombre) {    
+        this.nombre = nombre;
+        this.a = new Administrador();
         crearCliente();
     }
     public void inicia(){
         System.out.println("entra a mostrar el tablero");
         tb.setVisible(true);
         jugadorActual = obtenerJugadorActual();
+        
     }
 
     public void crearCliente(){
-        cli = new Cliente(); //Se crea el servidor
-        Thread hilo = new Thread(cli);
-        hilo.start();
+
+        cli = new Cliente(); 
+
         System.out.println("Nuevo Cliente\n");
+        cli.setNombre(nombre);;
         enviarMensajeAlServidor();
+
+        Thread clientThread = new Thread(cli);
+        clientThread.start();
+        
+        //cli.run();
+
     }
 
     public void enviarMensajeAlServidor(){
         this.cli.enviarMsg("hello world");
     }
 
-    public Tablero getTb(){
+    public TableroCliente getTb(){
         return tb;
 
     }
-    public void setTb(Tablero tb){
+    public void setTb(TableroCliente tb){
         this.tb = tb;
     }
     
@@ -91,7 +103,7 @@ public class ControllerCliente implements ActionListener {
 	    }
 	}
 
-	public void cargarVista (Tablero ev){
+	public void cargarVista (TableroCliente ev){
 	    this.tb = ev;
 	}
 	
