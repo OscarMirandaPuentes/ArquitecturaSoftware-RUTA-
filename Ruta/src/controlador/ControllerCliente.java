@@ -34,6 +34,7 @@ public class ControllerCliente implements ActionListener {
     public TableroCliente tb;
     Cliente cli;
 
+    
     public ControllerCliente(String nombre) {    
         this.nombre = nombre;
         this.a = new Administrador();
@@ -41,26 +42,33 @@ public class ControllerCliente implements ActionListener {
     }
     public void inicia(){
         System.out.println("entra a mostrar el tablero");
+        
         tb.setVisible(true);
         jugadorActual = obtenerJugadorActual();
         
     }
-
+    
     public void crearCliente(){
-
+        
         cli = new Cliente(); 
-
+        
         System.out.println("Nuevo Cliente\n");
         cli.setNombre(nombre);;
         enviarMensajeAlServidor();
-
         Thread clientThread = new Thread(cli);
         clientThread.start();
+        System.out.println("ultimo "+cli.mensaje);
+        if( cli.mensaje.equals( "true")){
+            System.out.println("entro condicional");
+
+        }
         
-        //cli.run();
+    }
+    
+    public void recibirDatos(){
+        
 
     }
-
     public void enviarMensajeAlServidor(){
         this.cli.enviarMsg("hello world");
     }

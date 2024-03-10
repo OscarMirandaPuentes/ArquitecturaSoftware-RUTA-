@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.StringTokenizer;
 
 public class Servidor {
 
@@ -62,8 +63,8 @@ public class Servidor {
                 hilo.start();
 
             }
-
             bandera = true;
+            enviarMensajeATodos("true");
             System.out.println("Conexiones completadas");
 
         } catch (Exception e) {
@@ -103,7 +104,10 @@ public class Servidor {
     public void enviarMensajeATodos(String mensaje) {
         for (DataOutputStream out : flujosSalida) {
             try {
-                out.writeUTF(mensaje);
+                StringTokenizer tokenizer = new StringTokenizer(mensaje, "|");
+                while (tokenizer.hasMoreTokens()) {
+                    out.writeUTF(tokenizer.nextToken());
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }

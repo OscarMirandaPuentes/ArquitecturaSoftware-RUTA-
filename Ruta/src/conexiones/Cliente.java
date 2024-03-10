@@ -8,6 +8,7 @@ import java.net.Socket;
 public class Cliente implements Runnable {
     private Socket cliente;
     private String nombre ;
+    public String mensaje;
     private DataInputStream in;
     private DataOutputStream out;
     private int puerto = 2027;
@@ -42,7 +43,7 @@ public class Cliente implements Runnable {
         try {
            
             while (true) {
-                String mensaje = in.readUTF();
+                mensaje = in.readUTF();
                 System.out.println("Mensaje recibido: " + mensaje);
             }
         } catch (Exception e) {
