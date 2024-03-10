@@ -1,6 +1,5 @@
 package vista;
 
-import controlador.Controlador;
 import controlador.ControllerServidor;
 
 import javax.imageio.ImageIO;
@@ -27,7 +26,7 @@ public class Ventana extends JFrame {
     public void initComponets(){
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(1920, 1080);
-        //this.tb = new Tablero(ev);
+        this.tb = new Tablero(ev);
 
         cargarFondo();
         // Crear el JPanel personalizado para dibujar la imagen de fondo

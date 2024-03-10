@@ -1,6 +1,6 @@
 package vista;
 
-import controlador.Controlador;
+import controlador.ControllerServidor;
 import modelo.Carta;
 import modelo.Equipo;
 
@@ -19,7 +19,7 @@ public class Tablero  extends JFrame{
     JButton jButton5;
     JButton jButton6;
     JButton jButton7;
-    Controlador ev;
+    ControllerServidor ev;
 
     ImageIcon pilaBEq1 = new ImageIcon();
     ImageIcon pilaBEq2 = new ImageIcon();
@@ -39,7 +39,7 @@ public class Tablero  extends JFrame{
     PaletaColores c = new PaletaColores();
 
 
-    public Tablero(Controlador e){
+    public Tablero(ControllerServidor e){
         super("Ruta");
         this.ev=e;
         setSize(1920, 1080);

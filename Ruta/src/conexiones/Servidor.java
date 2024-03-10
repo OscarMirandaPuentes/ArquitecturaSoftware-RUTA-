@@ -23,29 +23,35 @@ public class Servidor {
         this.noConexiones = num;
         System.out.println("cantidad de conexiones: "+noConexiones);
     }
+    public LinkedList<Socket> getUsuarios() {
+        return usuarios;
+    }
        
    //Funcion para que el servidor empieze a recibir conexiones de clientes
-    public void escuchar(){
+    public boolean escuchar(){
+        boolean bandera = false;
         try {
-            //Creamos el socket servidor
+           
             ServerSocket servidor = new ServerSocket(puerto,noConexiones);
             int contador = 0;
             //Ciclo infinito para estar escuchando por nuevos clientes
-            while(contador < noConexiones){
+            while(contador < (noConexiones-1)){
                 System.out.println("Escuchando....");
                 //Cuando un cliente se conecte guardamos el socket en nuestra lista
                 Socket cliente = servidor.accept();
                 contador++;
                 usuarios.add(cliente);
-                //Instanciamos un hilo que estara atendiendo al cliente y lo ponemos a escuchar
+                
                 Runnable  run = new HiloServidor(cliente);
                 Thread hilo = new Thread(run);
                 hilo.start();
             }
+            bandera = true;
             System.out.println("Conexiones completadas");
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return bandera;
         
     }
     private LinkedList<DataOutputStream> outputStreams = new LinkedList<>();
@@ -59,7 +65,7 @@ public class Servidor {
         }
     }
     
-    //Funcion main para correr el servidor
+  
     public static void main(String[] args) {
         Servidor servidor= new Servidor();
         servidor.escuchar();

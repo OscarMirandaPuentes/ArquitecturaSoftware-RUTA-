@@ -30,6 +30,8 @@ public class HiloServidor implements Runnable {
             // Infinite loop to listen for messages from the client
             while (true) {
                 String received = in.readUTF();
+                System.out.println("Mensaje recibido del cliente (" + socket.getInetAddress() + "): " + received);
+
                 // Broadcast the received message to all connected users
                 for (Socket userSocket : usuarios) {
                     try {
@@ -42,12 +44,12 @@ public class HiloServidor implements Runnable {
                 }
             }
         } catch (IOException e) {
-            // Handle the exception, e.g., remove the disconnected user from the list
+            
             usuarios.remove(socket);
             System.out.println("Cliente desconectado: " + socket.getInetAddress());
         } finally {
             try {
-                socket.close(); // Close the socket when the thread is done
+                socket.close(); 
             } catch (IOException e) {
                 e.printStackTrace();
             }

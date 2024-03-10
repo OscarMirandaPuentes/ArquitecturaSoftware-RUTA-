@@ -1,52 +1,124 @@
 package controlador;
 
-import java.io.DataInputStream;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.LinkedList;
 
-public class ControllerCliente implements Runnable {
-    // Declare necessary variables for connection and communication
-    private Socket cliente;
-    private DataInputStream in;
-    private DataOutputStream out;
-    // The port should be the same as the server's listening port
-    private int puerto = 2027;
-    // Use localhost if on the same machine; otherwise, use the server machine's IP
-    private String host = "localhost";
-    private String mensajes = "";
+import javax.swing.JButton;
+import javax.swing.JPanel;
 
-    // Constructor receives the panel where messages will be displayed
-    public ControllerCliente() {
-        try {
-            cliente = new Socket(host, puerto);
-            in = new DataInputStream(cliente.getInputStream());
-            out = new DataOutputStream(cliente.getOutputStream());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+import conexiones.Cliente;
+import conexiones.HiloServidor;
+import conexiones.Servidor;
+import modelo.Administrador;
+import modelo.Jugador;
+
+import vista.Tablero;
+import vista.Ventana;
+
+public class ControllerCliente implements ActionListener {
+	
+ 
+    Administrador a;
+    int jugadorActualPos = 0;
+    int actualPos = 0;
+    Jugador jugadorActual;
+    public Tablero tb;
+    Cliente cli;
+
+    public ControllerCliente() {    
+        crearCliente();
+    }
+    public void inicia(){
+        System.out.println("entra a mostrar el tablero");
+        tb.setVisible(true);
+        jugadorActual = obtenerJugadorActual();
     }
 
-    @Override
-    public void run() {
-        try {
-            // Infinite loop listening for messages from the server and displaying them in the console
-            while (true) {
-                mensajes += in.readUTF();
-                System.out.println(mensajes);
-                
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public void crearCliente(){
+        cli = new Cliente(); //Se crea el servidor
+        Thread hilo = new Thread(cli);
+        hilo.start();
+        System.out.println("Nuevo Cliente\n");
+        enviarMensajeAlServidor();
     }
 
-    // Function to send messages to the server
-    public void enviarMsg(String msg) {
-        try {
-            out.writeUTF(msg);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void enviarMensajeAlServidor(){
+        this.cli.enviarMsg("hello world");
     }
+
+    public Tablero getTb(){
+        return tb;
+
+    }
+    public void setTb(Tablero tb){
+        this.tb = tb;
+    }
+    
+    
+    public Jugador obtenerJugadorActual(){
+        if (actualPos % 2 == 0){
+            jugadorActual = a.getJ().getEquipos().get(0).getJugadores().get(jugadorActualPos);
+        }
+        else {
+            jugadorActual = a.getJ().getEquipos().get(1).getJugadores().get(jugadorActualPos);
+        }
+        if (jugadorActual.getMano().size()<7) {
+            jugadorActual.robar();
+            tb.setPilas(a.getJ().getEquipo1(), a.getJ().getEquipo2(), jugadorActual.getNombre());
+        }
+
+        tb.setButtonIcons(jugadorActual.getMano());
+
+
+        return jugadorActual;
+}
+
+	public void validarPosicionJugador() {
+	    actualPos++;
+	    if (actualPos == a.getJ().getEquipo1().getJugadores().size() * 2) {
+	        jugadorActualPos = 0;
+	        actualPos = 0;
+	    }
+	    else if (actualPos % 2 == 0 && actualPos != 0) {
+	        jugadorActualPos++;
+	    }
+	}
+
+	public void cargarVista (Tablero ev){
+	    this.tb = ev;
+	}
+	
+	public void actionPerformed(ActionEvent e) {
+	
+	    for (JButton boton : tb.getCardButtons()) {
+	        if (e.getSource() == boton) {
+	            Jugador jugadorActual = obtenerJugadorActual();
+	            // Obtener el jugador actual según el estado del juego
+	            int indiceBoton = tb.getCardButtons().indexOf(boton);
+	            int opt = tb.accion();
+	
+	            if (a.getJ().getEquipo1().encuentraJugador(jugadorActual.nombre)) {
+	                if(jugadorActual.tipoAccion(indiceBoton,a.getJ().getEquipo1(), a.getJ().getEquipo2(), opt)){
+	                    validarPosicionJugador();
+	                    obtenerJugadorActual();
+	                }
+	                break;
+	            }else{
+	                if(jugadorActual.tipoAccion(indiceBoton,a.getJ().getEquipo2(), a.getJ().getEquipo1(), opt)){
+	                    validarPosicionJugador();
+	                    obtenerJugadorActual();
+	                }
+	                break;
+	            }
+	        }
+	    }
+	}
+    
 }

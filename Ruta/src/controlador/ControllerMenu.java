@@ -12,6 +12,9 @@ import vista.Ventana;
 public class ControllerMenu implements ActionListener {
 
     private MenuInicio vista;
+    public ControllerCliente controlador;
+    public ControllerServidor eve;
+
 
 
     public ControllerMenu(MenuInicio vista) {
@@ -28,15 +31,21 @@ public class ControllerMenu implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(this.vista.unirseButton)) {
-            String nombre = JOptionPane.showInputDialog(this.vista, "Nombre jugador 2", "Nombre jugador", JOptionPane.QUESTION_MESSAGE);
-            //ControllerCliente controlador = new ControllerCliente(new JugarCliente(nombre,jugadores));
+            this.vista.dispose();
+            
+            //******* AQUI ESTA EL PROBLEMA DE QUE ME APARECE EL CONTROLLER SERVER COMO NULL ***********
+
+            controlador = new ControllerCliente();
+            controlador.cargarVista(eve.view.getTb());
+            controlador.inicia();
+            controlador.enviarMensajeAlServidor();
+
+
         } else if (e.getSource().equals(this.vista.crearSalaButton)) {
-            //String nombre = JOptionPane.showInputDialog(this.vista, "Nombre jugador 1", "Nombre jugador", JOptionPane.QUESTION_MESSAGE);
-            //Thread hilo = new Thread(new SalaDeEspera(this.vista, false, nombre, jugadores));
-            //hilo.start();
+
             this.vista.dispose();
 
-            ControllerServidor eve = new ControllerServidor();
+            eve = new ControllerServidor();
             Ventana v=new Ventana(eve);
             eve.cargarVista(v);
 

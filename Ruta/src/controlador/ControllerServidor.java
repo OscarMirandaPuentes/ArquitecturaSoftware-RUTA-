@@ -11,6 +11,7 @@ import java.net.Socket;
 import java.util.LinkedList;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
 import conexiones.HiloServidor;
 import conexiones.Servidor;
@@ -27,27 +28,25 @@ public class ControllerServidor implements ActionListener{
     int jugadorActualPos = 0;
     int actualPos = 0;
     Jugador jugadorActual;
-    private Servidor servidor;
+    public Servidor serv;
+    public boolean bandera = false;
+    public HiloServidor hilo;
 
-    // ...
-
-    
     public ControllerServidor() {
         this.a = new Administrador();
     }
 
     public void iniciarServidor(int i){
-        Servidor serv = new Servidor(); //Se crea el servidor
+        serv = new Servidor(); //Se crea el servidor
         System.out.println("Iniciando servidor\n");
         serv.cantidadConexiones(i);
-        serv.escuchar(); //Se inicia el servidor
+        bandera = serv.escuchar();
     }
-
 
     
     // Method to send a message to all connected clients
     private void enviarMensajeAlServidor(String mensaje) {
-        servidor.broadcastMessage(mensaje);
+        serv.broadcastMessage(mensaje);
     }
 
     // ...
@@ -109,20 +108,24 @@ public class ControllerServidor implements ActionListener{
 	
 	public void actionPerformed(ActionEvent e) {
         String comando = e.getActionCommand();
+        this.view.dispose();
 	    switch (comando) {
             case "2 Jugadores":
+                JOptionPane.showMessageDialog(this.view, "jugadores", "Esperando", JOptionPane.INFORMATION_MESSAGE);
                 this.iniciarServidor(2);
 	            a.j.setMaxPuntuacion(1000);
 	            iniciar(2);
 	            break;
 	        case "En Parejas":
+                JOptionPane.showMessageDialog(this.view, "jugadores", "Esperando", JOptionPane.INFORMATION_MESSAGE);
                 this.iniciarServidor(4);
 	            a.j.setMaxPuntuacion(3000);
 	            iniciar(4);
 	            break;
 	        case "En Trios":
+                JOptionPane.showMessageDialog(this.view, "jugadores", "Esperando", JOptionPane.INFORMATION_MESSAGE);
+                a.j.setMaxPuntuacion(4000);
                 this.iniciarServidor(6);
-	            a.j.setMaxPuntuacion(4000);
 	            iniciar(6);
 	            break;
 	        default:
@@ -152,5 +155,5 @@ public class ControllerServidor implements ActionListener{
 	        }
 	    }
 	}
-    
 }
+    
