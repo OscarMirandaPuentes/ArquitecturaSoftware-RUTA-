@@ -3,106 +3,65 @@ package conexiones;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.LinkedList;
+
 import javax.swing.JOptionPane;
 
-public class Servidor extends Conexion //Se hereda de conexión para hacer uso de los sockets y demás
-{
-    private int numConexiones;
-    
-    public Servidor(int numConexiones) throws IOException {//Se usa el constructor para servidor de Conexion
-        super("servidor");
-        JOptionPane.showMessageDialog(null, "Esperando", "Servidor", JOptionPane.INFORMATION_MESSAGE); //Esperando conexión
-        this.numConexiones = numConexiones;
-    }
+import modelo.Administrador;
 
-    //Método para iniciar el servidor
-    public boolean esperarConexion() {
-        boolean bandera = false;
-        try {
-            if(numConexiones > 0){
-                cs = ss.accept(); //Accept comienza el socket y espera una conexión desde un cliente     
-                JOptionPane.showMessageDialog(null, "Conexión exitosa","Servidor",JOptionPane.INFORMATION_MESSAGE);
-                numConexiones--;
-                bandera = true;
-            }else
-               JOptionPane.showMessageDialog(null, "Se han superado las conexiones", "Servidor", JOptionPane.ERROR_MESSAGE);           
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-        return bandera;
-    }
 
-    /**
-     * Envia los datos al cliente
-     * 
-     * @param dato Datos a enviar
-     */
-    public void enviarDatoCliente(String dato) {
+public class Servidor {
+    //Inicializamos el puerto y el numero maximo de conexciones que acepta el servidor
+    private final int puerto = 2027;
+    private int noConexiones = 2;
+    //Creamos una lista de sockets, donde guardaremos los sockets que se vayan conectando
+    private LinkedList<Socket> usuarios = new LinkedList<Socket>();
+
+    public void cantidadConexiones (int num){
+        this.noConexiones = num;
+        System.out.println("cantidad de conexiones: "+noConexiones);
+    }
+       
+   //Funcion para que el servidor empieze a recibir conexiones de clientes
+    public void escuchar(){
         try {
-            salida = new DataOutputStream(cs.getOutputStream());
-            salida.writeUTF(dato);
-            
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
+            //Creamos el socket servidor
+            ServerSocket servidor = new ServerSocket(puerto,noConexiones);
+            int contador = 0;
+            //Ciclo infinito para estar escuchando por nuevos clientes
+            while(contador < noConexiones){
+                System.out.println("Escuchando....");
+                //Cuando un cliente se conecte guardamos el socket en nuestra lista
+                Socket cliente = servidor.accept();
+                contador++;
+                usuarios.add(cliente);
+                //Instanciamos un hilo que estara atendiendo al cliente y lo ponemos a escuchar
+                Runnable  run = new HiloServidor(cliente);
+                Thread hilo = new Thread(run);
+                hilo.start();
+            }
+            System.out.println("Conexiones completadas");
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         
     }
-
-    /**
-     * Limpia el buffer de la salida del servidor
-     */
-    public void limpiarSalida(){
-        try {
-            salida.flush();
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
+    private LinkedList<DataOutputStream> outputStreams = new LinkedList<>();
+    public synchronized void broadcastMessage(String message) {
+        for (DataOutputStream dos : outputStreams) {
+            try {
+                dos.writeUTF(message);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
-
-    /**
-     * Cierra la conexión con el cliente.
-     */
-    public void cerrarConexiónCliente(){
-        try {
-            cs.close();
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
-
-    /**
-     * Lee los datos que ha enviado el cliente.
-     * 
-     * @return Devuelve los datos del cliente. 
-     */
-    public String leerDatosCliente(){
-        String dato = null;
-        try {
-            entrada = new DataInputStream(cs.getInputStream());
-            dato = entrada.readUTF();
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
-        return dato;       
-    }
-            
-    /**
-     * Finaliza el servidor
-     */
-    public void finalizarConexión()  {
-        try {
-            ss.close();//Se finaliza la conexión
-            JOptionPane.showMessageDialog(null, "Fin Servidor", "Servidor", JOptionPane.INFORMATION_MESSAGE); //Esperando conexión
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
-    public static void main(String[] args) throws IOException {
-        Servidor servidor = new Servidor(2);
-        servidor.esperarConexion();
-        servidor.enviarDatoCliente("Hola que tal");
-        System.out.println(servidor.leerDatosCliente());
-        servidor.cerrarConexiónCliente();
-        servidor.finalizarConexión();
+    
+    //Funcion main para correr el servidor
+    public static void main(String[] args) {
+        Servidor servidor= new Servidor();
+        servidor.escuchar();
     }
 }

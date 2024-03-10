@@ -6,42 +6,50 @@ import java.io.IOException;
 import java.net.Socket;
 import java.util.LinkedList;
 
-public class HiloServidor implements Runnable{
-    //Declaramos las variables que utiliza el hilo para estar recibiendo y mandando mensajes
-	private Socket socket;
-    private DataInputStream in;
-    private DataOutputStream out;
-    private static LinkedList<Socket> usuarios; // Lista compartida para todos los hilos
+public class HiloServidor implements Runnable {
+    private final Socket socket;
+    private final DataInputStream in;
+    private final DataOutputStream out;
+    private static final LinkedList<Socket> usuarios = new LinkedList<>(); // Use 'final' for shared resources
 
-    public HiloServidor(Socket soc, LinkedList<Socket> users) {
+    public HiloServidor(Socket soc) {
         socket = soc;
-        usuarios = users;
-    }
-
-
-	@Override
-    public void run() {
         try {
-            //Inicializamos los canales de comunicacion y mandamos un mensaje de bienvenida
             in = new DataInputStream(socket.getInputStream());
             out = new DataOutputStream(socket.getOutputStream());
             out.writeUTF("<h2>Bienvenido....</h2>");
-            //Ciclo infinito para escuchar por mensajes del cliente
-            while(true){
-               String recibido = in.readUTF();
-               //Cuando se recibe un mensaje se envia a todos los usuarios conectados 
-                for (int i = 0; i < usuarios.size(); i++) {
-                    out = new DataOutputStream(usuarios.get(i).getOutputStream());
-                    out.writeUTF(recibido);
+            usuarios.add(socket); // Add the socket to the list of connected users
+        } catch (IOException e) {
+            throw new RuntimeException("Error initializing thread", e);
+        }
+    }
+
+    @Override
+    public void run() {
+        try {
+            // Infinite loop to listen for messages from the client
+            while (true) {
+                String received = in.readUTF();
+                // Broadcast the received message to all connected users
+                for (Socket userSocket : usuarios) {
+                    try {
+                        DataOutputStream userOut = new DataOutputStream(userSocket.getOutputStream());
+                        userOut.writeUTF(received);
+                    } catch (IOException ex) {
+                        // Handle the exception, e.g., remove the disconnected user from the list
+                        ex.printStackTrace();
+                    }
                 }
             }
         } catch (IOException e) {
-            //Si ocurre un excepcion lo mas seguro es que sea por que el cliente se desconecto asi que lo quitamos de la lista de conectados
-            for (int i = 0; i < usuarios.size(); i++) {
-                if(usuarios.get(i) == socket){
-                    usuarios.remove(i);
-                    break;
-                } 
+            // Handle the exception, e.g., remove the disconnected user from the list
+            usuarios.remove(socket);
+            System.out.println("Cliente desconectado: " + socket.getInetAddress());
+        } finally {
+            try {
+                socket.close(); // Close the socket when the thread is done
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
     }

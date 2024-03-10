@@ -13,6 +13,7 @@ import java.util.LinkedList;
 import javax.swing.JButton;
 
 import conexiones.HiloServidor;
+import conexiones.Servidor;
 import modelo.Administrador;
 import modelo.Jugador;
 import vista.Ventana;
@@ -20,40 +21,43 @@ import vista.Ventana;
 public class ControllerServidor implements ActionListener{
 	
     //Inicializamos el puerto y el numero maximo de conexciones que acepta el servidor
-    private final int puerto = 2027;
-    private final int noConexiones = 20;
+    
     Administrador a;
     Ventana view;
     int jugadorActualPos = 0;
     int actualPos = 0;
     Jugador jugadorActual;
-    //Creamos una lista de sockets, donde guardaremos los sockets que se vayan conectando
-    private LinkedList<Socket> usuarios = new LinkedList<Socket>();
+    private Servidor servidor;
+
+    // ...
+
     
     public ControllerServidor() {
-    	 this.a = new Administrador();
+        this.a = new Administrador();
     }
-       
-   //Funcion para que el servidor empieze a recibir conexiones de clientes
-    public void escuchar() {
-        try {
-            ServerSocket servidor = new ServerSocket(puerto);
-            while (true) {
-                System.out.println("Escuchando....");
-                Socket cliente = servidor.accept();
-                usuarios.add(cliente);
 
-                // Instanciamos un hilo para manejar la comunicación con el cliente
-                Runnable run = new HiloServidor(cliente, usuarios);
-                Thread hilo = new Thread(run);
-                hilo.start();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public void iniciarServidor(int i){
+        Servidor serv = new Servidor(); //Se crea el servidor
+        System.out.println("Iniciando servidor\n");
+        serv.cantidadConexiones(i);
+        serv.escuchar(); //Se inicia el servidor
     }
+
 
     
+    // Method to send a message to all connected clients
+    private void enviarMensajeAlServidor(String mensaje) {
+        servidor.broadcastMessage(mensaje);
+    }
+
+    // ...
+
+    // Example game action where a message is sent to all clients
+    public void realizarAccionEnJuego() {
+        // ... perform game action ...
+        // Send a message to all connected clients
+        enviarMensajeAlServidor("Alguna acción ha ocurrido en el juego.");
+    }
     public void iniciar(int numJugadores) {
         for (int i = 0; i < numJugadores; i++) {
             if (i % 2 == 0) {
@@ -104,17 +108,20 @@ public class ControllerServidor implements ActionListener{
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-	    String comando = e.getActionCommand();
+        String comando = e.getActionCommand();
 	    switch (comando) {
-	        case "2 Jugadores":
+            case "2 Jugadores":
+                this.iniciarServidor(2);
 	            a.j.setMaxPuntuacion(1000);
 	            iniciar(2);
 	            break;
 	        case "En Parejas":
+                this.iniciarServidor(4);
 	            a.j.setMaxPuntuacion(3000);
 	            iniciar(4);
 	            break;
 	        case "En Trios":
+                this.iniciarServidor(6);
 	            a.j.setMaxPuntuacion(4000);
 	            iniciar(6);
 	            break;

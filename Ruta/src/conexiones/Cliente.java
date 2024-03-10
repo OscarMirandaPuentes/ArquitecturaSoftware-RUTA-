@@ -3,79 +3,59 @@ package conexiones;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.net.Socket;
 import java.util.StringTokenizer;
 
+import javax.swing.JEditorPane;
 
-public class Cliente extends Conexion {
-    
-    /**
-     * Constructor de la clase 
-     * 
-     * @throws IOException Indica si se conecta o no
-     */
-    public Cliente() throws IOException{
-        super("cliente");
-    } //Se usa el constructor para cliente de Conexion
 
+
+public class Cliente implements Runnable{
+    //Declaramos las variables necesarias para la conexion y comunicacion
+    private Socket cliente;
+    private DataInputStream in;
+    private DataOutputStream out;
+    //El puerto debe ser el mismo en el que escucha el servidor
+    private int puerto = 2027;
+    //Si estamos en nuestra misma maquina usamos localhost si no la ip de la maquina servidor
+    private String host = "localhost";
+    private String mensajes = "";
+    JEditorPane panel;
     
-    /**
-     * Lee los datos que le envia el servidor
-     * 
-     * @return Devuelve los datos
-     */
-    public String leerDatosServidor(){
-        String dato = null;
-        try {         
-            //Flujo de datos del servidor hacia el cliente
-            entrada = new DataInputStream(cs.getInputStream());
-            dato = entrada.readUTF();              
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
-        return dato;
-    }
-    /**
-     * Envia los datos al servidor
-     * 
-     * @param dato Los datos que se quieren enviar
-     */
-    public void enviarDatosServidor(String dato){
+    //Constructor recibe como parametro el panel donde se mostraran los mensajes
+    public Cliente(){
+        //this.panel = panel;
         try {
-            salida = new DataOutputStream(cs.getOutputStream());
-            salida.writeUTF(dato);
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
+            cliente = new Socket(host,puerto);
+            in = new DataInputStream(cliente.getInputStream());
+            out = new DataOutputStream(cliente.getOutputStream());
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+        
     }
 
-    /**
-     * Limpia el buffer de la salida del cliente.
-     */
-    public void limpiarSalida(){
-        try {
-            salida.flush();
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
+    @Override
+    public void run() {
+        try{
+            //Ciclo infinito que escucha por mensajes del servidor y los muestra en el panel
+            while(true){
+                mensajes += in.readUTF();
+                panel.setText(mensajes);
+            }
+        }catch(Exception e){
+            e.printStackTrace();
         }
     }
     
-    /**
-     * Cierra el cliente.
-     */
-    public void cerrarCliente() {
+    //Funcion sirve para enviar mensajes al servidor
+    public void enviarMsg(String msg){
         try {
-            cs.close();
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
+            out.writeUTF(msg);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-       
     }
-
     
-    public static void main(String[] args) throws IOException {
-        Cliente cliente = new Cliente();
-        StringTokenizer separador = new StringTokenizer(cliente.leerDatosServidor());
-        System.out.println("x = " + separador.nextToken() + "  y = " + separador.nextToken());
-        cliente.cerrarCliente();
-    }
 }
+
