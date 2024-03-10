@@ -1,11 +1,19 @@
-import controlador.Controlador;
+import java.io.IOException;
+import java.net.Socket;
+
+import controlador.ControllerCliente;
+import controlador.ControllerMenu;
+import controlador.ControllerServidor;
+import vista.MenuInicio;
+import vista.Ventana;
 import vista.Ventana;
 
 public class Launcher {
-    public static void main(String[] args) throws Exception {
-        Controlador eve = new Controlador();
+	public static void main(String[] args) throws IOException
+    {
 
-        Ventana v=new Ventana(eve);
-        eve.cargarVista(v);
+        ControllerMenu controller = new ControllerMenu(new MenuInicio());
+
     }
-}
+        
+    }

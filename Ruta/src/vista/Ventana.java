@@ -1,6 +1,6 @@
 package vista;
 
-import controlador.Controlador;
+import controlador.ControllerServidor;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -10,14 +10,14 @@ import java.io.IOException;
 
 public class Ventana extends JFrame {
 
-    Controlador ev;
+    ControllerServidor ev;
     Tablero tb;
     private ImageIcon imagenDeFondo;
     private JPanel panel;
     PaletaColores c = new PaletaColores();
 
 
-    public Ventana(Controlador e){
+    public Ventana(ControllerServidor e){
         super("Ruta");
         this.ev=e;
         initComponets();

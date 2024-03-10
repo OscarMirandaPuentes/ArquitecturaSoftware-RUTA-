@@ -1,5 +1,6 @@
 package vista;
 
+import controlador.ControllerCliente;
 import controlador.ControllerServidor;
 import modelo.Carta;
 import modelo.Equipo;
@@ -9,7 +10,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Tablero  extends JFrame{
+public class TableroCliente  extends JFrame{
     Cartas cartas = new Cartas();
     ArrayList<JButton> cardButtons = new ArrayList<JButton>();
     JButton jButton1;
@@ -19,7 +20,7 @@ public class Tablero  extends JFrame{
     JButton jButton5;
     JButton jButton6;
     JButton jButton7;
-    ControllerServidor ev;
+    ControllerCliente ev;
 
     ImageIcon pilaBEq1 = new ImageIcon();
     ImageIcon pilaBEq2 = new ImageIcon();
@@ -39,8 +40,8 @@ public class Tablero  extends JFrame{
     PaletaColores c = new PaletaColores();
 
 
-    public Tablero(ControllerServidor e){
-        super("Ruta");
+    public TableroCliente(ControllerCliente e){
+        super("Ruta Cliente");
         this.ev=e;
         setSize(1920, 1080);
         initComponents();
