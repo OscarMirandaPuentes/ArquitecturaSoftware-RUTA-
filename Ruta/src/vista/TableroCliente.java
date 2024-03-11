@@ -1,7 +1,6 @@
 package vista;
 
 import controlador.ControllerCliente;
-import controlador.ControllerServidor;
 import modelo.Carta;
 import modelo.Equipo;
 

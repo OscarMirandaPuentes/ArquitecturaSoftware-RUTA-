@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Jugador {
 
+    public int id;
     public String nombre;
     Mazo m = Mazo.getInstance();
     public List<Carta> mano;
@@ -89,4 +90,13 @@ public class Jugador {
     public void setMano(List<Carta> mano) {
         this.mano = mano;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }
+

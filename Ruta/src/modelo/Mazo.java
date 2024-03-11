@@ -11,7 +11,7 @@ public class Mazo {
     private List<Carta> mazo = new ArrayList<Carta>();
     Stack<Carta> pilaCartas = new Stack<>();
 
-    private Mazo(){
+    public Mazo(){
         mazo();
     }
 

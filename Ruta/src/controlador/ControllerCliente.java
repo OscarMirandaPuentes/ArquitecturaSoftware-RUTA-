@@ -2,32 +2,19 @@ package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.ServerSocket;
-import java.net.Socket;
-import java.util.LinkedList;
 
 import javax.swing.JButton;
-import javax.swing.JPanel;
 
 import conexiones.Cliente;
-import conexiones.HiloServidor;
-import conexiones.Servidor;
 import modelo.Administrador;
 import modelo.Jugador;
 
-import vista.Tablero;
 import vista.TableroCliente;
-import vista.Ventana;
 
 public class ControllerCliente implements ActionListener {
 	
  
     Administrador a;
-    String nombre;
     int jugadorActualPos = 0;
     int actualPos = 0;
     Jugador jugadorActual;
@@ -35,43 +22,25 @@ public class ControllerCliente implements ActionListener {
     Cliente cli;
 
     
-    public ControllerCliente(String nombre) {    
-        this.nombre = nombre;
+    public ControllerCliente() {
         this.a = new Administrador();
-        crearCliente();
     }
-    public void inicia(){
-        System.out.println("entra a mostrar el tablero");
-        
-        tb.setVisible(true);
-        jugadorActual = obtenerJugadorActual();
+    public void conectar(){
+        crearCliente();
         
     }
     
     public void crearCliente(){
         
-        cli = new Cliente(); 
+        cli = new Cliente();
+		cli.setCli(this);
         
-        System.out.println("Nuevo Cliente\n");
-        cli.setNombre(nombre);;
-        enviarMensajeAlServidor();
-        Thread clientThread = new Thread(cli);
-        clientThread.start();
-        System.out.println("ultimo "+cli.mensaje);
-        if( cli.mensaje.equals( "true")){
-            System.out.println("entro condicional");
+    }
 
-        }
-        
-    }
-    
-    public void recibirDatos(){
-        
+	public void mostratVista(){
+		tb.setVisible(true);
+	}
 
-    }
-    public void enviarMensajeAlServidor(){
-        this.cli.enviarMsg("hello world");
-    }
 
     public TableroCliente getTb(){
         return tb;
@@ -140,5 +109,12 @@ public class ControllerCliente implements ActionListener {
 	        }
 	    }
 	}
-    
+
+	public Administrador getA() {
+		return a;
+	}
+
+	public void setA(Administrador a) {
+		this.a = a;
+	}
 }
