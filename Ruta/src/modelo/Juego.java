@@ -28,7 +28,6 @@ public class Juego {
                 }
             }
         }
-
     }
 
     public Jugador crearJugador(String nombre) {

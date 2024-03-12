@@ -8,7 +8,7 @@ public class Defensa extends Carta{
     }
 
     public boolean accion(Equipo e){
-        if (tipo=="Fin de límite" && (!e.pilaVelocidad.isEmpty() && e.pilaVelocidad.cimaCarta().tipo=="Límite de velocidad")) {
+        if (tipo.equals("Fin de límite") && (!e.pilaVelocidad.isEmpty() && e.pilaVelocidad.cimaCarta().tipo.equals("Límite de velocidad"))) {
 
             e.pilaVelocidad.ponerCarta(this);
             e.pilaDistancia.desbloquearPila();
@@ -17,26 +17,27 @@ public class Defensa extends Carta{
 
         }else{
 
-            if (tipo=="Gasolina" && (!e.pilaBatalla.isEmpty() && e.pilaBatalla.cimaCarta().tipo=="Sin gasolina")) {
+            if (tipo.equals("Gasolina") && (!e.pilaBatalla.isEmpty() && e.pilaBatalla.cimaCarta().tipo.equals("Sin gasolina"))) {
 
                 e.pilaBatalla.ponerCarta(this);
                 e.pilaDistancia.desbloquearPila();
                 System.err.println("Se ha puesto la carta sin ");
                 return true;
 
-            } else if (tipo=="Llanta de repuesto" && (!e.pilaBatalla.isEmpty() && e.pilaBatalla.cimaCarta().tipo=="Pinchazo")) {
+            } else if (tipo.equals("Llanta de repuesto") && (!e.pilaBatalla.isEmpty() && e.pilaBatalla.cimaCarta().tipo.equals("Pinchazo"))) {
 
                 e.pilaBatalla.ponerCarta(this);
                 e.pilaDistancia.desbloquearPila();
                 return true;
 
-            } else if (tipo=="Reparación" && (!e.pilaBatalla.isEmpty() && e.pilaBatalla.cimaCarta().tipo=="Accidente")) {
+            } else if (tipo.equals("Reparacion") && (!e.pilaBatalla.isEmpty() && e.pilaBatalla.cimaCarta().tipo.equals("Accidente"))) {
 
                 e.pilaBatalla.ponerCarta(this);
                 e.pilaDistancia.desbloquearPila();
                 return true;
 
-            } else if (tipo=="Siga") {
+            } else if (tipo.equals("Siga")) {
+                System.out.println(1);
                 if (e.pilaBatalla.isEmpty()) {
 
                     e.pilaBatalla.ponerCarta(this);

@@ -207,7 +207,7 @@ public class Cliente implements NetworkGame {
             case CardGameMessage.MOVE:
                 if(0 <= id && id < numOfPlayers)
                 {
-                    this.checkMove(id, (int[]) message.getData());
+                    this.checkMove(id, (Carta) message.getData());
                     cli.obtenerJugadorActual(playerID);
                 }
                 break;
@@ -225,15 +225,20 @@ public class Cliente implements NetworkGame {
         }
     }
 
-    public void makeMove(int[] carta) {
+    public void makeMove(Carta carta) {
         sendMessage(new CardGameMessage(CardGameMessage.MOVE,
                 playerID, carta));
     }
 
-    private void checkMove(int id, int[] data){
-        if (id % 2 == 0){
-            playerList.get(id).tipoAccion(data[0],cli.getA().getJ().getEquipo1(), cli.getA().getJ().getEquipo2(), data[1]);
+    private void checkMove(int id, Carta data){
+        if (id % 2 == 0 && id != playerID){
+            playerList.get(id).tipoAccionAsync(data,cli.getA().getJ().getEquipo1(), cli.getA().getJ().getEquipo2());
+        } else if(id != playerID){
+            playerList.get(id).tipoAccionAsync(data,cli.getA().getJ().getEquipo2(), cli.getA().getJ().getEquipo1());
         }
+        cli.validarPosicionJugador();
+        cli.refreshView();
+        cli.obtenerJugadorActual(playerID);
     }
 
     @Override

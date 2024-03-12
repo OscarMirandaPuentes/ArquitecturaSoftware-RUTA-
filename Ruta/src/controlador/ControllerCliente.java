@@ -7,6 +7,7 @@ import javax.swing.JButton;
 
 import conexiones.Cliente;
 import modelo.Administrador;
+import modelo.Carta;
 import modelo.Jugador;
 
 import vista.TableroCliente;
@@ -65,6 +66,10 @@ public class ControllerCliente implements ActionListener {
 
 		if (id == actualPos){
 			tb.setButtonIcons(jugadorActual.getMano());
+			tb.getPlayerHandPanel().setVisible(true);
+		}
+		else {
+			tb.getPlayerHandPanel().setVisible(false);
 		}
 
         return jugadorActual;
@@ -90,21 +95,19 @@ public class ControllerCliente implements ActionListener {
 	    for (JButton boton : tb.getCardButtons()) {
 	        if (e.getSource() == boton) {
 	            // Obtener el jugador actual según el estado del juego
+				Jugador jugadorActual = obtenerJugadorActual(actualPos);
 	            int indiceBoton = tb.getCardButtons().indexOf(boton);
 	            int opt = tb.accion();
-	
+				Carta carta = jugadorActual.getMano().get(indiceBoton);
+
 	            if (a.getJ().getEquipo1().encuentraJugador(jugadorActual.nombre)) {
 	                if(jugadorActual.tipoAccion(indiceBoton,a.getJ().getEquipo1(), a.getJ().getEquipo2(), opt)){
-						int[] vals = {indiceBoton,opt};
-						cli.makeMove(vals);
-	                    validarPosicionJugador();
+						cli.makeMove(carta);
 	                }
 	                break;
 	            }else{
 	                if(jugadorActual.tipoAccion(indiceBoton,a.getJ().getEquipo2(), a.getJ().getEquipo1(), opt)){
-						int[] vals = {indiceBoton,opt};
-						cli.makeMove(vals);
-	                    validarPosicionJugador();
+						cli.makeMove(carta);
 	                }
 	                break;
 	            }
@@ -112,6 +115,9 @@ public class ControllerCliente implements ActionListener {
 	    }
 	}
 
+	public void refreshView(){
+		tb.setPilas(a.getJ().getEquipo1(), a.getJ().getEquipo2(), jugadorActual.getNombre());
+	}
 	public Administrador getA() {
 		return a;
 	}
