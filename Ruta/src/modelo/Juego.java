@@ -16,10 +16,10 @@ public class Juego {
         equipos = new ArrayList<Equipo>();
         equipos.add(equipo1);
         equipos.add(equipo2);
-        m = Mazo.getInstance();
     }
     
-    public void repartir() {
+    public void repartir(Mazo mazo) {
+        this.m = mazo;
         for (Equipo equipo : equipos) {
             List<Jugador> jugadores = equipo.getJugadores();
             for (int i = 0; i < 6; i++) { // Repartir 6 cartas

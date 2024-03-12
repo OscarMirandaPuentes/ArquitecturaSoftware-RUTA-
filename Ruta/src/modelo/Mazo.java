@@ -1,12 +1,13 @@
 package modelo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 import java.util.Collections;
 
-public class Mazo {
-
+public class Mazo  implements Serializable {
+    private static final long serialVersionUID = -3711761437629470849L;
     private static Mazo instancia = null;
     private List<Carta> mazo = new ArrayList<Carta>();
     Stack<Carta> pilaCartas = new Stack<>();

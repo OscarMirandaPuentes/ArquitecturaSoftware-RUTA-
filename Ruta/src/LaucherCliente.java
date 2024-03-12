@@ -8,7 +8,7 @@ public class LaucherCliente {
     {
         // Create a BigTwoClient object
         ControllerCliente game = new ControllerCliente();
-        game.conectar();
+        game.conectar(2);
         TableroCliente v=new TableroCliente(game);
         game.cargarVista(v);
         // Start the game with the shuffled deck

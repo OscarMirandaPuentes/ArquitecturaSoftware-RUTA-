@@ -25,14 +25,14 @@ public class ControllerCliente implements ActionListener {
     public ControllerCliente() {
         this.a = new Administrador();
     }
-    public void conectar(){
-        crearCliente();
+    public void conectar(int num){
+        crearCliente(num);
         
     }
     
-    public void crearCliente(){
+    public void crearCliente(int num){
         
-        cli = new Cliente();
+        cli = new Cliente(num);
 		cli.setCli(this);
         
     }
@@ -51,7 +51,7 @@ public class ControllerCliente implements ActionListener {
     }
     
     
-    public Jugador obtenerJugadorActual(){
+    public Jugador obtenerJugadorActual(int id){
         if (actualPos % 2 == 0){
             jugadorActual = a.getJ().getEquipos().get(0).getJugadores().get(jugadorActualPos);
         }
@@ -63,8 +63,9 @@ public class ControllerCliente implements ActionListener {
             tb.setPilas(a.getJ().getEquipo1(), a.getJ().getEquipo2(), jugadorActual.getNombre());
         }
 
-        tb.setButtonIcons(jugadorActual.getMano());
-
+		if (id == actualPos){
+			tb.setButtonIcons(jugadorActual.getMano());
+		}
 
         return jugadorActual;
 }
@@ -88,21 +89,22 @@ public class ControllerCliente implements ActionListener {
 	
 	    for (JButton boton : tb.getCardButtons()) {
 	        if (e.getSource() == boton) {
-	            Jugador jugadorActual = obtenerJugadorActual();
 	            // Obtener el jugador actual según el estado del juego
 	            int indiceBoton = tb.getCardButtons().indexOf(boton);
 	            int opt = tb.accion();
 	
 	            if (a.getJ().getEquipo1().encuentraJugador(jugadorActual.nombre)) {
 	                if(jugadorActual.tipoAccion(indiceBoton,a.getJ().getEquipo1(), a.getJ().getEquipo2(), opt)){
+						int[] vals = {indiceBoton,opt};
+						cli.makeMove(vals);
 	                    validarPosicionJugador();
-	                    obtenerJugadorActual();
 	                }
 	                break;
 	            }else{
 	                if(jugadorActual.tipoAccion(indiceBoton,a.getJ().getEquipo2(), a.getJ().getEquipo1(), opt)){
+						int[] vals = {indiceBoton,opt};
+						cli.makeMove(vals);
 	                    validarPosicionJugador();
-	                    obtenerJugadorActual();
 	                }
 	                break;
 	            }

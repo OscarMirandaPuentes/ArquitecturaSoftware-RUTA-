@@ -255,12 +255,10 @@ public class Servidor {
             }
 
             // creates a new deck, shuffles the deck, and starts a new game
-            Administrador admin = new Administrador();
-            admin.iniciarJuego();
-            Mazo deck = createDeck();
+            Mazo deck = new Mazo();
             System.out.println("All players are ready. Game starts.");
             broadcastMessage(new CardGameMessage(CardGameMessage.START, -1,
-                    "deck"));
+                    deck));
         }
     }
 

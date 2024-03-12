@@ -2,6 +2,7 @@ package conexiones;
 
 import controlador.ControllerCliente;
 import modelo.Administrador;
+import modelo.Carta;
 import modelo.Jugador;
 import modelo.Mazo;
 import vista.Login;
@@ -18,15 +19,12 @@ import java.util.ArrayList;
 
 public class Cliente implements NetworkGame {
     // Creating private instance variables
-    private static final int numOfPlayers = 2; // Number of Players
+    private int numOfPlayers = 2; // Number of Players
     private static final int WAITING_TIME_JOIN = 500; // Time waited for server reply
     public static final String DEFAULT_IP = "127.0.0.1";
     public static final int DEFAULT_PORT = 2396;
 
-
-    private Administrador a;
     private int playerID = -1, currentIdx = -1, latestIdx = -1; // The idnex of the current player (-1 for unset)
-    private int passCounter;
 
     private String playerName = "New Player"; // The name of the local player
     private String serverIP; // The IP address of the game server
@@ -38,15 +36,16 @@ public class Cliente implements NetworkGame {
     private ArrayList<Jugador> playerList; // A list of players
     private boolean gameJoined = false, gameInProgress = false;
 
-    public Cliente()
+    public Cliente(int numOfPlayers)
     {
+        this.numOfPlayers = numOfPlayers;
         Login login = new Login(this);
         System.out.format("IP: %s Port: %s%n", serverIP, serverPort);
 
         this.playerList = new ArrayList<Jugador>();
         for(int i = 0;i < this.numOfPlayers; ++i)
         {
-            this.playerList.add(new Jugador(getPlayerName()));
+            this.playerList.add(new Jugador(""));
             this.playerList.get(i).setNombre(null);
         }
 
@@ -203,16 +202,16 @@ public class Cliente implements NetworkGame {
             case CardGameMessage.START:
                 this.gameInProgress = true;
                 //this.table.printMsg("Game started");
-                this.start();
+                this.start((Mazo) message.getData());
                 break;
-            /*
             case CardGameMessage.MOVE:
                 if(0 <= id && id < numOfPlayers)
                 {
                     this.checkMove(id, (int[]) message.getData());
+                    cli.obtenerJugadorActual(playerID);
                 }
                 break;
-
+            /*
             case CardGameMessage.MSG:
                 ((BigTwoTable) this.table).printChatMsg( (String) message.getData() );
                 break;
@@ -223,6 +222,17 @@ public class Cliente implements NetworkGame {
         }
 
     */
+        }
+    }
+
+    public void makeMove(int[] carta) {
+        sendMessage(new CardGameMessage(CardGameMessage.MOVE,
+                playerID, carta));
+    }
+
+    private void checkMove(int id, int[] data){
+        if (id % 2 == 0){
+            playerList.get(id).tipoAccion(data[0],cli.getA().getJ().getEquipo1(), cli.getA().getJ().getEquipo2(), data[1]);
         }
     }
 
@@ -271,9 +281,24 @@ public class Cliente implements NetworkGame {
     }
 
 
-    public void start()
+    public void start(Mazo mazo)
     {
+        //Organizar equipos
+        for(int i = 0; i < numOfPlayers; ++i)
+        {
+            if (i % 2 == 0) {
+                this.cli.getA().getJ().getEquipo1().agregarJugador(playerList.get(i));
+            } else {
+                this.cli.getA().getJ().getEquipo2().agregarJugador(playerList.get(i));
+            }
+
+        }
+
+
+        // Tomar cartas
+        cli.getA().iniciarJuego(mazo);
         cli.mostratVista();
+        cli.obtenerJugadorActual(playerID);
     }
 
 
