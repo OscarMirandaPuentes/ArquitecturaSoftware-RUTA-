@@ -2,10 +2,15 @@ package vista;
 
 import conexiones.Cliente;
 
-import javax.swing.*;
-import java.awt.*;
 import java.net.Inet4Address;
 import java.net.InetAddress;
+
+import javax.swing.Box;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 
 public class Login extends JFrame {

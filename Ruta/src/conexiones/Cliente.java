@@ -1,7 +1,6 @@
 package conexiones;
 
 import controlador.ControllerCliente;
-import modelo.Administrador;
 import modelo.Carta;
 import modelo.Jugador;
 import modelo.Mazo;
@@ -11,7 +10,6 @@ import javax.swing.*;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.PrintWriter;
 import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.Socket;

@@ -1,20 +1,11 @@
 package conexiones;
 
-import modelo.Administrador;
 import modelo.Mazo;
 
-import java.io.DataOutputStream;
-import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map;
-import java.util.Scanner;
-import java.util.StringTokenizer;
 
 public class Servidor {
     // The name of this card game server
@@ -34,8 +25,8 @@ public class Servidor {
     // the main frame of the server
     private boolean serverUp = false;
 
-    public Servidor(String serverName, int maxNumOfPlayers) {
-        this.serverName = serverName;
+    public Servidor(String sN, int maxNumOfPlayers) {
+        this.serverName = sN;
         this.maxNumOfPlayers = maxNumOfPlayers;
 
         // creates arrays for holding client sockets, output streams, player

@@ -1,7 +1,5 @@
-import conexiones.Cliente;
 import controlador.ControllerCliente;
 import vista.TableroCliente;
-import vista.Ventana;
 
 public class LaucherCliente {
     public static void main(String[] args)
