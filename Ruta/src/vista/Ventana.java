@@ -1,6 +1,6 @@
 package vista;
 
-import controlador.Controlador;
+import controlador.ControllerCliente;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -10,14 +10,15 @@ import java.io.IOException;
 
 public class Ventana extends JFrame {
 
-    Controlador ev;
     Tablero tb;
     private ImageIcon imagenDeFondo;
     private JPanel panel;
     PaletaColores c = new PaletaColores();
 
+    private ControllerCliente ev;
 
-    public Ventana(Controlador e){
+
+    public Ventana(ControllerCliente e){
         super("Ruta");
         this.ev=e;
         initComponets();
@@ -96,7 +97,7 @@ public class Ventana extends JFrame {
     }
 
     /*
-    TO-DO: crear cartas 
+    TO-DO: 
     La sumatoria de los puntos avanzados debe estar en display todo el tiempo para que los oponentes y aliados sepan cuánto se ha avanzado. 
     */
 

@@ -9,7 +9,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Tablero  extends JFrame{
+public class TableroCliente  extends JFrame{
     Cartas cartas = new Cartas();
     ArrayList<JButton> cardButtons = new ArrayList<JButton>();
     JButton jButton1;
@@ -38,9 +38,11 @@ public class Tablero  extends JFrame{
     JLabel name;
     PaletaColores c = new PaletaColores();
 
+    JPanel playerHandPanel = new JPanel();
 
-    public Tablero(ControllerCliente e){
-        super("Ruta");
+
+    public TableroCliente(ControllerCliente e){
+        super("Ruta Cliente");
         this.ev=e;
         setSize(1920, 1080);
         initComponents();
@@ -95,7 +97,7 @@ public class Tablero  extends JFrame{
         tablePanel.setLayout(new GridLayout(2, 2));
 
         // Panel para la mano del jugador
-        JPanel playerHandPanel = new JPanel();
+
         playerHandPanel.setBackground(c.azul);
         playerHandPanel.setLayout(new FlowLayout());
         add(playerHandPanel, BorderLayout.SOUTH);
@@ -229,5 +231,13 @@ public class Tablero  extends JFrame{
 
     public void setCardButtons(ArrayList<JButton> cardButtons) {
         this.cardButtons = cardButtons;
+    }
+
+    public JPanel getPlayerHandPanel() {
+        return playerHandPanel;
+    }
+
+    public void setPlayerHandPanel(JPanel playerHandPanel) {
+        this.playerHandPanel = playerHandPanel;
     }
 }

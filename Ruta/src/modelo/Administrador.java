@@ -7,8 +7,8 @@ public class Administrador {
         this.j=new Juego();
     }
 
-    public void iniciarJuego(){
-        j.repartir();
+    public void iniciarJuego(Mazo mazo){
+        j.repartir(mazo);
     }
 
     public boolean finJuego(){

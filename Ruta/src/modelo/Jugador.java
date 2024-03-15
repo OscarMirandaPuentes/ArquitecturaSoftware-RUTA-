@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Jugador {
 
+    public int id;
     public String nombre;
     Mazo m = Mazo.getInstance();
     public List<Carta> mano;
@@ -39,6 +40,7 @@ public class Jugador {
             if (cartaSeleccionada.getClass() == Peligro.class) {
                 e.anotador.aumentarPuntuacion(cartaSeleccionada);
                 boolean posible = e.atacar(cartaSeleccionada, eC);
+                System.out.println(posible);
                 if (posible){
                     descartar(o);
                 }
@@ -47,11 +49,13 @@ public class Jugador {
             else if (cartaSeleccionada.getClass() == Defensa.class) {
                 e.anotador.aumentarPuntuacion(cartaSeleccionada);
                 boolean posible = cartaSeleccionada.accion(e);
-                if (posible)
-                    descartar(o);
+                System.out.println(posible);
+                if (posible){
+                    descartar(o);}
                 return posible;
             } else {
                 boolean posible = cartaSeleccionada.accion(e);
+                System.out.println(posible);
                 if (posible) {
                     e.anotador.aumentarPuntuacion(cartaSeleccionada);
                     System.out.println(e.obtenerPuntaje());
@@ -74,6 +78,29 @@ public class Jugador {
         }
     }
 
+    public boolean tipoAccionAsync(Carta cartaSeleccionada, Equipo e, Equipo eC) {
+        if (cartaSeleccionada != null){
+            System.out.println("Ha seleccionado jugar la carta: " + cartaSeleccionada.tipo);
+
+            if (cartaSeleccionada.getClass() == Peligro.class) {
+                e.anotador.aumentarPuntuacion(cartaSeleccionada);
+                boolean posible = e.atacar(cartaSeleccionada, eC);
+                return posible;
+            }
+            else if (cartaSeleccionada.getClass() == Defensa.class) {
+                e.anotador.aumentarPuntuacion(cartaSeleccionada);
+                boolean posible = cartaSeleccionada.accion(e);
+                return posible;
+            } else {
+                boolean posible = cartaSeleccionada.accion(e);
+                return posible;
+            }
+        }
+        else {
+            return true;
+        }
+    }
+
     public String getNombre() {
         return nombre;
     }
@@ -89,4 +116,13 @@ public class Jugador {
     public void setMano(List<Carta> mano) {
         this.mano = mano;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }
+
