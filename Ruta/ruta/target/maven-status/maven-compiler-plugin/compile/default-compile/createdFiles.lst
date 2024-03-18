@@ -8,6 +8,7 @@ modelo\Carta.class
 modelo\Jugador.class
 modelo\Seguridad.class
 modelo\Peligro.class
+controlador\MyServlet.class
 modelo\Administrador.class
 modelo\Juego.class
 modelo\Anotador.class
