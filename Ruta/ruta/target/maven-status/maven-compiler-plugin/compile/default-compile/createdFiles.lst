@@ -1,0 +1,15 @@
+controlador\ControllerCliente.class
+modelo\Pila.class
+modelo\Descarte.class
+modelo\Defensa.class
+modelo\Equipo.class
+modelo\Distancia.class
+modelo\Carta.class
+modelo\Jugador.class
+modelo\Seguridad.class
+modelo\Peligro.class
+modelo\Administrador.class
+modelo\Juego.class
+modelo\Anotador.class
+modelo\Mazo.class
+modelo\Model.class
