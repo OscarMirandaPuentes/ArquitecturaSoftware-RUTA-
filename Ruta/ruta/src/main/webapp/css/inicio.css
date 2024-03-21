@@ -1,5 +1,5 @@
 body {
-    background-image: url('/Ruta/Imagenes/RUTA.png');
+    background-image: url('../images/RUTA.png');
     background-size: cover;
     margin: 0;
     padding: 0;
