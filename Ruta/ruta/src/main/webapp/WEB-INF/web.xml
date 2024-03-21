@@ -13,5 +13,17 @@
       <servlet-name>MyServlet</servlet-name>
       <url-pattern>/MyServlet</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <description></description>
+        <display-name>ServletPlay</display-name>
+        <servlet-name>ServletPlay</servlet-name>
+        <servlet-class>controlador.ServletPlay</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletPlay</servlet-name>
+        <url-pattern>/ServletPlay</url-pattern>
+    </servlet-mapping>
+
   <display-name>Archetype Created Web Application</display-name>
 </web-app>

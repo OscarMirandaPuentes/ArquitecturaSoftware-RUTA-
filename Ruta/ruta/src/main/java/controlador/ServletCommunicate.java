@@ -1,8 +1,5 @@
 package controlador;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -10,14 +7,18 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import modelo.Administrador;
+import modelo.Carta;
+
+import java.io.IOException;
+import java.io.PrintWriter;
 
 
-@WebServlet("/jugar")
-public class ServletPlay extends HttpServlet {
+@WebServlet("/communicate")
+public class ServletCommunicate extends HttpServlet {
     private static final long serialVersionUID = 1L;
     Administrador a;
 
-    public ServletPlay (){
+    public ServletCommunicate(){
         super();
         a = new Administrador();
     }
@@ -25,22 +26,17 @@ public class ServletPlay extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
             // TODO Auto-generated method stub
             PrintWriter out=response.getWriter();
-            boolean ans;
 
             int id = (int) request.getAttribute("id");
-            int carta = (int) request.getAttribute("posCarta");
-            int accion = (int) request.getAttribute("accion");
+            Carta carta = (Carta) request.getAttribute("carta");
 
             if (id % 2 == 0) {
-                ans = a.getJ().getEquipo1().getJugadores().get(id).tipoAccion(carta, a.getJ().getEquipo1(), a.getJ().getEquipo2(), accion);
+                a.getJ().getEquipo1().getJugadores().get(id).tipoAccionAsync(carta, a.getJ().getEquipo1(), a.getJ().getEquipo2());
             } 
             else{
-                ans = a.getJ().getEquipo2().getJugadores().get(id).tipoAccion(carta, a.getJ().getEquipo2(), a.getJ().getEquipo1(), accion);
+                a.getJ().getEquipo2().getJugadores().get(id).tipoAccionAsync(carta, a.getJ().getEquipo2(), a.getJ().getEquipo1());
             }
 
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/SegundoServlet");
-            out.println(ans);
-            
         }
 
 
