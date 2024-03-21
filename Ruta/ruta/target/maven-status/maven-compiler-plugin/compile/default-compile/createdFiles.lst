@@ -1,3 +1,4 @@
+controlador\ServletCommunicate.class
 controlador\ControllerCliente.class
 modelo\Pila.class
 modelo\Descarte.class
@@ -11,6 +12,7 @@ modelo\Peligro.class
 controlador\MyServlet.class
 modelo\Administrador.class
 modelo\Juego.class
+controlador\ServletPlay.class
 modelo\Anotador.class
 modelo\Mazo.class
 modelo\Model.class
