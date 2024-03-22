@@ -1,0 +1,21 @@
+
+
+#usar, #descartar{
+    background-color: #FF3131; 
+    color: #F9F0DE; 
+    padding: 10px 20px; 
+    text-align: center; 
+    font-size: 15px; 
+    border: #F9F0DE;
+    border-radius: 5px; 
+    cursor: pointer; 
+    transition: background-color 0.3s ease; 
+}
+
+#usar{
+    margin-left: 30%;
+}
+
+#usar:hover, #descartar:hover {
+    background-color: #022135; 
+}
