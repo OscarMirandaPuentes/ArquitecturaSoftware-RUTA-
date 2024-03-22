@@ -5,11 +5,21 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Inicio</title>
         <link rel="website icon" type="png" href="">
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
         <link rel="stylesheet" href="../css/inicio.css">    
     </head>
     <body>
         <div id="panel">
-            <button id="unirse">Iniciar partida</button>
+            <form action="">
+                <h1>Bienvenido a Ruta</h1>
+
+                <div class="input-box">
+                    <input type="number" id="numJugadores" placeholder="Número de Jugadores" min="2" max="6" step="2" required>
+                    <i class='bx bxs-group'></i>
+                </div>
+
+                <button id="unirse" type="submit">Iniciar partida</button>
+            </form>
         </div>
 
         <script src="../js/inicio.js"></script>
