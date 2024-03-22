@@ -1,20 +1,32 @@
-body {
-    background-image: url('../images/RUTA.png');
-    background-size: cover;
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+* {
     margin: 0;
     padding: 0;
-    font-family: Glass Antiqua, sans-serif;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url('../images/RUTA.png') no-repeat;
+    background-size: cover;
+    background-position: center;
 }
 
 #unirseButton {
     background-color: #FF3131; 
     color: #F9F0DE; 
-    padding: 10px 20px; 
+    padding: 18px 30px; 
     text-align: center; 
     display: inline-block;
     font-size: 20px; 
+    width: 100%;
     border: white;
-    border-radius: 5px; 
+    border-radius: 40px; 
     cursor: pointer; 
     transition: background-color 0.3s ease; 
 }
@@ -26,6 +38,6 @@ body {
 #panel {
     display: flex;
     justify-content: center;
-    align-items: center;
-    margin-top: 63vh;
+    align-items: center;    
+    margin-top: 20vh;
 }
