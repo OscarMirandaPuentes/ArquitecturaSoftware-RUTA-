@@ -1,20 +1,11 @@
 var input = document.getElementById('numJugadores');
 
 document.addEventListener('DOMContentLoaded', function () {
-    var unirseButton = document.getElementById('unirse');
-    
-    unirseButton.addEventListener('submit', function (event) {
-        event.preventDefault();
-        window.location.href = 'login.html';
-    });
-});
-
-document.addEventListener('DOMContentLoaded', function () {
     var form = document.querySelector('form');
     
     form.addEventListener('submit', function (event) {
         event.preventDefault();
-        window.location.href = 'tablero.html';
+        window.location.href = 'login.html';
     });
 });
 
