@@ -1,27 +1,38 @@
 function saludar() {
-    let a = $("#a").val();
-    let b = $("#b").val();
+    let id = $("#id").val();
+    let nombre = $("#nombre").val();
     let myData = {
-        a: a,
-        b: b
+        id: id,
+        nombre: nombre
     };
     $.ajax({
-        url: 'hola',
-        type: 'GET',
+        url: 'start',
+        type: 'POST',
         data: myData,
         success: function (r) {
-            paintAns(r);
+            paintAns("INICIAR pj");
+        }
+    });
+}
+
+function iniciar() {
+
+    $.ajax({
+        url: 'start',
+        type: 'GET',
+        success: function (r) {
+            paintAns("INICIAR");
         }
     });
 }
 
 function jugar() {
-    let id = $("#id").val();
-    let pos = $("#posCarta").val();
+    let id = $("#id2").val();
+    let posCarta = $("#posCarta").val();
     let accion = $("#accion").val(); // Corregir aquí de "action" a "accion"
     let myData = {
         id: id,
-        pos: pos,
+        posCarta: posCarta,
         accion: accion
     };
     $.ajax({
