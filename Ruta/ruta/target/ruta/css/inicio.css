@@ -1,0 +1,31 @@
+body {
+    background-image: url('../images/RUTA.png');
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    font-family: Glass Antiqua, sans-serif;
+}
+
+#unirseButton {
+    background-color: #FF3131; 
+    color: #F9F0DE; 
+    padding: 10px 20px; 
+    text-align: center; 
+    display: inline-block;
+    font-size: 20px; 
+    border: white;
+    border-radius: 5px; 
+    cursor: pointer; 
+    transition: background-color 0.3s ease; 
+}
+
+#unirseButton:hover {
+    background-color: #022135; 
+}
+
+#panel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 63vh;
+}
