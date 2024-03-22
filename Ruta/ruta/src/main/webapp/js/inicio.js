@@ -1,8 +1,10 @@
+var input = document.getElementById('numJugadores');
+
 document.addEventListener('DOMContentLoaded', function () {
     var unirseButton = document.getElementById('unirse');
     
-    unirseButton.addEventListener('click', function () {
-        // Redirige a la página de login
+    unirseButton.addEventListener('submit', function (event) {
+        event.preventDefault();
         window.location.href = 'login.html';
     });
 });
@@ -11,10 +13,18 @@ document.addEventListener('DOMContentLoaded', function () {
     var form = document.querySelector('form');
     
     form.addEventListener('submit', function (event) {
-        // Previene el envío del formulario
         event.preventDefault();
-        
-        // Redirige a la página del tablero
         window.location.href = 'tablero.html';
     });
+});
+
+input.addEventListener('input', function() {
+    // Obtener el valor ingresado por el usuario
+    var valor = parseInt(input.value);
+
+    // Validar si el valor es 2, 4 o 6
+    if (valor !== 2 && valor !== 4 && valor !== 6) {
+        // Si no es ninguno de los valores permitidos, restablecer el valor a vacío
+        input.value = '';
+    }
 });
