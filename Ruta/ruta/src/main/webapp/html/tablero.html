@@ -4,15 +4,19 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Tablero</title>
+        <link rel="website icon" type="png" href="">
         <link rel="stylesheet" href="../css/tablero.css">
         <link rel="stylesheet" href="../css/emergente.css">
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" rel="stylesheet"/>
     </head>
     <body>
         <div class="nombre">
-            <button id="refrescar">Refrescar</button>
+            <button id="refrescar"><i class='bx bx-refresh'></i>
+            </button>
             <h3>Nombre del jugador</h3>
         </div>
+
         <div class="container">
             <div class="top-left">
                 <h2>Equipo 1</h2> 
@@ -25,14 +29,15 @@
             </div>
             <div class="bottom-right"></div>
         </div>
+
         <div class="mano">
-            <a href="#opcion" rel="modal:open"><img src="../images/Cartas/20.png" alt="Carta 1"></a>
-            <a href="#opcion" rel="modal:open"><img src="../images/Cartas/20.png" alt="Carta 2"></a>
-            <a href="#opcion" rel="modal:open"><img src="../images/Cartas/20.png" alt="Carta 3"></a>
-            <a href="#opcion" rel="modal:open"><img src="../images/Cartas/20.png" alt="Carta 4"></a>
-            <a href="#opcion" rel="modal:open"><img src="../images/Cartas/20.png" alt="Carta 5"></a>
-            <a href="#opcion" rel="modal:open"><img src="../images/Cartas/20.png" alt="Carta 6"></a>
-            <a href="#opcion" rel="modal:open"><img src="../images/Cartas/20.png" alt="Carta 7"></a>
+            <a href="#opcion" rel="modal:open"><img src="../images/Cartas/20.png" alt="Carta 1" id="Carta 1"></a>
+            <a href="#opcion" rel="modal:open"><img src="../images/Cartas/20.png" alt="Carta 2" id="Carta 2"></a>
+            <a href="#opcion" rel="modal:open"><img src="../images/Cartas/20.png" alt="Carta 3" id="Carta 3"></a>
+            <a href="#opcion" rel="modal:open"><img src="../images/Cartas/20.png" alt="Carta 4" id="Carta 4"></a>
+            <a href="#opcion" rel="modal:open"><img src="../images/Cartas/20.png" alt="Carta 5" id="Carta 5"></a>
+            <a href="#opcion" rel="modal:open"><img src="../images/Cartas/20.png" alt="Carta 6" id="Carta 6"></a>
+            <a href="#opcion" rel="modal:open"><img src="../images/Cartas/20.png" alt="Carta 7" id="Carta 7"></a>
         </div>
 
         <div id="opcion" class="modal">
