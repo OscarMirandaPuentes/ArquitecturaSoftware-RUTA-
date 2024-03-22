@@ -25,5 +25,16 @@
         <url-pattern>/ServletPlay</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <description></description>
+        <display-name>ServletStart</display-name>
+        <servlet-name>ServletStart</servlet-name>
+        <servlet-class>controlador.ServletStart</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletStart</servlet-name>
+        <url-pattern>/ServletStart</url-pattern>
+    </servlet-mapping>
+
   <display-name>Archetype Created Web Application</display-name>
 </web-app>
