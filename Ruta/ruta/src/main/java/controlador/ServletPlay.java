@@ -20,23 +20,30 @@ public class ServletPlay extends HttpServlet {
 
     public ServletPlay (){
         super();
-        a = new Administrador();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-            // TODO Auto-generated method stub
-            PrintWriter out=response.getWriter();
-            boolean ans;
-            Carta carta;
+        // TODO Auto-generated method stub
+        Administrador atributo = (Administrador) request.getAttribute("admin");
 
-            int id = (int) request.getAttribute("id");
-            int posCarta = (int) request.getAttribute("posCarta");
-            int accion = (int) request.getAttribute("accion");
+        PrintWriter out=response.getWriter();
+        boolean ans;
+        Carta carta;
 
+        if (atributo != null){
+            this.a = atributo;
+            return;
+        }
+
+        int id = Integer.parseInt(request.getParameter("id"));
+        int posCarta = Integer.parseInt(request.getParameter("posCarta"));
+        int accion = Integer.parseInt(request.getParameter("accion"));
+
+        if ((Integer) id != null && (Integer)posCarta != null && (Integer) accion != null){
             if (id % 2 == 0) {
                 ans = a.getJ().getEquipo1().getJugadores().get(id).tipoAccion(posCarta, a.getJ().getEquipo1(), a.getJ().getEquipo2(), accion);
                 carta = a.getJ().getEquipo1().getJugadores().get(id).getMano().get(posCarta);
-            } 
+            }
             else{
                 ans = a.getJ().getEquipo2().getJugadores().get(id).tipoAccion(posCarta, a.getJ().getEquipo2(), a.getJ().getEquipo1(), accion);
                 carta = a.getJ().getEquipo2().getJugadores().get(id).getMano().get(posCarta);
@@ -48,12 +55,21 @@ public class ServletPlay extends HttpServlet {
             }
 
             out.println(ans);
-            
         }
+
+    }
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         RequestDispatcher dispatcher = request.getRequestDispatcher("/communicate");
         dispatcher.forward(request, response);
 	}
+
+    public Administrador getA() {
+        return a;
+    }
+
+    public void setA(Administrador a) {
+        this.a = a;
+    }
 }
