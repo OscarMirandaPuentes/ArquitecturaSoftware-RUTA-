@@ -17,7 +17,7 @@ body{
     background-position: center;
 }
 
-#unirseButton {
+#unirse {
     background-color: #FF3131; 
     color: #F9F0DE; 
     padding: 18px 30px; 
@@ -31,7 +31,7 @@ body{
     transition: background-color 0.3s ease; 
 }
 
-#unirseButton:hover {
+#unirse:hover {
     background-color: #022135; 
 }
 

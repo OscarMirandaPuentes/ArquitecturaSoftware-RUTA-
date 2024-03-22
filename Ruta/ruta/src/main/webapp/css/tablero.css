@@ -38,6 +38,9 @@ h2{
     grid-row: 1;
     grid-column: 2;
     background-color:#F9F0DE;
+    display: flex;
+    justify-content: space-around; 
+    align-items: center; 
 }
 
 .bottom-left {
@@ -54,6 +57,24 @@ h2{
     grid-row: 2;
     grid-column: 2;
     background-color: #FFC736;
+    display: flex;
+    justify-content: space-around; 
+    align-items: center; 
+}
+
+.bottom-right img, .top-right img{
+    max-width: 35%; 
+    height: auto; 
+    border: 2px solid rgba(255, 255, 255, .2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+}
+
+.bottom-right h3, .top-right h3 {
+    margin-left: 25%; 
+}
+
+.bottom-right img:first-of-type, .top-right img:first-of-type {
+    margin-left: 28%; 
 }
 
 .mano {
