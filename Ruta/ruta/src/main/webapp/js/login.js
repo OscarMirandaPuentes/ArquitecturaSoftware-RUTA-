@@ -3,6 +3,9 @@ document.addEventListener('DOMContentLoaded', function () {
     
     form.addEventListener('submit', function (event) {
         event.preventDefault();
+        var nombreJugador = document.querySelector('input[type="text"]').value;
+        localStorage.setItem('nombreJugador', nombreJugador); // Se almacena en memoria local
         window.location.href = 'tablero.html';
+        
     });
 });
