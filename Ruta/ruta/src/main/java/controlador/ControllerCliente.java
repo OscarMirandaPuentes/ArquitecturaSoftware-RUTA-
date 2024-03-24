@@ -1,7 +1,6 @@
 package controlador;
 
 import modelo.Administrador;
-import modelo.Carta;
 import modelo.Jugador;
 
 

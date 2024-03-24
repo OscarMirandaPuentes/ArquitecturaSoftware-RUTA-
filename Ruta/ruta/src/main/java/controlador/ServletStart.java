@@ -7,12 +7,9 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import modelo.Administrador;
-import modelo.Carta;
 import modelo.Jugador;
 import modelo.Mazo;
-
 import java.io.IOException;
-import java.io.PrintWriter;
 
 
 @WebServlet("/start")
