@@ -9,5 +9,5 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    //reemplazarURLCarta("Carta 1", "Sin gasolina");
+    reemplazarURLCarta("PBatallaE1", "Sin gasolina");
 });
