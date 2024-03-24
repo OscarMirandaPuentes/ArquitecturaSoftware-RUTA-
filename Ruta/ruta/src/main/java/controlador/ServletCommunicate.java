@@ -1,6 +1,5 @@
 package controlador;
 
-import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -8,9 +7,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import modelo.Administrador;
 import modelo.Carta;
-
 import java.io.IOException;
-import java.io.PrintWriter;
+//import java.io.PrintWriter;
 
 
 @WebServlet("/communicate")
@@ -24,8 +22,8 @@ public class ServletCommunicate extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-            // TODO Auto-generated method stub
-            PrintWriter out=response.getWriter();
+
+            //PrintWriter out=response.getWriter();
 
             int id = (int) request.getAttribute("id");
             Carta carta = (Carta) request.getAttribute("carta");
