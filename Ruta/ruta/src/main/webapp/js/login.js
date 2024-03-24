@@ -1,3 +1,5 @@
+var id = document.querySelector('input[type="number"]');
+
 document.addEventListener('DOMContentLoaded', function () {
     var form = document.querySelector('form');
     
@@ -8,4 +10,13 @@ document.addEventListener('DOMContentLoaded', function () {
         window.location.href = 'tablero.html';
         
     });
+});
+
+id.addEventListener('input', function() {
+    var valor = id.value;
+    
+    if (valor.includes('e') || valor.includes('+') || valor.includes('-')) {
+        id.value = '';
+    }
+    
 });
