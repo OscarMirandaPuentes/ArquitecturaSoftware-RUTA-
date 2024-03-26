@@ -1,19 +1,19 @@
-C:\Users\mitch\Documents\Universidad\7 Semestre\Arquitectura soft\Dev-3\ArquitecturaSoftware-RUTA-\Ruta\ruta\src\main\java\modelo\Model.java
-C:\Users\mitch\Documents\Universidad\7 Semestre\Arquitectura soft\Dev-3\ArquitecturaSoftware-RUTA-\Ruta\ruta\src\main\java\modelo\Seguridad.java
-C:\Users\mitch\Documents\Universidad\7 Semestre\Arquitectura soft\Dev-3\ArquitecturaSoftware-RUTA-\Ruta\ruta\src\main\java\controlador\MyServlet.java
-C:\Users\mitch\Documents\Universidad\7 Semestre\Arquitectura soft\Dev-3\ArquitecturaSoftware-RUTA-\Ruta\ruta\src\main\java\modelo\Peligro.java
-C:\Users\mitch\Documents\Universidad\7 Semestre\Arquitectura soft\Dev-3\ArquitecturaSoftware-RUTA-\Ruta\ruta\src\main\java\controlador\ControllerCliente.java
-C:\Users\mitch\Documents\Universidad\7 Semestre\Arquitectura soft\Dev-3\ArquitecturaSoftware-RUTA-\Ruta\ruta\src\main\java\controlador\ServletStart.java
-C:\Users\mitch\Documents\Universidad\7 Semestre\Arquitectura soft\Dev-3\ArquitecturaSoftware-RUTA-\Ruta\ruta\src\main\java\modelo\Descarte.java
-C:\Users\mitch\Documents\Universidad\7 Semestre\Arquitectura soft\Dev-3\ArquitecturaSoftware-RUTA-\Ruta\ruta\src\main\java\controlador\ServletPlay.java
-C:\Users\mitch\Documents\Universidad\7 Semestre\Arquitectura soft\Dev-3\ArquitecturaSoftware-RUTA-\Ruta\ruta\src\main\java\modelo\Anotador.java
-C:\Users\mitch\Documents\Universidad\7 Semestre\Arquitectura soft\Dev-3\ArquitecturaSoftware-RUTA-\Ruta\ruta\src\main\java\controlador\ServletCommunicate.java
-C:\Users\mitch\Documents\Universidad\7 Semestre\Arquitectura soft\Dev-3\ArquitecturaSoftware-RUTA-\Ruta\ruta\src\main\java\modelo\Mazo.java
-C:\Users\mitch\Documents\Universidad\7 Semestre\Arquitectura soft\Dev-3\ArquitecturaSoftware-RUTA-\Ruta\ruta\src\main\java\modelo\Administrador.java
-C:\Users\mitch\Documents\Universidad\7 Semestre\Arquitectura soft\Dev-3\ArquitecturaSoftware-RUTA-\Ruta\ruta\src\main\java\modelo\Defensa.java
-C:\Users\mitch\Documents\Universidad\7 Semestre\Arquitectura soft\Dev-3\ArquitecturaSoftware-RUTA-\Ruta\ruta\src\main\java\modelo\Carta.java
-C:\Users\mitch\Documents\Universidad\7 Semestre\Arquitectura soft\Dev-3\ArquitecturaSoftware-RUTA-\Ruta\ruta\src\main\java\modelo\Juego.java
-C:\Users\mitch\Documents\Universidad\7 Semestre\Arquitectura soft\Dev-3\ArquitecturaSoftware-RUTA-\Ruta\ruta\src\main\java\modelo\Distancia.java
-C:\Users\mitch\Documents\Universidad\7 Semestre\Arquitectura soft\Dev-3\ArquitecturaSoftware-RUTA-\Ruta\ruta\src\main\java\modelo\Equipo.java
-C:\Users\mitch\Documents\Universidad\7 Semestre\Arquitectura soft\Dev-3\ArquitecturaSoftware-RUTA-\Ruta\ruta\src\main\java\modelo\Jugador.java
-C:\Users\mitch\Documents\Universidad\7 Semestre\Arquitectura soft\Dev-3\ArquitecturaSoftware-RUTA-\Ruta\ruta\src\main\java\modelo\Pila.java
+c:\Users\andre\Documents\GitHub\ArquitecturaSoftware-RUTA-\Ruta\ruta\src\main\java\controlador\ServletCommunicate.java
+c:\Users\andre\Documents\GitHub\ArquitecturaSoftware-RUTA-\Ruta\ruta\src\main\java\modelo\Jugador.java
+c:\Users\andre\Documents\GitHub\ArquitecturaSoftware-RUTA-\Ruta\ruta\src\main\java\modelo\Mazo.java
+c:\Users\andre\Documents\GitHub\ArquitecturaSoftware-RUTA-\Ruta\ruta\src\main\java\modelo\Pila.java
+c:\Users\andre\Documents\GitHub\ArquitecturaSoftware-RUTA-\Ruta\ruta\src\main\java\modelo\Seguridad.java
+c:\Users\andre\Documents\GitHub\ArquitecturaSoftware-RUTA-\Ruta\ruta\src\main\java\modelo\Carta.java
+c:\Users\andre\Documents\GitHub\ArquitecturaSoftware-RUTA-\Ruta\ruta\src\main\java\controlador\MyServlet.java
+c:\Users\andre\Documents\GitHub\ArquitecturaSoftware-RUTA-\Ruta\ruta\src\main\java\controlador\ServletStart.java
+c:\Users\andre\Documents\GitHub\ArquitecturaSoftware-RUTA-\Ruta\ruta\src\main\java\controlador\ControllerCliente.java
+c:\Users\andre\Documents\GitHub\ArquitecturaSoftware-RUTA-\Ruta\ruta\src\main\java\modelo\Peligro.java
+c:\Users\andre\Documents\GitHub\ArquitecturaSoftware-RUTA-\Ruta\ruta\src\main\java\controlador\ServletPlay.java
+c:\Users\andre\Documents\GitHub\ArquitecturaSoftware-RUTA-\Ruta\ruta\src\main\java\modelo\Juego.java
+c:\Users\andre\Documents\GitHub\ArquitecturaSoftware-RUTA-\Ruta\ruta\src\main\java\modelo\Anotador.java
+c:\Users\andre\Documents\GitHub\ArquitecturaSoftware-RUTA-\Ruta\ruta\src\main\java\modelo\Equipo.java
+c:\Users\andre\Documents\GitHub\ArquitecturaSoftware-RUTA-\Ruta\ruta\src\main\java\modelo\Descarte.java
+c:\Users\andre\Documents\GitHub\ArquitecturaSoftware-RUTA-\Ruta\ruta\src\main\java\modelo\Defensa.java
+c:\Users\andre\Documents\GitHub\ArquitecturaSoftware-RUTA-\Ruta\ruta\src\main\java\modelo\Administrador.java
+c:\Users\andre\Documents\GitHub\ArquitecturaSoftware-RUTA-\Ruta\ruta\src\main\java\modelo\Distancia.java
+c:\Users\andre\Documents\GitHub\ArquitecturaSoftware-RUTA-\Ruta\ruta\src\main\java\modelo\Model.java

@@ -58,5 +58,7 @@ public class ServletStart extends HttpServlet {
 
         insertarJugador(id, nombre);
 
+        //response.sendRedirect("login.html");
+
 	}
 }
