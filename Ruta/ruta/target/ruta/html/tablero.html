@@ -4,33 +4,84 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Tablero</title>
+        <link rel="website icon" type="png" href="../images/Logo ruta.png">
         <link rel="stylesheet" href="../css/tablero.css">
+        <link rel="stylesheet" href="../css/emergente.css">
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" rel="stylesheet"/>
     </head>
     <body>
         <div class="nombre">
-            <button id="refrescar">Refrescar</button>
-            <h3>Nombre del jugador</h3>
+            <button id="refrescar"><i class='bx bx-refresh'></i>
+            </button>
+            <h3 id="nombreJ">Nombre del jugador</h3>
         </div>
+
         <div class="container">
             <div class="top-left">
                 <h2>Equipo 1</h2> 
-                Puntaje: 
+                Puntaje: <span id="puntajeEquipo1">0</span>
             </div>
-            <div class="top-right"></div>
+
+                <div class="top-right">
+                    <div class="carta">
+                        <h3 style="margin-left: 28%;">Pila de Batalla</h3>
+                        <img src="../images/Cartas/20.png" alt="Pila de Batalla" id="PBatallaE1">
+                    </div>
+                    <div class="carta">
+                        <h3>Pila de Distancia</h3>
+                        <img src="../images/Cartas/20.png" alt="Pila de Distancia" id="PDistanciaE1">
+                    </div>
+                    <div class="carta">
+                        <h3>Pila de Velocidad</h3>
+                        <img src="../images/Cartas/20.png" alt="Pila de Velocidad" id="PVelocidadE1">
+                    </div>
+                </div>
+            
+
             <div class="bottom-left">
                 <h2>Equipo 2</h2> 
-                Puntaje: 
+                Puntaje: <span id="puntajeEquipo2">0</span>
             </div>
-            <div class="bottom-right"></div>
+
+            <div class="bottom-right">
+                <div class="carta">
+                    <h3 style="margin-left: 28%;">Pila de Batalla</h3>
+                    <img src="../images/Cartas/20.png" alt="Pila de Batalla" id="PBatallaE2">
+                </div>
+                <div class="carta">
+                    <h3>Pila de Distancia</h3>
+                    <img src="../images/Cartas/20.png" alt="Pila de Distancia" id="PDistanciaE2">
+                </div>
+                <div class="carta">
+                    <h3>Pila de Velocidad</h3>
+                    <img src="../images/Cartas/20.png" alt="Pila de Velocidad" id="PVelocidadE2">
+                </div>
+            </div>
         </div>
+
         <div class="mano">
-            <a href="../images/Cartas/20.png"><img src="../images/Cartas/20.png" alt="Carta 1"></a>
-            <a href="../images/Cartas/20.png"><img src="../images/Cartas/20.png" alt="Carta 2"></a>
-            <a href="../images/Cartas/20.png"><img src="../images/Cartas/20.png" alt="Carta 3"></a>
-            <a href="../images/Cartas/20.png"><img src="../images/Cartas/20.png" alt="Carta 4"></a>
-            <a href="../images/Cartas/20.png"><img src="../images/Cartas/20.png" alt="Carta 5"></a>
-            <a href="../images/Cartas/20.png"><img src="../images/Cartas/20.png" alt="Carta 6"></a>
-            <a href="../images/Cartas/20.png"><img src="../images/Cartas/20.png" alt="Carta 7"></a>
+            <a href="#opcion" rel="modal:open"><img src="../images/Cartas/20.png" alt="Carta 1" id="Carta 1"></a>
+            <a href="#opcion" rel="modal:open"><img src="../images/Cartas/20.png" alt="Carta 2" id="Carta 2"></a>
+            <a href="#opcion" rel="modal:open"><img src="../images/Cartas/20.png" alt="Carta 3" id="Carta 3"></a>
+            <a href="#opcion" rel="modal:open"><img src="../images/Cartas/20.png" alt="Carta 4" id="Carta 4"></a>
+            <a href="#opcion" rel="modal:open"><img src="../images/Cartas/20.png" alt="Carta 5" id="Carta 5"></a>
+            <a href="#opcion" rel="modal:open"><img src="../images/Cartas/20.png" alt="Carta 6" id="Carta 6"></a>
+            <a href="#opcion" rel="modal:open"><img src="../images/Cartas/20.png" alt="Carta 7" id="Carta 7"></a>
         </div>
+
+        <div id="opcion" class="modal">
+            <p>¿Qué deseas hacer?</p>
+            <button id="usar">Usar</button>
+            <button id="descartar">Descartar</button>
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="../js/tablero.js"></script>
+        <script src="../js/Cartas.js"></script>
+        <script src="../js/CambioCartas.js"></script>
+        <script src="../js/Puntaje.js"></script>
     </body>
 </html>

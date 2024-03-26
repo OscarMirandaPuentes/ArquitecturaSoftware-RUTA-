@@ -4,12 +4,25 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Inicio</title>
-        <link rel="stylesheet" href="../css/inicio.css">    
+        <link rel="website icon" type="png" href="images/Logo ruta.png">
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+        <link rel="stylesheet" href="css/inicio.css">    
     </head>
     <body>
         <div id="panel">
-            <button id="unirseButton">Iniciar partida</button>
+            <form action="">
+                <h1>Bienvenido a Ruta</h1>
+
+                <div class="input-box">
+                    <input type="number" id="numJugadores" placeholder="Número de Jugadores" min="2" max="6" step="2" required>
+                    <i class='bx bxs-group'></i>
+                </div>
+
+                <button type="submit" id="unirse">Iniciar partida</button>
+            </form>
         </div>
-        <!-- Scripts JavaScript aquí -->
+
+        <script src="js/inicio.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     </body>
 </html>

@@ -37,7 +37,7 @@
     </servlet-mapping>
 
     <welcome-file-list>
-        <welcome-file>inicio</welcome-file> <!-- Página de inicio -->
+        <welcome-file>html/inicio.html</welcome-file> <!-- Página de inicio -->
     </welcome-file-list>
 
   <display-name>Archetype Created Web Application</display-name>
