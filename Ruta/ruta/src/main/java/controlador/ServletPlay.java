@@ -20,21 +20,25 @@ public class ServletPlay extends HttpServlet {
 
     public ServletPlay (){
         super();
+        a = ServletStart.getAdministrador();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // TODO Auto-generated method stub
         Administrador atributo = (Administrador) request.getAttribute("admin");
-
-        PrintWriter out=response.getWriter();
-        boolean ans;
-        Carta carta;
+        System.out.println(atributo);
 
         if (atributo != null){
             this.a = atributo;
-            return;
         }
+        
+    }
 
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        PrintWriter out=response.getWriter();
+        boolean ans;
+        Carta carta;
         int id = Integer.parseInt(request.getParameter("id"));
         int posCarta = Integer.parseInt(request.getParameter("posCarta"));
         int accion = Integer.parseInt(request.getParameter("accion"));
@@ -51,20 +55,12 @@ public class ServletPlay extends HttpServlet {
 
             if (ans){
                 request.setAttribute("carta", carta);
-                doPost(request,response);
             }
 
             out.println(ans);
         }
 
-    }
-
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/communicate");
-        dispatcher.forward(request, response);
 	}
-
     public Administrador getA() {
         return a;
     }

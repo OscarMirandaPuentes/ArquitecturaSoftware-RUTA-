@@ -1,5 +1,6 @@
 package modelo;
 
+
 public class Administrador {
     public Juego j;
 

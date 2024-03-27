@@ -7,6 +7,8 @@ document.addEventListener('DOMContentLoaded', function () {
         event.preventDefault();
         var nombreJugador = document.querySelector('input[type="text"]').value;
         localStorage.setItem('nombreJugador', nombreJugador); // Se almacena en memoria local
+        localStorage.setItem('id', id.value); // Se almacena en memoria local
+        ingresarPJ(id.value, nombreJugador)
         window.location.href = 'tablero.html';
         
     });
@@ -20,3 +22,18 @@ id.addEventListener('input', function() {
     }
     
 });
+
+function ingresarPJ(id, nombre) {
+    let myData = {
+        id: id,
+        nombre: nombre
+    };
+    $.ajax({
+        url: '/ruta/start',
+        type: 'POST',
+        data: myData,
+        success: function (r) {
+            console.log("Personaje agregado")
+        }
+    });
+}
