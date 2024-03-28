@@ -30,6 +30,12 @@ public class Juego {
         }
     }
 
+    public boolean checkPilas(){
+        return (!equipo1.pilaBatalla.isEmpty() && !equipo2.pilaBatalla.isEmpty() &&
+                !equipo1.pilaDistancia.isEmpty()&&!equipo2.pilaDistancia.isEmpty() &&
+                !equipo1.pilaVelocidad.isEmpty()&&!equipo2.pilaVelocidad.isEmpty());
+    }
+
     public Jugador crearJugador(String nombre) {
         return new Jugador(nombre);
     }

@@ -34,6 +34,11 @@
       <version>6.1.0-M2</version>
       <scope>provided</scope>
   </dependency>
+      <dependency>
+          <groupId>com.nimbusds</groupId>
+          <artifactId>nimbus-jose-jwt</artifactId>
+          <version>9.31</version>
+      </dependency>
 
   </dependencies>
 

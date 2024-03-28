@@ -28,8 +28,10 @@ import java.io.IOException;
         }
 
         public void iniciar() {
-            Mazo mazo = new Mazo();
-            a.iniciarJuego(mazo);
+            if(a.getJ().getM() == null){
+                Mazo mazo = new Mazo();
+                a.iniciarJuego(mazo);
+            }  
         }
 
         public void insertarJugador(int id, String nombre){
