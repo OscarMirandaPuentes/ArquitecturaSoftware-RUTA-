@@ -46,15 +46,13 @@ public class ServletPlay extends HttpServlet {
         if ((Integer) id != null && (Integer)posCarta != null && (Integer) accion != null){
             if (id % 2 == 0) {
                 ans = a.getJ().getEquipo1().getJugadores().get(id).tipoAccion(posCarta, a.getJ().getEquipo1(), a.getJ().getEquipo2(), accion);
-                carta = a.getJ().getEquipo1().getJugadores().get(id).getMano().get(posCarta);
             }
             else{
                 ans = a.getJ().getEquipo2().getJugadores().get(id).tipoAccion(posCarta, a.getJ().getEquipo2(), a.getJ().getEquipo1(), accion);
-                carta = a.getJ().getEquipo2().getJugadores().get(id).getMano().get(posCarta);
             }
 
             if (ans){
-                request.setAttribute("carta", carta);
+                a.validarPosicionJugador();
             }
 
             out.println(ans);

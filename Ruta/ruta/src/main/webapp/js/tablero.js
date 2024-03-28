@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
         $('#usar').on('click', function() {
-            var posCarta = parseInt(cartaId.match(/\d+/)[0]);
+            var posCarta = parseInt(cartaId.match(/\d+/)[0]) - 1;
             jugar(id, posCarta, 0)
             $.modal.close();
             alert('Has elegido usar la carta.');
@@ -24,8 +24,8 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
         $('#refrescar').on('click', function() {
-            //Acciones
-            location.reload();
+            refresh(id)
+            //location.reload();
         });
     });
 
@@ -47,7 +47,59 @@ function jugar(id, posCarta, accion) {
         type: 'POST',
         data: myData,
         success: function (r) {
-            console(r)
+            console.log(r)
         }
     });
 }
+
+function refresh(id) {
+    let myData = {
+        id: id,
+    };
+    $.ajax({
+        url: '/ruta/communicate',
+        type: 'GET',
+        data: myData,
+        success: function (r) {
+            updateWin(r)
+        }
+    });
+}
+
+function updateWin(array){
+    if (array.length === 6) {
+        reemplazarURLCarta("PBatallaE1", array[0]);
+        reemplazarURLCarta("PDistaciaE1", array[1]);
+        reemplazarURLCarta("PVelocidadE1", array[2]);
+        reemplazarURLCarta("PBatallaE2", array[3]);
+        reemplazarURLCarta("PDistaciaE2", array[4]);
+        reemplazarURLCarta("PVelocidadE2", array[5]);
+    }
+    
+    if (array.length === 7) {
+        reemplazarURLCarta("Carta 1", array[0]);
+        reemplazarURLCarta("Carta 2", array[1]);
+        reemplazarURLCarta("Carta 3", array[2]);
+        reemplazarURLCarta("Carta 4", array[3]);
+        reemplazarURLCarta("Carta 5", array[4]);
+        reemplazarURLCarta("Carta 6", array[5]);
+        reemplazarURLCarta("Carta 7", array[6]);
+    }
+    
+    if (array.length === 13) {
+        reemplazarURLCarta("PBatallaE1", array[0]);
+        reemplazarURLCarta("PDistaciaE1", array[1]);
+        reemplazarURLCarta("PVelocidadE1", array[2]);
+        reemplazarURLCarta("PBatallaE2", array[3]);
+        reemplazarURLCarta("PDistaciaE2", array[4]);
+        reemplazarURLCarta("PVelocidadE2", array[5]);
+        reemplazarURLCarta("Carta 1", array[6]);
+        reemplazarURLCarta("Carta 2", array[7]);
+        reemplazarURLCarta("Carta 3", array[8]);
+        reemplazarURLCarta("Carta 4", array[9]);
+        reemplazarURLCarta("Carta 5", array[10]);
+        reemplazarURLCarta("Carta 6", array[11]);
+        reemplazarURLCarta("Carta 7", array[12]);
+    }
+}
+
