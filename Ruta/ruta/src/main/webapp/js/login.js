@@ -1,5 +1,6 @@
 var id = document.querySelector('input[type="number"]');
 
+
 document.addEventListener('DOMContentLoaded', function () {
     var form = document.querySelector('form');
     
@@ -11,6 +12,12 @@ document.addEventListener('DOMContentLoaded', function () {
         ingresarPJ(id.value, nombreJugador)
         window.location.href = 'tablero.html';
         
+    });
+
+    // Agregar manejador de eventos al botón "Iniciar"
+    var btnIniciar = document.getElementById('btn-iniciar');
+    btnIniciar.addEventListener('click', function() {
+        iniciarJuego();
     });
 });
 
@@ -36,4 +43,9 @@ function ingresarPJ(id, nombre) {
             console.log("Personaje agregado")
         }
     });
+}
+
+function iniciarJuego() {
+    // Aquí va la lógica para iniciar el juego
+    console.log('El juego ha comenzado');
 }
