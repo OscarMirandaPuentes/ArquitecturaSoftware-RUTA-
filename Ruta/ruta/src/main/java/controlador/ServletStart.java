@@ -47,12 +47,10 @@ import java.io.IOException;
 
 
         protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-            System.out.println(request.getParameter("id"));
             int id = Integer.parseInt(request.getParameter("id"));
             String nombre = request.getParameter("nombre");
 
             insertarJugador(id, nombre);
-            doGet(request, response);
         }
 
         public static Administrador getAdministrador() {

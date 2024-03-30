@@ -9,15 +9,14 @@ document.addEventListener('DOMContentLoaded', function () {
         var nombreJugador = document.querySelector('input[type="text"]').value;
         localStorage.setItem('nombreJugador', nombreJugador); // Se almacena en memoria local
         localStorage.setItem('id', id.value); // Se almacena en memoria local
-        ingresarPJ(id.value, nombreJugador)
-        window.location.href = 'tablero.html';
-        
+        ingresarPJ(id.value, nombreJugador)  
     });
 
     // Agregar manejador de eventos al botón "Iniciar"
     var btnIniciar = document.getElementById('btn-iniciar');
     btnIniciar.addEventListener('click', function() {
         iniciarJuego();
+        window.location.href = 'tablero.html';
     });
 });
 
@@ -29,6 +28,16 @@ id.addEventListener('input', function() {
     }
     
 });
+
+function iniciar() {
+    $.ajax({
+        url: '/ruta/start',
+        type: 'GET',
+        success: function (r) {
+            console.log("Juego iniciado")
+        }
+    });
+}
 
 function ingresarPJ(id, nombre) {
     let myData = {
@@ -46,6 +55,6 @@ function ingresarPJ(id, nombre) {
 }
 
 function iniciarJuego() {
-    // Aquí va la lógica para iniciar el juego
+    iniciar()
     console.log('El juego ha comenzado');
 }

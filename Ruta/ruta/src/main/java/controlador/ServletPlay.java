@@ -38,17 +38,16 @@ public class ServletPlay extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         PrintWriter out=response.getWriter();
         boolean ans;
-        Carta carta;
         int id = Integer.parseInt(request.getParameter("id"));
         int posCarta = Integer.parseInt(request.getParameter("posCarta"));
         int accion = Integer.parseInt(request.getParameter("accion"));
 
         if ((Integer) id != null && (Integer)posCarta != null && (Integer) accion != null){
             if (id % 2 == 0) {
-                ans = a.getJ().getEquipo1().getJugadores().get(id).tipoAccion(posCarta, a.getJ().getEquipo1(), a.getJ().getEquipo2(), accion);
+                ans = a.getJ().getEquipo1().getJugadores().get(a.getJugadorActualPos()).tipoAccion(posCarta, a.getJ().getEquipo1(), a.getJ().getEquipo2(), accion);
             }
             else{
-                ans = a.getJ().getEquipo2().getJugadores().get(id).tipoAccion(posCarta, a.getJ().getEquipo2(), a.getJ().getEquipo1(), accion);
+                ans = a.getJ().getEquipo2().getJugadores().get(a.getJugadorActualPos()).tipoAccion(posCarta, a.getJ().getEquipo2(), a.getJ().getEquipo1(), accion);
             }
 
             if (ans){
