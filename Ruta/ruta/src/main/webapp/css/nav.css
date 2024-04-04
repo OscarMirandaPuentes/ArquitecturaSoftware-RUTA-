@@ -37,11 +37,11 @@ img {
     display: flex;
 }
 
-.nav-menu ul li{
+.nav-menu ul li, .nav-user li, .nav-user li ul{
     list-style-type: none;
 }
 
-.nav-menu ul li .link{
+.nav-menu ul li .link, .nav-user li .UserMenu{
     text-decoration: none;
     font-weight: 500;
     color: #fff;
@@ -49,7 +49,33 @@ img {
     margin: 0 25px;
 }
 
-.link:hover, .active{
+.vertical-menu{
+    position: absolute;
+    display: none;
+    list-style: none;
+    border-radius: 30px;
+    width: 200px;
+    background-color: rgba(255, 199, 54, 0.5);
+}
+
+.vertical-menu:hover{
+    transition: .4s ease;
+    background-color: rgba(255, 199, 54, 0.7);
+}
+
+.vertical-menu li a{
+    text-decoration: none;
+    font-weight: 200;
+    color: #fff;
+    padding-bottom: 15px;
+    margin: 0 25px;
+}
+
+.nav-user li:hover .vertical-menu{
+    display: block;
+}
+
+.link:hover, .active, .UserMenu:hover, .vertical-menu li a:hover{
     border-bottom: 2px solid #fff;
 }
 
