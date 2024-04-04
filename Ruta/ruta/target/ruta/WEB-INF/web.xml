@@ -1,0 +1,44 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://jakarta.ee/xml/ns/jakartaee" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd" version="6.0">
+    <servlet>
+      <description></description>
+      <display-name>MyServlet</display-name>
+      <servlet-name>MyServlet</servlet-name>
+      <servlet-class>controlador.MyServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+      <servlet-name>MyServlet</servlet-name>
+      <url-pattern>/MyServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <description></description>
+        <display-name>ServletPlay</display-name>
+        <servlet-name>ServletPlay</servlet-name>
+        <servlet-class>controlador.ServletPlay</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletPlay</servlet-name>
+        <url-pattern>/ServletPlay</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <description></description>
+        <display-name>ServletStart</display-name>
+        <servlet-name>ServletStart</servlet-name>
+        <servlet-class>controlador.ServletStart</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletStart</servlet-name>
+        <url-pattern>/ServletStart</url-pattern>
+    </servlet-mapping>
+
+    <welcome-file-list>
+        <welcome-file>html/inicio.html</welcome-file> <!-- Página de inicio -->
+    </welcome-file-list>
+
+  <display-name>Archetype Created Web Application</display-name>
+</web-app>
