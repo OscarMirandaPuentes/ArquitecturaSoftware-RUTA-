@@ -3,7 +3,7 @@ var b = document.getElementById("registerBtn");
 var x = document.getElementById("loginc");
 var y = document.getElementById("registerc");
 
-function login() {
+function gologin() {
     x.style.left = "4px";
     y.style.right = "-520px";
     b.className += " white-btn";
@@ -11,7 +11,8 @@ function login() {
     x.style.opacity = 1;
     y.style.opacity = 0;
 }
-function register() {
+
+function goregister() {
     x.style.left = "-510px";
     y.style.right = "5px";
     b.className = "btn";
@@ -19,3 +20,4 @@ function register() {
     x.style.opacity = 0;
     y.style.opacity = 1;
 }
+
