@@ -7,30 +7,81 @@
         <link rel="website icon" type="png" href="../images/Logo ruta.png">
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
         <link rel="stylesheet" href="../css/loginr.css">
+        <link rel="stylesheet" href="../css/nav.css">
     </head>
     <body>
         <div class="wrapper">
 
             <nav class="nav">
+                <img src="../images/Logo ruta.png" alt="Logo">
                 <div class="nav-logo">
-                    <p>RUTA .</p>
+                    <p>RUTA</p>
                 </div>
                 <div class="nav-menu">
                     <ul>
                         <li><a href="#" class="link active">Inicio</a></li> 
+                        <li><a href="#" class="link">Jugar</a></li> 
                         <li><a href="#" class="link">Partidas jugadas</a></li> 
-                        <li><a href="#" class="link">Home</a></li> 
-                        <li><a href="#" class="link">Home</a></li>   
+                        <li><a href="#" class="link">Movimientos usados</a></li>   
                     </ul>
                 </div>
                 <div class="nav-button">
-                    <button class="btn white-btn" id="loginBtn" onclick="login()">Sign In</button>
-                    <button class="btn" id="registerBtn" onclick="register()">Sign Up</button>
-                </div>
-                <div class="nav-menu-btn">
-                    <i class="bx bx-menu" onclick="myMenuFunction()"></i>
+                    <button class="btn white-btn" id="loginBtn" onclick="login()">Iniciar Sesión</button>
+                    <button class="btn" id="registerBtn" onclick="register()">Registrarse</button>
                 </div>
             </nav>
+
+            <div class="form-box">
+
+                <div class="login-container" id="loginc">
+                    <div class="top">
+                        <span>¿No tienes una cuenta?<a href="#" onclick="register()">Registrarse</a></span>
+                        <header>Inicio de Sesión</header>
+                    </div>
+                    <form action="" id="login-form">
+                        <div class="input-box">
+                            <input type="email" class="input-field" placeholder="Correo" pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$" id="email" required>
+                            <i class='bx bxs-envelope'></i>
+                        </div>
+                        <div class="input-box">
+                            <input type="password" class="input-field" placeholder="Contraseña" id="password" required>
+                            <i class='bx bxs-lock-alt'></i>
+                        </div>
+                        <button type="submit" class="btns" id="login">Iniciar Sesión</button>
+                    </form>
+                </div>
+
+                <div class="register-container" id="registerc">
+                    <div class="top">
+                        <span>¿Tienes una cuenta?<a href="#" onclick="login()">Iniciar Sesión</a></span>
+                        <header>Registro</header>
+                    </div>
+                    <form action="" id="register-form">
+                        <div class="two-forms">
+                            <div class="input-box">
+                                <input type="text" class="input-field" placeholder="Nombre" pattern="[a-zA-Z\s]*" id="name" required>
+                                <i class='bx bxs-user' ></i>
+                            </div>
+                            <div class="input-box">
+                                <input type="text" class="input-field" placeholder="Apodo" pattern="[a-zA-Z\s]*" id="nickname" required>
+                                <i class='bx bxs-user-pin'></i>
+                            </div>
+                        </div>
+                        <div class="input-box">
+                            <input type="email" class="input-field" placeholder="Correo" pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$" id="email" required>
+                            <i class='bx bxs-envelope'></i>
+                        </div>
+                        <div class="input-box">
+                            <input type="password" class="input-field" placeholder="Contraseña" id="password" required>
+                            <i class='bx bxs-lock-alt'></i>
+                        </div>
+                        <button type="submit" class="btns" id="register">Registrarse</button>
+                    </form>
+                </div>
+            </div>
         </div>
+    
+    <script src="../js/navMenu.js"></script> 
+    <script src="../js/singin.js"></script> 
     </body>
 </html>

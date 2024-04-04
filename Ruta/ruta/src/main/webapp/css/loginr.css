@@ -1,92 +1,125 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
-  }
-
-body{
-    background: url("../images/login.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-}
-
-.wrapper{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 110vh;
-    background: rgba(39, 39, 39, 0.4);
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
     }
 
-.nav{
-    position: fixed;
-    top: 0;
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
-    height: 100px;
-    line-height: 100px;
-    background: linear-gradient(rgba(39,39,39,0.6),transparent);
-    z-index: 100;
-}
-
-.nav-logo p{
-    color: white;
-    font-size: 25px;
-    font-weight: 600;
+    body{
+        background: url("../images/login.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
     }
 
-.nav-menu ul{
-    display: flex;
-}
+    .wrapper{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: rgba(39, 39, 39, 0.4);
+    }
 
-.nav-menu ul li{
-    list-style-type: none;
-}
+    .form-box{
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 512px;
+        height: 420px;
+        overflow: hidden;
+        z-index: 2;
+    }
 
-.nav-menu ul li .link{
-    text-decoration: none;
-    font-weight: 500;
-    color: #fff;
-    padding-bottom: 15px;
-    margin: 0 25px;
-}
+    .login-container{
+        position: absolute;
+        left: 4px;
+        width: 500px;
+        display: flex;
+        flex-direction: column;
+        transition: .5s ease-in-out;
+    }
 
-.link:hover, .active{
-    border-bottom: 2px solid #fff;
-}
+    .register-container{
+        position: absolute;
+        right: -520px;
+        width: 500px;
+        display: flex;
+        flex-direction: column;
+        transition: .5s ease-in-out;
+    }
 
-.nav-button .btn{
-    width: 130px;
-    height: 40px;
-    font-weight: 500;
-    background: rgba(255, 255, 255, 0.4);
-    border: none;
-    border-radius: 40px;
-    cursor: pointer;
-    transition: .3s ease;
-}
+    .top span{
+        color: #fff;
+        font-size: small;
+        padding: 10px 0;
+        display: flex;
+        justify-content: center;
+    }
 
-.btn:hover{
-    background: rgba(255, 255, 255, 0.3);
-}
+    .top span a{
+        font-weight: 500;
+        color: #fff;
+        margin-left: 5px;
+    }
 
-#registerBtn{
-    margin-left: 15px;
-}
+    header{
+        color: #fff;
+        font-size: 30px;
+        text-align: center;
+        padding: 10px 0 30px 0;
+    }
 
-.btn.white-btn{
-    background: rgba(255, 255, 255, 0.7);
-}
+    .two-forms{
+        display: flex;
+        gap: 10px;
+    }
 
-.btn.btn.white-btn:hover{
-    background: rgba(255, 255, 255, 0.5);
-}
+    .input-field{
+        font-size: 15px;
+        background: rgba(255, 255, 255, 0.2);
+        color: #fff;
+        height: 50px;
+        width: 100%;
+        padding: 0 10px 0 45px;
+        border: none;
+        border-radius: 30px;
+        outline: none;
+        transition: .2s ease;
+    }
 
-.nav-menu-btn{
-    display: none;
-}
+    .input-field:hover, .input-field:focus{
+        background: rgba(255, 255, 255, 0.25);
+    }
+
+    ::-webkit-input-placeholder{
+        color: #fff;
+    }
+
+    .input-box i{
+        position: relative;
+        top: -35px;
+        left: 17px;
+        color: #fff;
+    }
+
+    .btns{
+        font-size: 15px;
+        font-weight: 500;
+        color: black;
+        height: 45px;
+        width: 100%;
+        border: none;
+        border-radius: 30px;
+        outline: none;
+        background: rgba(255, 255, 255, 0.7);
+        cursor: pointer;
+        transition: .3s ease-in-out;
+    }
+
+    .btns:hover{
+        background: rgba(255, 255, 255, 0.5);
+        box-shadow: 1px 5px 7px 1px rgba(0, 0, 0, 0.2);
+    }
