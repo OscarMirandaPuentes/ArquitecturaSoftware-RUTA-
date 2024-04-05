@@ -9,8 +9,8 @@ const btnRegister = document.getElementById('register');
 function goLogin() {
     x.style.left = "4px";
     y.style.right = "-520px";
-    b.className += " white-btn";
-    a.className = "btn";
+    a.className += " white-btn";
+    b.className = "btn";
     x.style.opacity = 1;
     y.style.opacity = 0;
 }
@@ -18,13 +18,12 @@ function goLogin() {
 function goRegister() {
     x.style.left = "-510px";
     y.style.right = "5px";
-    b.className = "btn";
-    a.className += " white-btn";
+    a.className = "btn";
+    b.className += " white-btn";
     x.style.opacity = 0;
     y.style.opacity = 1;
 }
 
-// Agregar manejadores de eventos a los botones
 btnLogin.addEventListener('click', function(event) {
     event.preventDefault(); 
     const email = document.getElementById('email').value;
