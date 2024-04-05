@@ -63,6 +63,8 @@ body{
     font-weight: 500;
     color: #fff;
     margin-left: 5px;
+    cursor: pointer;
+    text-decoration: underline;
 }
 
 header{

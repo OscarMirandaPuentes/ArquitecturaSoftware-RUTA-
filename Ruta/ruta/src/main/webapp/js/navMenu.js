@@ -1,34 +1,30 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Agregar listeners a los enlaces del menú de navegación
+    
     document.getElementById('inicio').addEventListener('click', function () {
-        navigateTo('home.html');
+        window.location.href ='home.html';
     });
 
     document.getElementById('partidas').addEventListener('click', function () {
-        navigateTo('partidas.html');
+        window.location.href ='partidas.html';
     });
 
     document.getElementById('movimientos').addEventListener('click', function () {
-        navigateTo('movimientos.html');
+        window.location.href ='movimientos.html';
     });
 
     document.getElementById('perfil').addEventListener('click', function () {
-        navigateTo('perfil.html');
+        window.location.href ='perfil.html';
     });
 
     document.getElementById('editar_perfil').addEventListener('click', function () {
-        navigateTo('editar_perfil.html');
+        window.location.href ='editar_perfil.html';
     });
 
     document.getElementById('cerrar_sesion').addEventListener('click', function () {
         limpiarCookies();
-        navigateTo('login-register.html');
+        window.location.href ='login-register.html';
     });
 });
-
-function navigateTo(url) {
-    window.location.href = url;
-}
 
 function limpiarCookies() {
     var cookies = document.cookie.split(";");

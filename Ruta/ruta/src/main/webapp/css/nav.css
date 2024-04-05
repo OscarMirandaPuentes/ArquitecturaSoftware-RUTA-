@@ -47,6 +47,7 @@ img {
     color: #fff;
     padding-bottom: 15px;
     margin: 0 25px;
+    cursor: pointer;
 }
 
 .vertical-menu{
@@ -69,6 +70,7 @@ img {
     color: #fff;
     padding-bottom: 15px;
     margin: 0 25px;
+    cursor: pointer;
 }
 
 .nav-user li:hover .vertical-menu{
