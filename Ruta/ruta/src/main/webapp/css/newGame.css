@@ -8,13 +8,18 @@
 }
 
 body{
+    background: url("../images/base.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.wrapper{
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: url('../images/RUTA.png') no-repeat;
-    background-size: cover;
-    background-position: center;
+    background: rgba(39, 39, 39, 0.2);
 }
 
 h1{
@@ -41,12 +46,12 @@ h1{
 }
 
 #panel {
-    width: 420px;
+    width: 500px;
     margin-left: 0%;
     background: #022135;    
     box-shadow: 0 0 10px rgba(0, 0, 0, .2);
     color: #F9F0DE;
-    border-radius: 10px;
+    border-radius: 30px;
     padding: 30px 40px;
 }
 
