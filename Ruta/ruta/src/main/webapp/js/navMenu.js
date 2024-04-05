@@ -16,10 +16,6 @@ document.addEventListener('DOMContentLoaded', function () {
         window.location.href ='perfil.html';
     });
 
-    document.getElementById('editar_perfil').addEventListener('click', function () {
-        window.location.href ='editar_perfil.html';
-    });
-
     document.getElementById('cerrar_sesion').addEventListener('click', function () {
         limpiarCookies();
         window.location.href ='login-register.html';
