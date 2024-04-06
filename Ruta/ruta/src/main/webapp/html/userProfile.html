@@ -3,14 +3,13 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Ruta | End Game</title>
+        <title>Ruta | Profile</title>
         <link rel="website icon" type="png" href="../images/Logo ruta.png">
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-        <link rel="stylesheet" href="../css/fin.css">    
-        <link rel="stylesheet" href="../css/nav.css"> 
+        <link rel="stylesheet" href="../css/nav.css">
+        <link rel="stylesheet" href="../css/userProfile.css ">
     </head>
     <body>
-
         <div class="wrapper">
 
             <nav class="nav">
@@ -36,15 +35,21 @@
                 </div>
             </nav>
 
-            <div id="panel">
-                <h1>¡Felicitaciones al Equipo <span id="winner">3</span>!</h1>
-                <p id="agradecimiento">Gracias por jugar, del equipo de Ruta</p>
-            </div> 
-            <p id="volver">¿Deseas volver a jugar? <a href="../html/home.html">Haz clic aquí</a></p>
+            <div class="container">
+                <h1>Perfil de Usuario</h1>
+                <div class="profile-info">
+                    <p><strong>Nombre:</strong> <span id="nombre"></span></p>
+                    <p><strong>Apodo:</strong> <span id="apodo"></span></p>
+                    <p><strong>Correo:</strong> <span id="correo"></span></p>
+                    <!-- Puedes agregar más información del perfil aquí -->
+                </div>
+                <button id="logout-btn">Cerrar Sesión</button>
+            </div>
 
         </div>
         
-        <script src="../js/Fin.js"></script>
-        <script src="../js/navMenu.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+         
+        <script src="../js/navMenu.js"></script>    
     </body>
 </html>

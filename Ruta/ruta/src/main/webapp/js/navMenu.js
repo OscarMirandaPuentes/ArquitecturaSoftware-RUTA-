@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     document.getElementById('perfil').addEventListener('click', function () {
-        window.location.href ='perfil.html';
+        window.location.href ='userProfile.html';
     });
 
     document.getElementById('cerrar_sesion').addEventListener('click', function () {
