@@ -37,13 +37,16 @@ btnLogin.addEventListener('click', function(event) {
 
 btnRegister.addEventListener('click', function(event) {
     event.preventDefault(); 
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-    if (!name.trim() || !email.trim() || !password.trim()) {
+    const name = document.getElementById('namer').value;
+    const nickname = document.getElementById('nicknamer').value;
+    const email = document.getElementById('emailr').value;
+    const password = document.getElementById('passwordr').value;
+    if (!name.trim() || !nickname.trim() || !email.trim() || !password.trim()) {
         alert('Por favor, complete todos los campos.');
         return;
     }
     //Agregar encriptación de contraseña
+
+    //Logica de guardado de datos
     goLogin();
 });

@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     document.getElementById('partidas').addEventListener('click', function () {
-        window.location.href ='partidas.html';
+        window.location.href ='games.html';
     });
 
     document.getElementById('movimientos').addEventListener('click', function () {
@@ -20,15 +20,15 @@ document.addEventListener('DOMContentLoaded', function () {
         limpiarCookies();
         window.location.href ='login-register.html';
     });
+
+    document.getElementById('cerrar_sesion2').addEventListener('click', function () {
+        limpiarCookies();
+        window.location.href ='login-register.html';
+    });
 });
 
 function limpiarCookies() {
-    var cookies = document.cookie.split(";");
-
-    for (var i = 0; i < cookies.length; i++) {
-        var cookie = cookies[i];
-        var eqPos = cookie.indexOf("=");
-        var nombre = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
-        document.cookie = nombre + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
-    }
+    document.cookie.split(";").forEach(function(c) {
+    document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
+    });
 }

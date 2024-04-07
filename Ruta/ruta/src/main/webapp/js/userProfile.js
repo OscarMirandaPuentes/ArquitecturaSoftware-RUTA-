@@ -2,13 +2,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const botonEditarPerfil = document.querySelector('#editar');
     const botonEliminarCuenta = document.querySelector('#eliminar');
-    const botonCerrarSesion = document.querySelectorAll('#cerrar_sesion');
     var x = document.getElementById('profile');
     var y = document.getElementById('edit-form');
     const btnCancel = document.getElementById('cancelar');
     const btnImg = document.getElementById('cambiar');
     const btnSave = document.getElementById('guardar');
-    y.style.display='none';
 
     botonEditarPerfil.addEventListener('click', function() {
         y.style.display = '';
@@ -17,13 +15,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     botonEliminarCuenta.addEventListener('click', function() {
         console.log('Eliminar cuenta');
-    });
-
-    // Falta limpiar cookies
-    botonCerrarSesion.forEach(boton => {
-        boton.addEventListener('click', function() {
-            window.location.href ='login-register.html';
-        });
     });
 
     btnCancel.addEventListener('click', function() {
