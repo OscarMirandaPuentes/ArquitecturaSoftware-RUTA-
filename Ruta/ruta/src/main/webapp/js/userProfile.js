@@ -1,67 +1,50 @@
-var x = document.getElementById("profile");
-var y = document.getElementById("edit-form");
-const btnEdit = document.getElementById('editar');
-const btnCancel = document.getElementById('cancelar');
-const btnImg = document.getElementById('cambiar')
-
 document.addEventListener('DOMContentLoaded', function() {
-    
-    const nombreUsuario = document.querySelector('#nombre-usuario');
-    const nombre = document.querySelector('#nombre');
-    const apodoPerfil = document.querySelector('#apodo-usuario');
-    const correoPerfil = document.querySelector('#correo-usuario');
+
     const botonEditarPerfil = document.querySelector('#editar');
     const botonEliminarCuenta = document.querySelector('#eliminar');
     const botonCerrarSesion = document.querySelectorAll('#cerrar_sesion');
-
-    cargarPerfilUsuario();
-
-    function cargarPerfilUsuario() {
-        // petición AJAX para obtener los datos del perfil del usuario desde el servidor
-        
-        const perfilUsuario = {
-            nombre: 'Nombre de Usuario',
-            apodo: 'Apodo de Usuario',
-            correo: 'correo@corr.com'
-        };
-
-        nombre.textContent = perfilUsuario.nombre;
-        nombreUsuario.textContent = perfilUsuario.nombre;
-        apodoPerfil.textContent = perfilUsuario.apodo;
-        correoPerfil.textContent = perfilUsuario.correo;
-    }
+    var x = document.getElementById('profile');
+    var y = document.getElementById('edit-form');
+    const btnCancel = document.getElementById('cancelar');
+    const btnImg = document.getElementById('cambiar');
+    const btnSave = document.getElementById('guardar');
+    y.style.display='none';
 
     botonEditarPerfil.addEventListener('click', function() {
-        console.log('editar')
+        y.style.display = '';
+        x.style.display = 'none';
     });
 
-    // Evento para eliminar la cuenta del usuario
     botonEliminarCuenta.addEventListener('click', function() {
         console.log('Eliminar cuenta');
     });
 
-    // Evento para cerrar sesión
+    // Falta limpiar cookies
     botonCerrarSesion.forEach(boton => {
         boton.addEventListener('click', function() {
             window.location.href ='login-register.html';
         });
     });
-});
 
-y.style.display='none';
+    btnCancel.addEventListener('click', function() {
+        x.style.display = '';
+        y.style.display = 'none';
+    });
 
-btnEdit.addEventListener('click', function() {
-    y.style.display = '';
-    x.style.display = 'none';
-});
+    btnImg.addEventListener('click', function() {
+        elegirImagen()
+    });
 
-btnCancel.addEventListener('click', function() {
-    x.style.display = '';
-    y.style.display = 'none';
-});
+    btnSave.addEventListener('click', function(event) {
+        const nombre = document.getElementById('name').value;
+        const apodo = document.getElementById('nickname').value;
+        const correo = document.getElementById('email').value;
+        const imagen = document.getElementById('profile-pic').src;
 
-btnImg.addEventListener('click', function() {
-    elegirImagen()
+        location.reload()
+
+        // código para enviar los datos al servidor 
+    });
 });
 
 function elegirImagen() {
