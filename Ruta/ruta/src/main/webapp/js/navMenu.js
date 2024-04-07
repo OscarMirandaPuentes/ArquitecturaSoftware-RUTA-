@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     document.getElementById('movimientos').addEventListener('click', function () {
-        window.location.href ='movimientos.html';
+        window.location.href ='history.html';
     });
 
     document.getElementById('perfil').addEventListener('click', function () {
