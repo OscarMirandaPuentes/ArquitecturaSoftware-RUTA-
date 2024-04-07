@@ -13,7 +13,7 @@
         <div class="wrapper">
 
             <nav class="nav">
-                <img src="../images/Logo ruta.png" alt="Logo">
+                <img id="imgn" src="../images/Logo ruta.png" alt="Logo">
                 <div class="nav-logo">
                     <p>RUTA</p>
                 </div>
@@ -35,21 +35,41 @@
                 </div>
             </nav>
 
-            <div class="container">
-                <h1>Perfil de Usuario</h1>
-                <div class="profile-info">
-                    <p><strong>Nombre:</strong> <span id="nombre"></span></p>
-                    <p><strong>Apodo:</strong> <span id="apodo"></span></p>
-                    <p><strong>Correo:</strong> <span id="correo"></span></p>
-                    <!-- Puedes agregar más información del perfil aquí -->
+            <div class="wrapp">
+                <div class="left">
+                    <img id="profile" src="../images/perfil.png" alt="user">
+                    <h4><span>Nombre de Usuario</span></h4>
+                    <button class="btns" id="eliminar">Eliminar Cuenta</button>
                 </div>
-                <button id="logout-btn">Cerrar Sesión</button>
+                <div class="right">
+                    <div class="info">
+                        <h3>Información</h3>
+                        <div class="info-data">
+                            <div class="data">
+                                <h4>Nombre</h4>
+                                <p><span>Nombre usuario</span></p>
+                            </div>
+                            <div class="data">
+                                <h4>Apodo</h4>
+                                <p><span>Apodo usuario</span></p>
+                            </div>
+                        </div>
+                        <div class="data">
+                            <h4>Correo</h4>
+                            <p><span>correo@correo.com</span></p>
+                        </div>
+                    </div>
+                    <div class="buttons">
+                        <button class="btns" id="editar">Editar Perfil</button>
+                        <button class="btns" id="cerrar_sesion">Cerrar Sesión</button>
+                    </div>
+                </div>
             </div>
-
+            
         </div>
         
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-         
+        <script src="../js/userProfile.js"></script> 
         <script src="../js/navMenu.js"></script>    
     </body>
 </html>
