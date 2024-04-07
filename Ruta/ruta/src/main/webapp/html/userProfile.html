@@ -35,10 +35,10 @@
                 </div>
             </nav>
 
-            <div class="wrapp">
+            <div class="wrapp" id="profile">
                 <div class="left">
-                    <img id="profile" src="../images/perfil.png" alt="user">
-                    <h4><span>Nombre de Usuario</span></h4>
+                    <img id="imagen-perfil" src="../images/perfil.png" alt="user">
+                    <h4 id="nombre-usuario"> Nombre Usuario</h4>
                     <button class="btns" id="eliminar">Eliminar Cuenta</button>
                 </div>
                 <div class="right">
@@ -47,16 +47,16 @@
                         <div class="info-data">
                             <div class="data">
                                 <h4>Nombre</h4>
-                                <p><span>Nombre usuario</span></p>
+                                <p id="nombre">N</p>
                             </div>
                             <div class="data">
                                 <h4>Apodo</h4>
-                                <p><span>Apodo usuario</span></p>
+                                <p id="apodo-usuario">A</p>
                             </div>
                         </div>
                         <div class="data">
                             <h4>Correo</h4>
-                            <p><span>correo@correo.com</span></p>
+                            <p id="correo-usuario">c</p>
                         </div>
                     </div>
                     <div class="buttons">
@@ -64,6 +64,45 @@
                         <button class="btns" id="cerrar_sesion">Cerrar Sesión</button>
                     </div>
                 </div>
+            </div>
+
+            <div class="wrapp" id="edit-form">
+                <div class="left">
+                    <img id="profile-pic" src="../images/perfil.png" alt="user">
+                    <button class="btns" id="cambiar">Cambiar Imagen</button>
+                </div>
+                <form action="" id="right">
+                    <div class="info">
+                        <h3>Información</h3>
+                        <div class="info-data">
+                            <div class="data">
+                                <h4>Nombre</h4>
+                                <div class="input-box">
+                                    <input type="text" class="input-field" placeholder="Nombre" pattern="[a-zA-Z\s]*" id="name" required>
+                                    <i class='bx bxs-user' ></i>
+                                </div>
+                            </div>
+                            <div class="data">
+                                <h4>Apodo</h4>
+                                <div class="input-box">
+                                    <input type="text" class="input-field" placeholder="Apodo" pattern="[a-zA-Z\s]*" id="nickname" required>
+                                    <i class='bx bxs-user-pin'></i>
+                                </div>  
+                            </div>
+                        </div>
+                        <div class="data">
+                            <h4>Correo</h4>
+                            <div class="input-box">
+                                <input type="email" class="input-field" placeholder="Correo" pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$" id="email" required>
+                                <i class='bx bxs-envelope'></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="buttons">
+                        <button class="btns" type="submit" id="guadar">Guardar Cambios</button>
+                        <button class="btns" id="cancelar">Cancelar</button>
+                    </div>
+                </form>
             </div>
             
         </div>
