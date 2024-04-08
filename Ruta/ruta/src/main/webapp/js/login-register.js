@@ -32,7 +32,18 @@ btnLogin.addEventListener('click', function(event) {
         alert('Por favor, complete todos los campos.');
         return;
     }
-    window.location.href = 'home.html';
+    let pathname = window.location.pathname;
+
+        // Dividir la ruta en partes usando el separador "/"
+        let partes = pathname.split("/");
+        if (partes[0] === "") {
+            partes.shift();
+        }
+        if (partes.length === 1){
+            window.location.href = 'html/home.html';
+        }  else{
+            window.location.href = 'home.html';
+        }
 });
 
 btnRegister.addEventListener('click', function(event) {

@@ -4,11 +4,13 @@ import modelo.Model;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import entities.User;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import managers.UserManager;
 
 /**
  * Servlet implementation class MyServlet
@@ -28,22 +30,17 @@ public class MyServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		PrintWriter out=response.getWriter();
 		
-		Model m=new Model();
+		UserManager mp=new UserManager();
+		User u = new User();
+		u.setEmail("asd@ashdgasj.co");
+		u.setPassword("123");
+		u.setUsername("pablito");
+		mp.createUser(u);
 		
-		String pa=request.getParameter("a");
-		String pb=request.getParameter("b");
-		
-		int a=Integer.parseInt(pa);
-		int b=Integer.parseInt(pb);
-		int c=m.sumar(a, b);
-		
-		out.println(c);
-		
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -53,5 +50,4 @@ public class MyServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-
 }
