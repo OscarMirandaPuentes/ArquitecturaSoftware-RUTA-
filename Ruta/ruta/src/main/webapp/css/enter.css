@@ -1,39 +1,44 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
 }
 
 body{
+    background: url("../images/base.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.wrapper{
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: url('../images/RUTA.png') no-repeat;
-    background-size: cover;
-    background-position: center;
+    background: rgba(39, 39, 39, 0.2);
 }
 
-.wrapper{
+#contenido{
     width: 420px;
     background:     #022135;
     border: 2px solid rgba(255, 255, 255, .2);
     backdrop-filter: blur(100px);
     box-shadow: 0 0 10px rgba(0, 0, 0, .2);
     color: #F9F0DE;
-    border-radius: 10px;
+    border-radius: 30px;
     padding: 30px 40px;
 }
 
-.wrapper h1{
+#contenido h1{
     font-size: 36px;
     text-align: center;
 }
 
-.wrapper .input-box{
+#contenido .input-box{
     position: relative;
     width: 100%;
     height: 50px;
@@ -65,17 +70,16 @@ body{
     font-size: 20px;
 }
 
-.wrapper .btn{
+#contenido .btn{
     width: 100%;
     height: 45px;
-    background: #F9F0DE;
+    background: #FF3131;
     border: none;
     outline: none;
     border-radius: 40px;
     box-shadow: 0 0 10px rgba(0, 0, 0, .1);
     cursor: pointer;
     font-size: 16px;
-    color: #333;
+    color: #fff;
     font-weight: 600;
-    width: 48%;
 }

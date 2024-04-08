@@ -109,6 +109,21 @@ h2{
     transition: background-color 0.3s ease; 
 }
 
-#refrescar:hover {
+#refrescar:hover, #regresar:hover {
     background-color:  #FF3131; 
+}
+
+#regresar {
+    left: .5%;    
+    position: absolute;
+    width: 3%;
+    background-color:#022135; 
+    color: #F9F0DE; 
+    padding: 0 10px; 
+    text-align: center; 
+    font-size: 20px; 
+    border: #F9F0DE;
+    border-radius: 40px; 
+    cursor: pointer; 
+    transition: background-color 0.3s ease; 
 }

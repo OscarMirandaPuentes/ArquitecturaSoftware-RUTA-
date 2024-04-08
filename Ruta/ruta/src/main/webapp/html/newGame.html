@@ -3,16 +3,15 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Ruta | End Game</title>
+        <title>Ruta | New Game</title>
         <link rel="website icon" type="png" href="../images/Logo ruta.png">
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-        <link rel="stylesheet" href="../css/fin.css">    
-        <link rel="stylesheet" href="../css/nav.css"> 
+        <link rel="stylesheet" href="../css/newGame.css">    
+        <link rel="stylesheet" href="../css/nav.css">   
     </head>
     <body>
 
         <div class="wrapper">
-
             <nav class="nav">
                 <img id="imgn" src="../images/Logo ruta.png" alt="Logo">
                 <div class="nav-logo">
@@ -37,14 +36,23 @@
             </nav>
 
             <div id="panel">
-                <h1>¡Felicitaciones al Equipo <span id="winner">3</span>!</h1>
-                <p id="agradecimiento">Gracias por jugar, del equipo de Ruta</p>
-            </div> 
-            <p id="volver">¿Deseas volver a jugar? <a href="../html/home.html">Haz clic aquí</a></p>
+                <form action="">
+                    <h1>Crea tu juego de Ruta</h1>
+
+                    <div class="input-box">
+                        <input type="number" id="numJugadores" placeholder="Número de Jugadores" min="2" max="6" step="2" required>
+                        <i class='bx bxs-group'></i>
+                    </div>
+                    <div>
+                        <button type="submit" id="unirse">Iniciar partida</button>
+                    </div>
+                </form>
+            </div>
 
         </div>
-        
-        <script src="../js/Fin.js"></script>
+
+        <script src="../js/newGame.js"></script>
         <script src="../js/navMenu.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     </body>
 </html>

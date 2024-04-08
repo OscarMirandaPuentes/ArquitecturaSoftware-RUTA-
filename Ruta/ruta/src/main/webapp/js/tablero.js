@@ -27,6 +27,10 @@ document.addEventListener('DOMContentLoaded', function () {
             refresh(id)
             //location.reload();
         });
+
+        $('#regresar').on('click', function() {
+            window.location.href = 'home.html'
+        });
     });
 
 

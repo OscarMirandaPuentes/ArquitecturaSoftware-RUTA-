@@ -1,25 +1,5 @@
 var id = document.querySelector('input[type="number"]');
 
-
-document.addEventListener('DOMContentLoaded', function () {
-    var form = document.querySelector('form');
-    
-    form.addEventListener('submit', function (event) {
-        event.preventDefault();
-        var nombreJugador = document.querySelector('input[type="text"]').value;
-        localStorage.setItem('nombreJugador', nombreJugador); // Se almacena en memoria local
-        localStorage.setItem('id', id.value); // Se almacena en memoria local
-        ingresarPJ(id.value, nombreJugador)  
-    });
-
-    // Agregar manejador de eventos al botón "Iniciar"
-    var btnIniciar = document.getElementById('btn-iniciar');
-    btnIniciar.addEventListener('click', function() {
-        iniciarJuego();
-        window.location.href = 'tablero.html';
-    });
-});
-
 id.addEventListener('input', function() {
     var valor = id.value;
     
@@ -27,6 +7,25 @@ id.addEventListener('input', function() {
         id.value = '';
     }
     
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    var form = document.querySelector('form');
+    
+    form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        // var nombreJugador = 
+        localStorage.setItem('id', id.value); // Se almacena en memoria local
+        ingresarPJ(id.value)  
+    });
+
+    var btnIniciar = document.getElementById('btn-iniciar');
+    btnIniciar.addEventListener('click', function() {
+        if (id.value != '') {
+            iniciarJuego();
+            window.location.href = 'tablero.html';
+        }
+    });
 });
 
 function iniciar() {
@@ -39,10 +38,10 @@ function iniciar() {
     });
 }
 
-function ingresarPJ(id, nombre) {
+function ingresarPJ(id) {
     let myData = {
         id: id,
-        nombre: nombre
+       // nombre: nombre
     };
     $.ajax({
         url: '/ruta/start',
