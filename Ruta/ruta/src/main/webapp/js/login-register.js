@@ -59,5 +59,37 @@ btnRegister.addEventListener('click', function(event) {
     //Agregar encriptación de contraseña
 
     //Logica de guardado de datos
-    goLogin();
+    ajaxRegister("CREATE",name, nickname, email, password)
+    .then(function(response) {
+        console.log('Registro exitoso:', response);
+        goLogin();
+    })
+    .catch(function(error) {
+        console.error('Error en la solicitud:', error);
+    });
+    
 });
+
+
+function ajaxRegister(action, name, nickname, email, password) {
+    return new Promise((resolve, reject) => {
+        let myData = {
+            action: action,
+            name: name,
+            nickname: nickname,
+            email: email,
+            password: password
+        };
+        $.ajax({
+            url: '/ruta/usuario',
+            type: 'POST',
+            data: myData,
+            success: function (r) {
+                resolve(r); // Resolvemos la promesa con el valor booleano del response
+            },
+            error: function (err) {
+                reject(err); // Rechazamos la promesa en caso de error
+            }
+        });
+    });
+}

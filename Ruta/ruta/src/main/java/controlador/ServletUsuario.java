@@ -15,14 +15,14 @@ import managers.UserManager;
 /**
  * Servlet implementation class MyServlet
  */
-@WebServlet("/hola")
-public class MyServlet extends HttpServlet {
+@WebServlet("/usuario")
+public class ServletUsuario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MyServlet() {
+    public ServletUsuario() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,7 +31,6 @@ public class MyServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
@@ -40,7 +39,23 @@ public class MyServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		String action = request.getParameter("action");
+		UserManager mp=new UserManager();
+		boolean result = false;
+		System.out.println(request.getParameter("name") + request.getParameter("nickname")+
+		request.getParameter("password")+ request.getParameter("email"));
+
+		if(action.equals("CREATE")){
+			User u = new User(request.getParameter("name"), request.getParameter("nickname"),
+							  request.getParameter("password"), request.getParameter("email"));
+			mp.createUser(u);
+			result = true;
+		}
+		// Configuramos la respuesta HTTP con el resultado booleano
+		response.setContentType("application/json");
+		PrintWriter out = response.getWriter();
+		out.print("{\"success\": " + result + "}"); // Respondemos con un objeto JSON que contiene el resultado
+		out.flush();
+		out.close();
 	}
 }
