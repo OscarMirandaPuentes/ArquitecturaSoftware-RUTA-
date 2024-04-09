@@ -23,17 +23,17 @@ public class Administrador {
 		if (id == actualPos && actualPos % 2 == 0){
 			return this.getJ().getEquipos().get(0).getJugadores().get(jugadorActualPos).getMano();
 		}
-        else if (id == actualPos && actualPos % 2 != 0) {
+        else if (id == actualPos) {
             return this.getJ().getEquipos().get(1).getJugadores().get(jugadorActualPos).getMano();
         }
-		else {
-			return null;
-		}
+        else{
+            return null;
+        }
 }
 
 	public void validarPosicionJugador() {
-	    actualPos++;
-	    if (actualPos == this.getJ().getEquipo1().getJugadores().size() * 2) {
+        actualPos++;
+	    if (actualPos == this.getJ().getEquipo1().getJugadores().size()) {
 	        jugadorActualPos = 0;
 	        actualPos = 0;
             obtenerJugadorActual();
@@ -43,7 +43,13 @@ public class Administrador {
 	        jugadorActualPos++;
             obtenerJugadorActual();
             jugadorActual.robar();
-	    }
+	    }else{
+            obtenerJugadorActual();
+            jugadorActual.robar();
+        }
+        System.out.println("actualpos: " + actualPos + " PosicionJug: " + jugadorActualPos);
+        System.out.println(this.getJ().getEquipo1().getJugadores());
+        System.out.println(this.getJ().getEquipo2().getJugadores());
 	}
 
     public Jugador obtenerJugadorActual(){

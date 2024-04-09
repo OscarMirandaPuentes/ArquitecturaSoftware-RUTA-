@@ -37,26 +37,20 @@ import java.io.IOException;
         public void insertarJugador(int id, String nombre){
             
             if (id % 2 == 0) {
-                System.out.println("se crea jugador 1");
                 Jugador jugador = a.getJ().crearJugador(nombre);
                 a.getJ().getEquipo1().agregarJugador(jugador);
-                //System.out.println(a.getJ().getEquipo1());
             } else {
-                System.out.println("se crea jugador 2");
                 Jugador jugador = a.getJ().crearJugador(nombre);
                 a.getJ().getEquipo2().agregarJugador(jugador);
-                //System.out.println(a.getJ().getEquipo2());
             }
         }
 
 
         protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-            System.out.println("si es aqui"+request.getParameter("id"));
             int id = Integer.parseInt(request.getParameter("id"));
             String nombre = request.getParameter("nombre");
 
             insertarJugador(id, nombre);
-            doGet(request, response);
         }
 
         public static Administrador getAdministrador() {
