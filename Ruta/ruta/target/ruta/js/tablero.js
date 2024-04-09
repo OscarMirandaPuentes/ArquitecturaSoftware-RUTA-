@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
         $('#usar').on('click', function() {
-            var posCarta = parseInt(cartaId.match(/\d+/)[0]);
+            var posCarta = parseInt(cartaId.match(/\d+/)[0]) - 1;
             jugar(id, posCarta, 0)
             $.modal.close();
             alert('Has elegido usar la carta.');
