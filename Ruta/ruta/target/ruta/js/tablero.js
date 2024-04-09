@@ -27,6 +27,10 @@ document.addEventListener('DOMContentLoaded', function () {
             refresh(id)
             //location.reload();
         });
+
+        $('#regresar').on('click', function() {
+            window.location.href = 'home.html'
+        });
     });
 
 
@@ -60,46 +64,18 @@ function refresh(id) {
         url: '/ruta/communicate',
         type: 'GET',
         data: myData,
+        dataType: 'json',
         success: function (r) {
+            console.log(r)
             updateWin(r)
         }
     });
 }
 
-function updateWin(array){
-    if (array.length === 6) {
-        reemplazarURLCarta("PBatallaE1", array[0]);
-        reemplazarURLCarta("PDistaciaE1", array[1]);
-        reemplazarURLCarta("PVelocidadE1", array[2]);
-        reemplazarURLCarta("PBatallaE2", array[3]);
-        reemplazarURLCarta("PDistaciaE2", array[4]);
-        reemplazarURLCarta("PVelocidadE2", array[5]);
-    }
-    
-    if (array.length === 7) {
-        reemplazarURLCarta("Carta 1", array[0]);
-        reemplazarURLCarta("Carta 2", array[1]);
-        reemplazarURLCarta("Carta 3", array[2]);
-        reemplazarURLCarta("Carta 4", array[3]);
-        reemplazarURLCarta("Carta 5", array[4]);
-        reemplazarURLCarta("Carta 6", array[5]);
-        reemplazarURLCarta("Carta 7", array[6]);
-    }
-    
-    if (array.length === 13) {
-        reemplazarURLCarta("PBatallaE1", array[0]);
-        reemplazarURLCarta("PDistaciaE1", array[1]);
-        reemplazarURLCarta("PVelocidadE1", array[2]);
-        reemplazarURLCarta("PBatallaE2", array[3]);
-        reemplazarURLCarta("PDistaciaE2", array[4]);
-        reemplazarURLCarta("PVelocidadE2", array[5]);
-        reemplazarURLCarta("Carta 1", array[6]);
-        reemplazarURLCarta("Carta 2", array[7]);
-        reemplazarURLCarta("Carta 3", array[8]);
-        reemplazarURLCarta("Carta 4", array[9]);
-        reemplazarURLCarta("Carta 5", array[10]);
-        reemplazarURLCarta("Carta 6", array[11]);
-        reemplazarURLCarta("Carta 7", array[12]);
+function updateWin(datos){
+    for (const [carta, valor] of Object.entries(datos)) {
+        reemplazarURLCarta(carta, valor); // Llamar a la función reemplazarURLCarta con cada clave y valor
     }
 }
+
 

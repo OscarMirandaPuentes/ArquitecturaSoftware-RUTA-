@@ -11,7 +11,7 @@ import java.util.List;
 
 public class UserManager {
 
-    private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("UsuariosPU");
+    private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("Usuarios");
 
     public static User createUser(User user) {
         EntityManager em = emf.createEntityManager();

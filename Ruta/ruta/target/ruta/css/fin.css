@@ -8,14 +8,18 @@
 }
 
 body{
+    background: url("../images/base.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.wrapper{
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: url('../images/RUTA.png') no-repeat;
-    background-size: cover;
-    background-position: center;
-    flex-direction: column;
+    background: rgba(39, 39, 39, 0.2);
 }
 
 h1{
@@ -34,14 +38,12 @@ h1{
     margin-bottom: 20px;
     align-items: center;
     text-align: center;
+    justify-content: center;
 }
 
-
-i{
+#volver{
     position: absolute;
-    right: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 20px;
+    top: 60%;
 }
+
 
