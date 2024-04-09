@@ -5,53 +5,53 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import jakarta.persistence.Query;
 
-import entities.User;
+import entities.Jugador;
 
 import java.util.List;
 
-public class UserManager {
+public class JugadorManager {
 
     private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("UsuariosUP");
 
-    public static User createUser(User user) {
+    public static Jugador createJugador(Jugador jugador) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
-        em.persist(user);
+        em.persist(jugador);
         em.getTransaction().commit();
         em.close();
-        return user;
+        return jugador;
     }
 
-    public static User getUserById(Long id) {
+    public static Jugador getJugadorById(int id) {
         EntityManager em = emf.createEntityManager();
-        User user = em.find(User.class, id);
+        Jugador jugador = em.find(Jugador.class, id);
         em.close();
-        return user;
+        return jugador;
     }
 
-    public static List<User> getAllUsers() {
+    public static List<Jugador> getAllJugadores() {
         EntityManager em = emf.createEntityManager();
-        Query query = em.createQuery("SELECT u FROM User u");
-        List<User> users = query.getResultList();
+        Query query = em.createQuery("SELECT j FROM Jugador j");
+        List<Jugador> jugadores = query.getResultList();
         em.close();
-        return users;
+        return jugadores;
     }
 
-    public static User updateUser(User user) {
+    public static Jugador updateJugador(Jugador jugador) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
-        User updatedUser = em.merge(user);
+        Jugador updatedJugador = em.merge(jugador);
         em.getTransaction().commit();
         em.close();
-        return updatedUser;
+        return updatedJugador;
     }
 
-    public static void deleteUser(Long id) {
+    public static void deleteJugador(int id) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
-        User user = em.find(User.class, id);
-        if (user != null) {
-            em.remove(user);
+        Jugador jugador = em.find(Jugador.class, id);
+        if (jugador != null) {
+            em.remove(jugador);
         }
         em.getTransaction().commit();
         em.close();

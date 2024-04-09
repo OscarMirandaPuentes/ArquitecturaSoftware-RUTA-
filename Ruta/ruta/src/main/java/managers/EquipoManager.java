@@ -5,53 +5,53 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import jakarta.persistence.Query;
 
-import entities.User;
+import entities.Equipo;
 
 import java.util.List;
 
-public class UserManager {
+public class EquipoManager {
 
     private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("UsuariosUP");
 
-    public static User createUser(User user) {
+    public static Equipo createEquipo(Equipo equipo) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
-        em.persist(user);
+        em.persist(equipo);
         em.getTransaction().commit();
         em.close();
-        return user;
+        return equipo;
     }
 
-    public static User getUserById(Long id) {
+    public static Equipo getEquipoById(Long id) {
         EntityManager em = emf.createEntityManager();
-        User user = em.find(User.class, id);
+        Equipo equipo = em.find(Equipo.class, id);
         em.close();
-        return user;
+        return equipo;
     }
 
-    public static List<User> getAllUsers() {
+    public static List<Equipo> getAllEquipos() {
         EntityManager em = emf.createEntityManager();
-        Query query = em.createQuery("SELECT u FROM User u");
-        List<User> users = query.getResultList();
+        Query query = em.createQuery("SELECT e FROM Equipo e");
+        List<Equipo> equipos = query.getResultList();
         em.close();
-        return users;
+        return equipos;
     }
 
-    public static User updateUser(User user) {
+    public static Equipo updateEquipo(Equipo equipo) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
-        User updatedUser = em.merge(user);
+        Equipo updatedEquipo = em.merge(equipo);
         em.getTransaction().commit();
         em.close();
-        return updatedUser;
+        return updatedEquipo;
     }
 
-    public static void deleteUser(Long id) {
+    public static void deleteEquipo(Long id) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
-        User user = em.find(User.class, id);
-        if (user != null) {
-            em.remove(user);
+        Equipo equipo = em.find(Equipo.class, id);
+        if (equipo != null) {
+            em.remove(equipo);
         }
         em.getTransaction().commit();
         em.close();

@@ -5,53 +5,53 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import jakarta.persistence.Query;
 
-import entities.User;
+import entities.Mazo;
 
 import java.util.List;
 
-public class UserManager {
+public class MazoManager {
 
     private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("UsuariosUP");
 
-    public static User createUser(User user) {
+    public static Mazo createMazo(Mazo mazo) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
-        em.persist(user);
+        em.persist(mazo);
         em.getTransaction().commit();
         em.close();
-        return user;
+        return mazo;
     }
 
-    public static User getUserById(Long id) {
+    public static Mazo getMazoById(int id) {
         EntityManager em = emf.createEntityManager();
-        User user = em.find(User.class, id);
+        Mazo mazo = em.find(Mazo.class, id);
         em.close();
-        return user;
+        return mazo;
     }
 
-    public static List<User> getAllUsers() {
+    public static List<Mazo> getAllMazos() {
         EntityManager em = emf.createEntityManager();
-        Query query = em.createQuery("SELECT u FROM User u");
-        List<User> users = query.getResultList();
+        Query query = em.createQuery("SELECT m FROM Mazo m");
+        List<Mazo> mazos = query.getResultList();
         em.close();
-        return users;
+        return mazos;
     }
 
-    public static User updateUser(User user) {
+    public static Mazo updateMazo(Mazo mazo) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
-        User updatedUser = em.merge(user);
+        Mazo updatedMazo = em.merge(mazo);
         em.getTransaction().commit();
         em.close();
-        return updatedUser;
+        return updatedMazo;
     }
 
-    public static void deleteUser(Long id) {
+    public static void deleteMazo(int id) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
-        User user = em.find(User.class, id);
-        if (user != null) {
-            em.remove(user);
+        Mazo mazo = em.find(Mazo.class, id);
+        if (mazo != null) {
+            em.remove(mazo);
         }
         em.getTransaction().commit();
         em.close();
