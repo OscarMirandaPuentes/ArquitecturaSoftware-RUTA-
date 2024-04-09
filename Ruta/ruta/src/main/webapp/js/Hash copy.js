@@ -1,5 +1,5 @@
-class Hash{
-    async calcularHash(texto) {
+
+    async function  calcularHash(texto) {
         const encoder = new TextEncoder();
         const data = encoder.encode(texto);
         
@@ -9,4 +9,3 @@ class Hash{
     
         return hashHex;
     }
-}

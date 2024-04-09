@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function () {
             partes.shift();
         }
         if (partes.length === 1) {
-            window.location.href ='html/userProfile.html';
+            window.location.href ='userProfile.html';
         } else {
             pagina = "userProfile.html";
         }
@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', function () {
             partes.shift();
         }
         if (partes.length === 1)  {
-            window.location.href ='html/login-register.html';
+            window.location.href ='login-register.html';
         } else {
             pagina = "login-register.html";
         }
@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', function () {
             partes.shift();
         }
         if (partes.length === 1)  {
-            window.location.href ='html/login-register.html';
+            window.location.href ='login-register.html';
         } else {
             pagina = "login-register.html";
         }

@@ -4,7 +4,7 @@ var x = document.getElementById("loginc");
 var y = document.getElementById("registerc");
 const btnLogin = document.getElementById('login');
 const btnRegister = document.getElementById('register');
-
+//const hash = new Hash();
 
 function goLogin() {
     x.style.left = "4px";
@@ -42,11 +42,11 @@ btnLogin.addEventListener('click', function(event) {
         if (partes.length === 1){
             window.location.href = 'html/home.html';
         }  else{
-            window.location.href = 'home.html';
+            window.location.href = 'html/home.html';
         }
 });
 
-btnRegister.addEventListener('click', function(event) {
+btnRegister.addEventListener('click', async function(event) {
     event.preventDefault(); 
     const name = document.getElementById('namer').value;
     const nickname = document.getElementById('nicknamer').value;
@@ -56,10 +56,13 @@ btnRegister.addEventListener('click', function(event) {
         alert('Por favor, complete todos los campos.');
         return;
     }
+
+    password2 =await calcularHash(password);
+    console.log(password2)
     //Agregar encriptación de contraseña
 
     //Logica de guardado de datos
-    ajaxRegister("CREATE",name, nickname, email, password)
+    ajaxRegister("CREATE",name, nickname, email, password2)
     .then(function(response) {
         console.log('Registro exitoso:', response);
         goLogin();
