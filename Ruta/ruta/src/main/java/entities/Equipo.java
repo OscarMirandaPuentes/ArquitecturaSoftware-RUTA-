@@ -12,6 +12,7 @@ public class Equipo {
     private int id;
 
     @ManyToOne
+    @JoinColumn(name = "partida_id") 
     private Partida partida;
 
     @OneToMany(mappedBy = "equipo", cascade = CascadeType.ALL)
