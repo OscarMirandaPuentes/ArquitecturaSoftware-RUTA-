@@ -1,6 +1,5 @@
 package entities;
 import java.util.List;
-
 import jakarta.persistence.*;
 
 @Entity
@@ -12,10 +11,18 @@ public class PilaBatalla {
     private Long id;
 
     @Column(name = "equipo_id")
-    private Long equipoId;
+    private Integer equipoId;
 
     @OneToMany(mappedBy = "pilaBatalla")
     private List<Carta> cartas;
+
+    public PilaBatalla() {
+        // Default constructor
+    }
+
+    public PilaBatalla(int e) {
+        this.equipoId = e;
+    }
 
     public Long getId() {
         return id;
@@ -25,11 +32,11 @@ public class PilaBatalla {
         this.id = id;
     }
 
-    public Long getEquipoId() {
+    public int getEquipoId() {
         return equipoId;
     }
 
-    public void setEquipoId(Long equipoId) {
+    public void setEquipoId(int equipoId) {
         this.equipoId = equipoId;
     }
 

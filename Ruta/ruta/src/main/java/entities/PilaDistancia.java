@@ -9,27 +9,27 @@ public class PilaDistancia {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
     @Column(name = "equipo_id")
-    private Long equipoId;
+    private int equipoId;
 
     @OneToMany(mappedBy = "pilaDistancia")
     private List<Carta> cartas;
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public Long getEquipoId() {
+    public int getEquipoId() {
         return equipoId;
     }
 
-    public void setEquipoId(Long equipoId) {
+    public void setEquipoId(int equipoId) {
         this.equipoId = equipoId;
     }
 

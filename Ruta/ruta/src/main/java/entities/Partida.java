@@ -18,10 +18,10 @@ public class Partida {
     private Date fechaFin;
 
     @Column(nullable = false)
-    private int resultadoEquipo1;
+    private Integer resultadoEquipo1;
 
     @Column(nullable = false)
-    private int resultadoEquipo2;
+    private Integer resultadoEquipo2;
 
     @Column(nullable = false)
     private String estado; //partida terminada, pausada 
@@ -97,11 +97,7 @@ public class Partida {
 
     public void setEquipos(List<Equipo> equipos) {
         this.equipos = equipos;
-    }
-
-
-
-    
+    }   
 }
 
 

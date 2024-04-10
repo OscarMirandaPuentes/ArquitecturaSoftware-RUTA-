@@ -12,7 +12,7 @@ public class PilaSeguridad {
     private Long id;
 
     @Column(name = "equipo_id")
-    private Long equipoId;
+    private int equipoId;
 
     @OneToMany(mappedBy = "pilaSeguridad")
     private List<Carta> cartas;
@@ -25,11 +25,11 @@ public class PilaSeguridad {
         this.id = id;
     }
 
-    public Long getEquipo() {
+    public int getEquipo() {
         return equipoId;
     }
 
-    public void setEquipo(Long equipoId) {
+    public void setEquipo(int equipoId) {
         this.equipoId = equipoId;
     }
 
