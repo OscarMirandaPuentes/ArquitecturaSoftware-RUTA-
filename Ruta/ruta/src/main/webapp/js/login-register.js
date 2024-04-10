@@ -4,7 +4,6 @@ var x = document.getElementById("loginc");
 var y = document.getElementById("registerc");
 const btnLogin = document.getElementById('login');
 const btnRegister = document.getElementById('register');
-//const hash = new Hash();
 
 function goLogin() {
     x.style.left = "4px";
@@ -24,7 +23,7 @@ function goRegister() {
     y.style.opacity = 1;
 }
 
-btnLogin.addEventListener('click', function(event) {
+btnLogin.addEventListener('click', async function(event) {
     event.preventDefault(); 
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
@@ -32,18 +31,18 @@ btnLogin.addEventListener('click', function(event) {
         alert('Por favor, complete todos los campos.');
         return;
     }
-    let pathname = window.location.pathname;
 
-        // Dividir la ruta en partes usando el separador "/"
-        let partes = pathname.split("/");
-        if (partes[0] === "") {
-            partes.shift();
-        }
-        if (partes.length === 1){
-            window.location.href = 'html/home.html';
-        }  else{
-            window.location.href = 'html/home.html';
-        }
+    password2 =await calcularHash(password);
+    ajaxLogin("LOGIN", email, password2)
+    .then(function(response) {
+        console.log('Inicio exitoso:', response);
+        window.location.href = 'home.html';
+        //cookie
+    })
+    .catch(function(error) {
+        console.error('Error en la solicitud:', error);
+    });
+
 });
 
 btnRegister.addEventListener('click', async function(event) {
@@ -80,6 +79,27 @@ function ajaxRegister(action, name, nickname, email, password) {
             action: action,
             name: name,
             nickname: nickname,
+            email: email,
+            password: password
+        };
+        $.ajax({
+            url: '/ruta/usuario',
+            type: 'POST',
+            data: myData,
+            success: function (r) {
+                resolve(r); // Resolvemos la promesa con el valor booleano del response
+            },
+            error: function (err) {
+                reject(err); // Rechazamos la promesa en caso de error
+            }
+        });
+    });
+}
+
+function ajaxLogin(action, email, password) {
+    return new Promise((resolve, reject) => {
+        let myData = {
+            action: action,
             email: email,
             password: password
         };

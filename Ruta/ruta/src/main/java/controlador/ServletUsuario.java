@@ -42,14 +42,20 @@ public class ServletUsuario extends HttpServlet {
 		String action = request.getParameter("action");
 		UserManager mp=new UserManager();
 		boolean result = false;
-		System.out.println(request.getParameter("name") + request.getParameter("nickname")+
-		request.getParameter("password")+ request.getParameter("email"));
 
 		if(action.equals("CREATE")){
 			User u = new User(request.getParameter("name"), request.getParameter("nickname"),
 							  request.getParameter("password"), request.getParameter("email"));
 			mp.createUser(u);
 			result = true;
+		}
+
+		if(action.equals("LOGIN")){
+			User u = mp.getUserByEmail(request.getParameter("email"));
+			if (u.getPassword().equals(request.getParameter("password"))){
+				result = true;
+			}
+			
 		}
 		// Configuramos la respuesta HTTP con el resultado booleano
 		response.setContentType("application/json");

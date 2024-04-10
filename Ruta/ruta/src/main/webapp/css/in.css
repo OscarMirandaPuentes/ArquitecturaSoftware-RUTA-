@@ -4,7 +4,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
+    font-family: "Poppins", sans-serif; 
 }
 
 body{
@@ -22,28 +22,21 @@ body{
     background: rgba(39, 39, 39, 0.2);
 }
 
-h1{
-    font-size: 36px;
-    text-align: center;
+.btns{
+    font-size: 15px;
+    font-weight: 500;
+    color: black;
+    height: 45px;
+    width: 60%;
+    border: none;
+    border-radius: 30px;
+    outline: none;
+    background: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    transition: .3s ease-in-out;
 }
 
-#panel {
-    width: 80%;
-    height: 60%;
-    background: #FF3131;    
-    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
-    color: #F9F0DE;
-    border-radius: 10px;
-    padding: 30px 40px;
-    margin-bottom: 20px;
-    align-items: center;
-    text-align: center;
-    justify-content: center;
+.btns:hover{
+    background: rgba(255, 255, 255, 0.5);
+    box-shadow: 1px 5px 7px 1px rgba(0, 0, 0, 0.2);
 }
-
-#volver{
-    position: absolute;
-    top: 60%;
-}
-
-

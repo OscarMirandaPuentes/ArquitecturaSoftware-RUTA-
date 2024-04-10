@@ -48,7 +48,7 @@
     </servlet-mapping>
 
     <welcome-file-list>
-        <welcome-file>html/login-register.html</welcome-file> <!-- Página de inicio -->
+        <welcome-file>html/in.html</welcome-file> <!-- Página de inicio -->
     </welcome-file-list>
 
   <display-name>Archetype Created Web Application</display-name>

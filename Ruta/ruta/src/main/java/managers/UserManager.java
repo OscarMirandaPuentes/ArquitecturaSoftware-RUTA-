@@ -4,6 +4,8 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import jakarta.persistence.Query;
+import jakarta.persistence.TypedQuery;
+import jakarta.persistence.NoResultException;
 
 import entities.User;
 
@@ -27,6 +29,23 @@ public class UserManager {
         User user = em.find(User.class, id);
         em.close();
         return user;
+    }
+
+    public static User getUserByEmail(String email) {
+        EntityManager em = emf.createEntityManager();
+        List<User> users  = getAllUsers();
+        User u = new User();
+        try {
+            for (User user : users) {
+                if (email.equals(user.getEmail())) {
+                    u = user;
+                }
+            }
+            return u;
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+        return u;
     }
 
     public static List<User> getAllUsers() {

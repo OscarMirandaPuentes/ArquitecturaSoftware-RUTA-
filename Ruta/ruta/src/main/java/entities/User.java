@@ -3,7 +3,7 @@ package entities;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "users")
+@Table(name = "User")
 public class User {
 
     @Id
@@ -23,6 +23,9 @@ public class User {
     private String email;
 
     
+    
+    public User() {
+    }
 
     public User(String name, String username, String password, String email) {
         this.name = name;
