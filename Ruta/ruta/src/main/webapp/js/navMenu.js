@@ -2,17 +2,21 @@ document.addEventListener('DOMContentLoaded', function () {
     
     document.getElementById('inicio').addEventListener('click', function () {
         window.location.href ='home.html';
+        
     });
 
     document.getElementById('partidas').addEventListener('click', function () {
         window.location.href ='games.html';
+        
     });
 
     document.getElementById('movimientos').addEventListener('click', function () {
+        
         window.location.href ='history.html';
     });
 
     document.getElementById('perfil').addEventListener('click', function () {
+        
         window.location.href ='userProfile.html';
     });
 
@@ -32,3 +36,8 @@ function limpiarCookies() {
     document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
     });
 }
+
+var nombreJugador = 'H'; // Se obtiene el nombre
+    if (nombreJugador) {
+        document.getElementById('nombreU').textContent = nombreJugador;
+    }

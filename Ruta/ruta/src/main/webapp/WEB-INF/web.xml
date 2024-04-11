@@ -15,6 +15,17 @@
     </servlet-mapping>
 
     <servlet>
+      <description></description>
+      <display-name>ServletUsuario</display-name>
+      <servlet-name>ServletUsuario</servlet-name>
+      <servlet-class>controlador.ServletUsuario</servlet-class>
+    </servlet>
+    <servlet-mapping>
+      <servlet-name>ServletUsuario</servlet-name>
+      <url-pattern>/ServletUsuario</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <description></description>
         <display-name>ServletPlay</display-name>
         <servlet-name>ServletPlay</servlet-name>
@@ -37,7 +48,7 @@
     </servlet-mapping>
 
     <welcome-file-list>
-        <welcome-file>html/inicio.html</welcome-file> <!-- Página de inicio -->
+        <welcome-file>html/in.html</welcome-file> <!-- Página de inicio -->
     </welcome-file-list>
 
   <display-name>Archetype Created Web Application</display-name>

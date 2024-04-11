@@ -5,7 +5,6 @@ var y = document.getElementById("registerc");
 const btnLogin = document.getElementById('login');
 const btnRegister = document.getElementById('register');
 
-
 function goLogin() {
     x.style.left = "4px";
     y.style.right = "-520px";
@@ -24,7 +23,7 @@ function goRegister() {
     y.style.opacity = 1;
 }
 
-btnLogin.addEventListener('click', function(event) {
+btnLogin.addEventListener('click', async function(event) {
     event.preventDefault(); 
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
@@ -32,10 +31,21 @@ btnLogin.addEventListener('click', function(event) {
         alert('Por favor, complete todos los campos.');
         return;
     }
-    window.location.href = 'home.html';
+
+    password2 =await calcularHash(password);
+    ajaxLogin("LOGIN", email, password2)
+    .then(function(response) {
+        console.log('Inicio exitoso:', response);
+        window.location.href = 'home.html';
+        //cookie
+    })
+    .catch(function(error) {
+        console.error('Error en la solicitud:', error);
+    });
+
 });
 
-btnRegister.addEventListener('click', function(event) {
+btnRegister.addEventListener('click', async function(event) {
     event.preventDefault(); 
     const name = document.getElementById('namer').value;
     const nickname = document.getElementById('nicknamer').value;
@@ -45,8 +55,64 @@ btnRegister.addEventListener('click', function(event) {
         alert('Por favor, complete todos los campos.');
         return;
     }
+
+    password2 =await calcularHash(password);
+    console.log(password2)
     //Agregar encriptación de contraseña
 
     //Logica de guardado de datos
-    goLogin();
+    ajaxRegister("CREATE",name, nickname, email, password2)
+    .then(function(response) {
+        console.log('Registro exitoso:', response);
+        goLogin();
+    })
+    .catch(function(error) {
+        console.error('Error en la solicitud:', error);
+    });
+    
 });
+
+
+function ajaxRegister(action, name, nickname, email, password) {
+    return new Promise((resolve, reject) => {
+        let myData = {
+            action: action,
+            name: name,
+            nickname: nickname,
+            email: email,
+            password: password
+        };
+        $.ajax({
+            url: '/ruta/usuario',
+            type: 'POST',
+            data: myData,
+            success: function (r) {
+                resolve(r); // Resolvemos la promesa con el valor booleano del response
+            },
+            error: function (err) {
+                reject(err); // Rechazamos la promesa en caso de error
+            }
+        });
+    });
+}
+
+function ajaxLogin(action, email, password) {
+    return new Promise((resolve, reject) => {
+        let myData = {
+            action: action,
+            email: email,
+            password: password
+        };
+        $.ajax({
+            url: '/ruta/usuario',
+            type: 'POST',
+            data: myData,
+            success: function (r) {
+                resolve(r); // Resolvemos la promesa con el valor booleano del response
+            },
+            error: function (err) {
+                reject(err); // Rechazamos la promesa en caso de error
+            }
+        });
+    });
+}

@@ -8,6 +8,8 @@
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
         <link rel="stylesheet" href="../css/enter.css">
         <link rel="stylesheet" href="../css/nav.css">
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" rel="stylesheet"/>
     </head>
     <body>
         <div class="wrapper">
@@ -26,7 +28,7 @@
                 </div>
                 <div class="nav-user">
                     <li>
-                        <a href="#" class="UserMenu"> <i class='bx bxs-user-account'></i> Nombre de usuario </a>
+                        <a href="#" class="UserMenu" id="nombreU"></a> <i class='bx bxs-user-account'></i> Nombre de usuario </a>
                         <ul class="vertical-menu">
                             <li><a id="perfil">Ver perfil</a></li>
                             <li><a id="cerrar_sesion">Cerrar Sesión</a></li>
@@ -44,7 +46,8 @@
                         <i class='bx bx-id-card'></i>   
                     </div>
 
-                    <button id="btn-iniciar" type="submit" class="btn">Iniciar</button>
+                <button type="submit" class="btn">Ingresar</button>
+                <button id="btn-iniciar" type="submit" class="btn" style="margin-left: 10px;">Iniciar</button>
                 </form>
             </div>
 
