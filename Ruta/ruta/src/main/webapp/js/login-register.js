@@ -37,12 +37,12 @@ btnLogin.addEventListener('click', async function(event) {
     .then(function(response) {
         console.log('Inicio exitoso:', response);
         window.location.href = 'home.html';
-        //cookie
     })
     .catch(function(error) {
         console.error('Error en la solicitud:', error);
     });
-
+    const combinedHash = await calcularHash(email);
+    document.cookie = `user=${response.nickname}; hash=${combinedHash}; path=/`;
 });
 
 btnRegister.addEventListener('click', async function(event) {
@@ -58,9 +58,6 @@ btnRegister.addEventListener('click', async function(event) {
 
     password2 =await calcularHash(password);
     console.log(password2)
-    //Agregar encriptación de contraseña
-
-    //Logica de guardado de datos
     ajaxRegister("CREATE",name, nickname, email, password2)
     .then(function(response) {
         console.log('Registro exitoso:', response);
@@ -87,10 +84,10 @@ function ajaxRegister(action, name, nickname, email, password) {
             type: 'POST',
             data: myData,
             success: function (r) {
-                resolve(r); // Resolvemos la promesa con el valor booleano del response
+                resolve(r);
             },
             error: function (err) {
-                reject(err); // Rechazamos la promesa en caso de error
+                reject(err);
             }
         });
     });
@@ -108,10 +105,10 @@ function ajaxLogin(action, email, password) {
             type: 'POST',
             data: myData,
             success: function (r) {
-                resolve(r); // Resolvemos la promesa con el valor booleano del response
+                resolve(r); 
             },
             error: function (err) {
-                reject(err); // Rechazamos la promesa en caso de error
+                reject(err);
             }
         });
     });

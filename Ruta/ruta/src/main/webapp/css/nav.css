@@ -50,6 +50,10 @@
     cursor: pointer;
 }
 
+i{
+    color: #fff;
+}
+
 .vertical-menu{
     position: absolute;
     display: none;
@@ -64,7 +68,7 @@
     background-color: rgba(255, 199, 54, 0.7);
 }
 
-.vertical-menu li a{
+.vertical-menu li a {
     text-decoration: none;
     font-weight: 200;
     color: #fff;
