@@ -1,5 +1,4 @@
 package entities;
-
 import jakarta.persistence.*;
 
 @Entity
@@ -16,10 +15,18 @@ public class Carta {
     @Column(nullable = true)
     private String tipoPila;
 
+    
     @ManyToOne
     @JoinColumn(name = "pila_batalla_id")
-    private PilaBatalla pilaBatalla;
+    private PilaBatalla pila_batalla;
+    public PilaBatalla getPilaBatalla() {
+        return pila_batalla;
+    }
 
+    public void setPilaBatalla(PilaBatalla pilaBatalla) {
+        this.pila_batalla = pilaBatalla;
+    }
+    
     @ManyToOne
     @JoinColumn(name = "pila_seguridad_id")
     private PilaSeguridad pilaSeguridad;
@@ -27,16 +34,6 @@ public class Carta {
     @ManyToOne
     @JoinColumn(name = "pila_distancia_id")
     private PilaDistancia pilaDistancia;
-    
-
-    public PilaBatalla getPilaBatalla() {
-        return pilaBatalla;
-    }
-
-    public void setPilaBatalla(PilaBatalla pilaBatalla) {
-        this.pilaBatalla = pilaBatalla;
-    }
-
     public PilaSeguridad getPilaSeguridad() {
         return pilaSeguridad;
     }
@@ -52,6 +49,7 @@ public class Carta {
     public void setPilaDistancia(PilaDistancia pilaDistancia) {
         this.pilaDistancia = pilaDistancia;
     }
+    
 
     public Long getId() {
         return id;

@@ -3,7 +3,7 @@ import java.util.List;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "pila_batalla")
+@Table(name = "pilaBatalla")
 public class PilaBatalla {
 
     @Id
@@ -11,18 +11,21 @@ public class PilaBatalla {
     private Long id;
 
     @Column(name = "equipo_id")
-    private Integer equipoId;
+    private int equipoId;
 
-    @OneToMany(mappedBy = "pilaBatalla")
+    
+    @OneToMany(mappedBy = "pila_batalla")
     private List<Carta> cartas;
 
-    public PilaBatalla() {
-        // Default constructor
+    
+    public List<Carta> getCartas() {
+        return cartas;
     }
 
-    public PilaBatalla(int e) {
-        this.equipoId = e;
+    public void setCartas(List<Carta> cartas) {
+        this.cartas = cartas;
     }
+
 
     public Long getId() {
         return id;
@@ -40,13 +43,5 @@ public class PilaBatalla {
         this.equipoId = equipoId;
     }
 
-    public List<Carta> getCartas() {
-        return cartas;
-    }
 
-    public void setCartas(List<Carta> cartas) {
-        this.cartas = cartas;
-    }
-
-    
 }
