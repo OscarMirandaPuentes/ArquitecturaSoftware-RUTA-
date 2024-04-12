@@ -23,35 +23,35 @@ public class Movimiento {
     private Carta carta;
 
     @Column(name = "tope_elemento_seguridad")
-    private PilaSeguridad topeSeguridad;
+    private String topeSeguridad;
     
     @Column(name = "tope_elemento_distancia")
-    private PilaDistancia topeDistancia;
+    private String topeDistancia;
 
     @Column(name = "tope_elemento_batalla")
-    private PilaBatalla topeBatalla;
+    private String topeBatalla;
 
-    public PilaSeguridad getTopeSeguridad() {
+    public String getTopeSeguridad() {
         return topeSeguridad;
     }
 
-    public void setTopeSeguridad(PilaSeguridad topeSeguridad) {
+    public void setTopeSeguridad(String topeSeguridad) {
         this.topeSeguridad = topeSeguridad;
     }
 
-    public PilaDistancia getTopeDistancia() {
+    public String getTopeDistancia() {
         return topeDistancia;
     }
 
-    public void setTopeDistancia(PilaDistancia topeDistancia) {
+    public void setTopeDistancia(String topeDistancia) {
         this.topeDistancia = topeDistancia;
     }
 
-    public PilaBatalla getTopeBatalla() {
+    public String getTopeBatalla() {
         return topeBatalla;
     }
 
-    public void setTopeBatalla(PilaBatalla topeBatalla) {
+    public void setTopeBatalla(String topeBatalla) {
         this.topeBatalla = topeBatalla;
     }
 

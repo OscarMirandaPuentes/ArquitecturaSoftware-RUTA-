@@ -6,14 +6,12 @@ import java.io.PrintWriter;
 
 import entities.Equipo;
 import entities.Jugador;
-import entities.PilaDistancia;
 import entities.User;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import managers.DistanciaManager;
 import managers.JugadorManager;
 import managers.UserManager;
 
@@ -44,11 +42,11 @@ public class MyServlet extends HttpServlet {
 		User u = new User();
 
 
-		j.setNombre("andrea");
+		j.setNombre("rrrrrr");
 		j.setEquipo(null);
-		u.setEmail("asd@ashdgasj.co");
+		u.setEmail("ddddd@ashdgasj.co");
 		u.setPassword("123");
-		u.setUsername("pablito");
+		u.setUsername("putmm");
 		mp.createUser(u);
 		mpe.createJugador(j);
 		

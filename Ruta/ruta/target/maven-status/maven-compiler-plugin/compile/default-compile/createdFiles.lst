@@ -1,14 +1,9 @@
-managers/DistanciaManager.class
 controlador/MyServlet.class
-managers/BatallaManager.class
 managers/MovimientoManager.class
-entities/PilaSeguridad.class
 managers/CartaManager.class
 controlador/ServletPlay.class
-entities/PilaDistancia.class
 modelo/Pila.class
 managers/UserManager.class
-entities/PilaBatalla.class
 controlador/ControllerCliente.class
 entities/Equipo.class
 modelo/Jugador.class
@@ -35,5 +30,4 @@ entities/User.class
 entities/Partida.class
 modelo/Distancia.class
 controlador/ServletStart.class
-managers/SeguridadManager.class
 managers/PartidaManager.class

@@ -13,9 +13,10 @@ public class Carta {
     @Column(nullable = false)
     private String nombre;
 
-    @Column(nullable = true)
+    @Column(nullable = false)
     private String tipoPila;
 
+    /* 
     @ManyToOne
     @JoinColumn(name = "pila_batalla_id")
     private PilaBatalla pilaBatalla;
@@ -27,7 +28,6 @@ public class Carta {
     @ManyToOne
     @JoinColumn(name = "pila_distancia_id")
     private PilaDistancia pilaDistancia;
-    
 
     public PilaBatalla getPilaBatalla() {
         return pilaBatalla;
@@ -52,6 +52,7 @@ public class Carta {
     public void setPilaDistancia(PilaDistancia pilaDistancia) {
         this.pilaDistancia = pilaDistancia;
     }
+    */
 
     public Long getId() {
         return id;
