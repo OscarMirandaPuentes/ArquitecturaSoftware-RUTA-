@@ -1,5 +1,4 @@
 package controlador;
-import modelo.Model;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -19,33 +18,26 @@ import managers.UserManager;
 public class ServletUsuario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
     public ServletUsuario() {
         super();
-        // TODO Auto-generated constructor stub
+
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String action = request.getParameter("action");
 		UserManager mp=new UserManager();
 		boolean result = false;
+		HashGenerator hashGenerator = new HashGenerator();
 
 		if(action.equals("CREATE")){
 			User u = new User(request.getParameter("name"), request.getParameter("nickname"),
-							  request.getParameter("password"), request.getParameter("email"));
+							  hashGenerator.generateSHA256(request.getParameter("password")), request.getParameter("email"));
 			mp.createUser(u);
 			result = true;
 		}

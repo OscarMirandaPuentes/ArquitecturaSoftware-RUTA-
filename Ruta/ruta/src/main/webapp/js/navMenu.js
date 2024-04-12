@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', function () {
     
     document.getElementById('inicio').addEventListener('click', function () {
         window.location.href ='home.html';
-        
     });
 
     document.getElementById('partidas').addEventListener('click', function () {
@@ -37,7 +36,26 @@ function limpiarCookies() {
     });
 }
 
-var nombreJugador = 'H'; // Se obtiene el nombre
-    if (nombreJugador) {
-        document.getElementById('nombreU').textContent = nombreJugador;
-    }
+function nombreMenu() {
+    let myData = {
+        action: "EMAIL"
+    };
+    var email = document.cookie.replace(/(?:(?:^|.*;\s*)email\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+    
+        // Agregar la cookie al encabezado de la solicitud
+        $.ajax({
+            url: '/ruta/info',
+            type: 'POST',
+            data: myData,
+            xhrFields: {
+                withCredentials: true
+            },
+            headers: {
+                'Cookie': 'email=' + email 
+            },
+            success: function (r) {
+                console.log(r)
+                document.getElementById('nombreU').textContent = r
+            }
+        });
+    } 

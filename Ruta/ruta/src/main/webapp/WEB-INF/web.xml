@@ -26,6 +26,17 @@
     </servlet-mapping>
 
     <servlet>
+      <description></description>
+      <display-name>ServletInfoU</display-name>
+      <servlet-name>ServletInfoU</servlet-name>
+      <servlet-class>controlador.ServletInfoU</servlet-class>
+    </servlet>
+    <servlet-mapping>
+      <servlet-name>ServletInfoU</servlet-name>
+      <url-pattern>/ServletInfoU</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <description></description>
         <display-name>ServletPlay</display-name>
         <servlet-name>ServletPlay</servlet-name>

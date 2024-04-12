@@ -16,13 +16,14 @@ document.addEventListener('DOMContentLoaded', function () {
         event.preventDefault();
         // var nombreJugador = 
         localStorage.setItem('id', id.value); // Se almacena en memoria local
-        ingresarPJ(id.value)  
+        nombrePj(id)
     });
 
     var btnIniciar = document.getElementById('btn-iniciar');
     btnIniciar.addEventListener('click', function() {
         if (id.value != '') {
             iniciarJuego();
+            iniciar();
             window.location.href = 'tablero.html';
         }
     });
@@ -38,21 +39,50 @@ function iniciar() {
     });
 }
 
-function ingresarPJ(id) {
+function ingresarPJ(id, nombre) {
     let myData = {
         id: id,
-       // nombre: nombre
+        nombre: nombre
     };
-    $.ajax({
-        url: '/ruta/start',
-        type: 'POST',
-        data: myData,
-        success: function (r) {
-            console.log("Personaje agregado")
-        }
-    });
-}
+    
+    // Obtener el valor del email de la cookie
+    var email = document.cookie.replace(/(?:(?:^|.*;\s*)email\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+    
+        // Agregar la cookie al encabezado de la solicitud
+        $.ajax({
+            url: '/ruta/start',
+            type: 'POST',
+            data: myData,
+            headers: {
+                'Cookie': 'email=' + email 
+            },
+            success: function (r) {
+                console.log("Personaje agregado")
+            }
+        });
+    } 
 
+    function nombrePj(id) {
+        let myData = {
+            action: "EMAIL"
+        };
+        var email = document.cookie.replace(/(?:(?:^|.*;\s*)email\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+        
+            // Agregar la cookie al encabezado de la solicitud
+            $.ajax({
+                url: '/ruta/info',
+                type: 'POST',
+                data: myData,
+                headers: {
+                    'Cookie': 'email=' + email 
+                },
+                success: function (r) {
+                    ingresarPJ(id, r)
+                }
+            });
+        } 
+
+        
 function iniciarJuego() {
     iniciar()
     console.log('El juego ha comenzado');

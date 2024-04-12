@@ -36,13 +36,14 @@ btnLogin.addEventListener('click', async function(event) {
     ajaxLogin("LOGIN", email, password2)
     .then(function(response) {
         console.log('Inicio exitoso:', response);
+        document.cookie = `email=${email}; path=/; secure`;
+
         window.location.href = 'home.html';
     })
     .catch(function(error) {
         console.error('Error en la solicitud:', error);
     });
-    const combinedHash = await calcularHash(email);
-    document.cookie = `user=${response.nickname}; hash=${combinedHash}; path=/`;
+
 });
 
 btnRegister.addEventListener('click', async function(event) {
