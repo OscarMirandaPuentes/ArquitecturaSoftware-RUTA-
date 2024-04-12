@@ -1,6 +1,8 @@
 package entities;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import jakarta.persistence.*;
 
@@ -12,69 +14,25 @@ public class Pila {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
-    private Equipo equipo_id;
+    @ManyToOne
+    private Equipo equipo;
 
     @Column(name = "tipo_pila")
     private String tipoPila; // Indica el tipo de pila: distancia, velocidad, seguridad o batalla
 
-    @Column(name = "cantidad_cartas")
-    private int cantidadCartas; // La cantidad actual de cartas en la pila
-
-    @Column(name = "pilaBatalla")
-    private ArrayList <Carta> pilaBatalla = new ArrayList<>();
-
-    @Column(name = "pilaSeguridad")
-    private ArrayList <Carta> pilaSeguridad = new ArrayList<>();;
-
-    @Column(name = "pilaDistancia")
-    private ArrayList <Carta> pilaDistancia = new ArrayList<>();;
-
-    @Column(name = "pilaVelocidad")
-    private ArrayList <Carta> pilaVelocidad  = new ArrayList<>();;
+    @OneToMany
+    private List<Carta> cartas = new ArrayList<>();
 
     public Long getId() {
         return id;
     }
 
     public Equipo getEquipo_id() {
-        return equipo_id;
+        return equipo;
     }
 
     public void setEquipo_id(Equipo equipo_id) {
-        this.equipo_id = equipo_id;
-    }
-
-    public ArrayList<Carta> getPilaBatalla() {
-        return pilaBatalla;
-    }
-
-    public void setPilaBatalla(ArrayList<Carta> pilaBatalla) {
-        this.pilaBatalla = pilaBatalla;
-    }
-
-    public ArrayList<Carta> getPilaSeguridad() {
-        return pilaSeguridad;
-    }
-
-    public void setPilaSeguridad(ArrayList<Carta> pilaSeguridad) {
-        this.pilaSeguridad = pilaSeguridad;
-    }
-
-    public ArrayList<Carta> getPilaDistancia() {
-        return pilaDistancia;
-    }
-
-    public void setPilaDistancia(ArrayList<Carta> pilaDistancia) {
-        this.pilaDistancia = pilaDistancia;
-    }
-
-    public ArrayList<Carta> getPilaVelocidad() {
-        return pilaVelocidad;
-    }
-
-    public void setPilaVelocidad(ArrayList<Carta> pilaVelocidad) {
-        this.pilaVelocidad = pilaVelocidad;
+        this.equipo = equipo_id;
     }
 
     public void setId(Long id) {
@@ -89,11 +47,34 @@ public class Pila {
         this.tipoPila = tipoPila;
     }
 
-    public int getCantidadCartas() {
-        return cantidadCartas;
+    ////////////////
+    public List<Carta> getCartas() {
+        return cartas;
     }
 
-    public void setCantidadCartas(int cantidadCartas) {
-        this.cantidadCartas = cantidadCartas;
+    public List<Carta> getPilaDistancia() {
+        return filtrarPorTipoPila("distancia");
+    }
+
+    public List<Carta> getPilaSeguridad() {
+        return filtrarPorTipoPila("seguridad");
+    }
+
+    public List<Carta> getPilaVelocidad() {
+        return filtrarPorTipoPila("velocidad");
+    }
+
+    public List<Carta> getPilaBatalla() {
+        return filtrarPorTipoPila("batalla");
+    }
+
+    private List<Carta> filtrarPorTipoPila(String tipoPila) {
+        List<Carta> cartasPorTipo = new ArrayList<>();
+        for (Carta carta : cartas) {
+            if (carta.getTipoPila().equals(tipoPila)) {
+                cartasPorTipo.add(carta);
+            }
+        }
+        return cartasPorTipo;
     }
 }

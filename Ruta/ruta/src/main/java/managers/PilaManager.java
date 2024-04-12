@@ -1,4 +1,5 @@
 package managers;
+import java.util.ArrayList;
 import java.util.List;
 
 import entities.Carta;
@@ -52,6 +53,34 @@ public class PilaManager {
         em.close();
     }
 
+    public void guardarCartaEnPila(Pila pila, Carta carta) {
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+    
+        // Dependiendo del tipo de pila de la carta, la guardamos en el arreglo correspondiente en la pila
+        switch (carta.getTipoPila()) {
+            case "distancia":
+                pila.getPilaDistancia().add(carta);
+                break;
+            case "seguridad":
+                pila.getPilaSeguridad().add(carta);
+                break;
+            case "velocidad":
+                pila.getPilaVelocidad().add(carta);
+                break;
+            case "batalla":
+                pila.getPilaBatalla().add(carta);
+                break;
+            default:
+                throw new IllegalArgumentException("Tipo de pila no válido: " + carta.getTipoPila());
+        }
+    
+        em.merge(pila);
+        em.getTransaction().commit();
+        em.close();
+    }
+
+    /* 
     public void agregarCartaAPila(Pila pila, Carta carta) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
@@ -78,4 +107,5 @@ public class PilaManager {
         em.getTransaction().commit();
         em.close();
     }
+    */
 }

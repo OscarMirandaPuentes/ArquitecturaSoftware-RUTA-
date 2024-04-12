@@ -41,47 +41,45 @@ public class MyServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		PilaBatalla pb = new PilaBatalla();
-		Carta c1 = new Carta();
-		Carta c2 = new Carta();
-		c1.setNombre("gasolina");
-		c1.setNombre("accidente");
-		List <Carta> arreglo = new ArrayList<>(); 
-		arreglo.add(c1);
-		arreglo.add(c2);
-	
+		
 		UserManager mp=new UserManager();
-		CartaManager mc = new CartaManager();
 		JugadorManager mpe = new JugadorManager();
 		PilaManager mpi = new PilaManager();
 		CartaManager mc = new CartaManager();
 		EquipoManager me = new EquipoManager();
 
 		Carta ca = new Carta();
+		Carta ca2 = new Carta();
 		Pila pi = new Pila();
+		Pila piv = new Pila();
 		Jugador j = new Jugador();
 		Equipo q = new Equipo();
 		User u = new User();
 
-		pb.setEquipoId(1);
-		//pb.setCartas(arreglo);
 
 		ca.setNombre("gasolina");
+		ca.setTipoPila("distancia");
+		ca2.setNombre("100");
+		ca2.setTipoPila("velocidad");
 		j.setNombre("rrrrrr");
 		j.setEquipo(null);
 		u.setEmail("ddddd@ashdgasj.co");
 		u.setPassword("123");
 		u.setUsername("putmm");
 		pi.setEquipo_id(q);
-		pi.setCantidadCartas(2);
 		pi.setTipoPila("distancia");
+		piv.setEquipo_id(q);
+		piv.setTipoPila("velocidad");
 
 		mp.createUser(u);
 		mpe.createJugador(j);
 		mc.createCarta(ca);
+		mc.createCarta(ca2);
 		me.createEquipo(q);
 		mpi.crearPila(pi);
+		mpi.guardarCartaEnPila(pi, ca);
+		mpi.crearPila(piv);
+		mpi.guardarCartaEnPila(piv, ca2);
 		
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
