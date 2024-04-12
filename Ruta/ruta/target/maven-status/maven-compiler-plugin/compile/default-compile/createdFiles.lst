@@ -3,6 +3,7 @@ managers/MovimientoManager.class
 managers/CartaManager.class
 controlador/ServletPlay.class
 modelo/Pila.class
+managers/PilaManager.class
 managers/UserManager.class
 controlador/ControllerCliente.class
 entities/Equipo.class
@@ -11,6 +12,7 @@ modelo/Equipo.class
 modelo/Carta.class
 managers/JugadorManager.class
 entities/Jugador.class
+entities/Pila.class
 modelo/Seguridad.class
 entities/Mazo.class
 modelo/Mazo.class

@@ -8,6 +8,7 @@
 /home/andrea/Documents/Leyva/ArquitecturaSoftware-RUTA-/Ruta/ruta/src/main/java/managers/MovimientoManager.java
 /home/andrea/Documents/Leyva/ArquitecturaSoftware-RUTA-/Ruta/ruta/src/main/java/entities/Partida.java
 /home/andrea/Documents/Leyva/ArquitecturaSoftware-RUTA-/Ruta/ruta/src/main/java/entities/Movimiento.java
+/home/andrea/Documents/Leyva/ArquitecturaSoftware-RUTA-/Ruta/ruta/src/main/java/entities/Pila.java
 /home/andrea/Documents/Leyva/ArquitecturaSoftware-RUTA-/Ruta/ruta/src/main/java/controlador/ServletPlay.java
 /home/andrea/Documents/Leyva/ArquitecturaSoftware-RUTA-/Ruta/ruta/src/main/java/modelo/Administrador.java
 /home/andrea/Documents/Leyva/ArquitecturaSoftware-RUTA-/Ruta/ruta/src/main/java/managers/EquipoManager.java
@@ -18,6 +19,7 @@
 /home/andrea/Documents/Leyva/ArquitecturaSoftware-RUTA-/Ruta/ruta/src/main/java/modelo/Equipo.java
 /home/andrea/Documents/Leyva/ArquitecturaSoftware-RUTA-/Ruta/ruta/src/main/java/modelo/Distancia.java
 /home/andrea/Documents/Leyva/ArquitecturaSoftware-RUTA-/Ruta/ruta/src/main/java/managers/UserManager.java
+/home/andrea/Documents/Leyva/ArquitecturaSoftware-RUTA-/Ruta/ruta/src/main/java/managers/PilaManager.java
 /home/andrea/Documents/Leyva/ArquitecturaSoftware-RUTA-/Ruta/ruta/src/main/java/modelo/Peligro.java
 /home/andrea/Documents/Leyva/ArquitecturaSoftware-RUTA-/Ruta/ruta/src/main/java/managers/JugadorManager.java
 /home/andrea/Documents/Leyva/ArquitecturaSoftware-RUTA-/Ruta/ruta/src/main/java/entities/Mazo.java

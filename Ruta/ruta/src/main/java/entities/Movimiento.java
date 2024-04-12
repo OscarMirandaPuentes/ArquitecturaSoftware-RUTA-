@@ -22,41 +22,32 @@ public class Movimiento {
     @JoinColumn(name = "carta_id")
     private Carta carta;
 
-    @Column(name = "tope_elemento_seguridad")
-    private String topeSeguridad;
+    @Column(name = "accion")
+    private String accion; // Indica si es "escoger" o "descartar" carta
+
+    @Column(name = "tipo_pila_afectada")
+    private String tipoPilaAfectada; // Indica el tipo de pila afectada: distancia, velocidad, seguridad o batalla
+
     
-    @Column(name = "tope_elemento_distancia")
-    private String topeDistancia;
-
-    @Column(name = "tope_elemento_batalla")
-    private String topeBatalla;
-
-    public String getTopeSeguridad() {
-        return topeSeguridad;
-    }
-
-    public void setTopeSeguridad(String topeSeguridad) {
-        this.topeSeguridad = topeSeguridad;
-    }
-
-    public String getTopeDistancia() {
-        return topeDistancia;
-    }
-
-    public void setTopeDistancia(String topeDistancia) {
-        this.topeDistancia = topeDistancia;
-    }
-
-    public String getTopeBatalla() {
-        return topeBatalla;
-    }
-
-    public void setTopeBatalla(String topeBatalla) {
-        this.topeBatalla = topeBatalla;
-    }
 
     public Long getId() {
         return id;
+    }
+
+    public String getAccion() {
+        return accion;
+    }
+
+    public void setAccion(String accion) {
+        this.accion = accion;
+    }
+
+    public String getTipoPilaAfectada() {
+        return tipoPilaAfectada;
+    }
+
+    public void setTipoPilaAfectada(String tipoPilaAfectada) {
+        this.tipoPilaAfectada = tipoPilaAfectada;
     }
 
     public void setId(Long id) {
