@@ -6,6 +6,7 @@ import jakarta.persistence.Persistence;
 import jakarta.persistence.Query;
 
 import entities.Equipo;
+import entities.Partida;
 
 import java.util.List;
 
@@ -16,6 +17,16 @@ public class EquipoManager {
     public static Equipo createEquipo(Equipo equipo) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
+        em.persist(equipo);
+        em.getTransaction().commit();
+        em.close();
+        return equipo;
+    }
+    public static Equipo createEquipo(Equipo equipo, Long partidaId) {
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        Partida partida = em.find(Partida.class, partidaId);
+        equipo.setPartida(partida); // Asociar el equipo a la partida
         em.persist(equipo);
         em.getTransaction().commit();
         em.close();

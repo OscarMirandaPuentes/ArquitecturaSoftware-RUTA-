@@ -15,7 +15,7 @@ public class Equipo {
     @JoinColumn(name = "partida_id") 
     private Partida partida;
 
-    @OneToMany(mappedBy = "equipo", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "equipo", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Jugador> jugadores;
 
     public Long getId() {

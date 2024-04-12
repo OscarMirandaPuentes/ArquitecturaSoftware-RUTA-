@@ -11,15 +11,15 @@ public class Partida {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private Date fechaInicio;
 
     private Date fechaFin;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private Integer resultadoEquipo1;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private Integer resultadoEquipo2;
 
     @Column(nullable = false)
@@ -29,7 +29,7 @@ public class Partida {
     private String jugadorTurno; //dependiendo del equipo
 
     //una partida tiene "muchos" equipos
-    @Column(nullable = false)
+    @Column(nullable = true)
     @OneToMany(mappedBy = "partida", cascade = CascadeType.ALL)
     private List<Equipo> equipos; // se asocia con equipo, equipo con jugador y jugador con mazo
     //para poder obtener el mazo de un jugador
