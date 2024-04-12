@@ -9,18 +9,17 @@ import java.util.List;
 import entities.Carta;
 import entities.Equipo;
 import entities.Jugador;
-import entities.PilaBatalla;
-import entities.PilaDistancia;
+import entities.Pila;
 import entities.User;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import managers.BatallaManager;
 import managers.CartaManager;
-import managers.DistanciaManager;
+import managers.EquipoManager;
 import managers.JugadorManager;
+import managers.PilaManager;
 import managers.UserManager;
 
 /**
@@ -55,25 +54,34 @@ public class MyServlet extends HttpServlet {
 		UserManager mp=new UserManager();
 		CartaManager mc = new CartaManager();
 		JugadorManager mpe = new JugadorManager();
-		BatallaManager mb = new BatallaManager();
+		PilaManager mpi = new PilaManager();
+		CartaManager mc = new CartaManager();
+		EquipoManager me = new EquipoManager();
+
+		Carta ca = new Carta();
+		Pila pi = new Pila();
 		Jugador j = new Jugador();
-		//Equipo q = new Equipo();
+		Equipo q = new Equipo();
 		User u = new User();
 
 		pb.setEquipoId(1);
 		//pb.setCartas(arreglo);
 
-		j.setNombre("andrea");
+		ca.setNombre("gasolina");
+		j.setNombre("rrrrrr");
 		j.setEquipo(null);
-		u.setEmail("asd@ashdgasj.co");
+		u.setEmail("ddddd@ashdgasj.co");
 		u.setPassword("123");
-		u.setUsername("pablito");
+		u.setUsername("putmm");
+		pi.setEquipo_id(q);
+		pi.setCantidadCartas(2);
+		pi.setTipoPila("distancia");
+
 		mp.createUser(u);
 		mpe.createJugador(j);
-		mc.createCarta(c1);
-		mc.createCarta(c2);
-		mb.createPilaBatalla(pb);
-
+		mc.createCarta(ca);
+		me.createEquipo(q);
+		mpi.crearPila(pi);
 		
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}

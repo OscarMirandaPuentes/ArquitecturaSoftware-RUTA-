@@ -12,44 +12,9 @@ public class Carta {
     @Column(nullable = false)
     private String nombre;
 
-    @Column(nullable = true)
+    @Column(nullable = false)
     private String tipoPila;
 
-    
-    @ManyToOne
-    @JoinColumn(name = "pila_batalla_id")
-    private PilaBatalla pila_batalla;
-    public PilaBatalla getPilaBatalla() {
-        return pila_batalla;
-    }
-
-    public void setPilaBatalla(PilaBatalla pilaBatalla) {
-        this.pila_batalla = pilaBatalla;
-    }
-    
-    @ManyToOne
-    @JoinColumn(name = "pila_seguridad_id")
-    private PilaSeguridad pilaSeguridad;
-
-    @ManyToOne
-    @JoinColumn(name = "pila_distancia_id")
-    private PilaDistancia pilaDistancia;
-    public PilaSeguridad getPilaSeguridad() {
-        return pilaSeguridad;
-    }
-
-    public void setPilaSeguridad(PilaSeguridad pilaSeguridad) {
-        this.pilaSeguridad = pilaSeguridad;
-    }
-
-    public PilaDistancia getPilaDistancia() {
-        return pilaDistancia;
-    }
-
-    public void setPilaDistancia(PilaDistancia pilaDistancia) {
-        this.pilaDistancia = pilaDistancia;
-    }
-    
 
     public Long getId() {
         return id;
