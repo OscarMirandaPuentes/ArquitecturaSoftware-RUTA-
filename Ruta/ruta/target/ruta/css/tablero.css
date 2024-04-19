@@ -1,0 +1,129 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+  }
+
+h2{
+    margin-top: 20%;
+    padding: 0;
+}
+
+.container {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 0.5fr 1.5fr;
+    height: 60vh;
+}
+
+.nombre {
+    background-color: #FF3131;
+    padding: 10px; 
+    text-align: center; 
+    font-size: 15px; 
+}
+
+.top-left {
+    grid-row: 1;
+    grid-column: 1;
+    background-color: #FFC736;
+    text-align: center; 
+    font-size: 20px; 
+}   
+
+.top-right {
+    grid-row: 1;
+    grid-column: 2;
+    background-color:#F9F0DE;
+    display: flex;
+    justify-content: space-around; 
+    align-items: center; 
+}
+
+.bottom-left {
+    grid-row: 2;
+    grid-column: 1;
+    text-align: center; 
+    align-items: center;
+    align-content: center;
+    font-size: 20px; 
+    background-color: #F9F0DE;
+}
+
+.bottom-right {
+    grid-row: 2;
+    grid-column: 2;
+    background-color: #FFC736;
+    display: flex;
+    justify-content: space-around; 
+    align-items: center; 
+}
+
+.bottom-right img, .top-right img{
+    max-width: 35%; 
+    height: auto; 
+    border: 2px solid rgba(255, 255, 255, .2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+}
+
+.bottom-right h3, .top-right h3 {
+    margin-left: 25%; 
+}
+
+.bottom-right img:first-of-type, .top-right img:first-of-type {
+    margin-left: 28%; 
+}
+
+.mano {
+    background-color: #022135;
+    display: flex;
+    justify-content: space-around; 
+    align-items: center; 
+    height: 33.8vh;
+}
+
+.mano img {
+    max-width: 60%; 
+    height: auto; 
+}
+
+.mano img:first-child {
+    margin-left: 20%; 
+}
+
+#refrescar {
+    margin-left: 46.5%;    
+    position: absolute;
+    width: 3%;
+    background-color:#022135; 
+    color: #F9F0DE; 
+    padding: 0px 10px; 
+    text-align: center; 
+    font-size: 20px; 
+    border: #F9F0DE;
+    border-radius: 40px; 
+    cursor: pointer; 
+    transition: background-color 0.3s ease; 
+}
+
+#refrescar:hover, #regresar:hover {
+    background-color:  #FF3131; 
+}
+
+#regresar {
+    left: .5%;    
+    position: absolute;
+    width: 3%;
+    background-color:#022135; 
+    color: #F9F0DE; 
+    padding: 0 10px; 
+    text-align: center; 
+    font-size: 20px; 
+    border: #F9F0DE;
+    border-radius: 40px; 
+    cursor: pointer; 
+    transition: background-color 0.3s ease; 
+}

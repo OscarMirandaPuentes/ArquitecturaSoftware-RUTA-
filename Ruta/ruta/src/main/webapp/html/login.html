@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Ingreso</title>
+        <link rel="website icon" type="png" href="../images/Logo ruta.png">
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+        <link rel="stylesheet" href="../css/login.css">
+    </head>
+    <body>
+        <div class="wrapper">
+            <form action="">
+                <h1>Ingresa al juego</h1>
+                
+                <div class="input-box">
+                    <input type="number" min="0" placeholder="ID" required>
+                    <i class='bx bx-id-card'></i>
+                </div>
+
+                <div class="input-box">
+                    <input type="text" placeholder="Nombre" pattern="[a-zA-Z\s]*" id="name" required>
+                    <i class='bx bxs-user' ></i>
+                </div>
+                <button type="submit" class="btn">Ingresar</button>
+            </form>
+        </div>
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="../js/login.js"></script>    
+    </body>
+</html>
