@@ -1,4 +1,4 @@
-package com.ruta.rutaarch.controlador;
+package com.ruta.rutaarch.controllers;
 
 import java.io.IOException;
 import java.io.PrintWriter;

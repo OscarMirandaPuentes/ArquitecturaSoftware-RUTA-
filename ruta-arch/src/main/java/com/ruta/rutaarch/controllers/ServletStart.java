@@ -1,4 +1,4 @@
-package com.ruta.rutaarch.controlador;
+package com.ruta.rutaarch.controllers;
 
 
 import jakarta.servlet.RequestDispatcher;

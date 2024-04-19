@@ -1,4 +1,4 @@
-package com.ruta.rutaarch.controlador;
+package com.ruta.rutaarch.controllers;
 
 import com.ruta.rutaarch.modelo.Administrador;
 import com.ruta.rutaarch.modelo.Jugador;
