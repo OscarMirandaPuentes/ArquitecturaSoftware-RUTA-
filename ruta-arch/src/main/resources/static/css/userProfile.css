@@ -1,0 +1,158 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body{
+    background: url("../images/Base.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: rgba(39, 39, 39, 0.2);
+}
+
+.wrapp{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 700px;
+    display: flex;
+    box-shadow: 0 1px 20px 0 rgba(39, 39, 39, 0.3);
+    border-radius: 30px;
+}
+
+.wrapp .left{
+    width: 40%;
+    background: linear-gradient(to right, #022135, #033a61);
+    padding: 30px 25px;
+    color: #fff;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.wrapp .left img{
+    margin-top: 35px;
+    margin-bottom: 10px;
+    border-radius: 50px;
+    width: 150px;
+}
+
+.wrapp .right, .wrapp #right{
+    width: 60%;
+    background: rgba(39, 39, 39, 0.4);
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    padding: 30px 25px;
+}
+
+.wrapp .right .info, .wrapp .right .buttons, .wrapp #right .buttons{
+    margin-bottom: 25px;
+}
+
+.wrapp .right .info h3, .wrapp #right .info h3{
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #fff;
+    color: #fff;    
+    font-size: 30px;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+}
+
+.wrapp .right .info-data, .wrapp .right .buttons, .wrapp #right .info-data, .wrapp #right .buttons{
+    display: flex;
+    justify-content: space-between;
+}
+
+.wrapp .right .data, .wrapp #right .data{
+    padding-top: 15px;
+}
+
+.wrapp .right .info-data .data, .wrapp .right .data, .wrapp #right .data{
+    width: 45%;
+}
+
+.wrapp .right .info-data .data h4, .wrapp .right .data h4, .wrapp #right .data h4{
+    color: #fff;
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.wrapp .right .info-data .data p, .wrapp .right .data p{
+    font-size: 13px;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.btns {
+    background-color: #FF3131; 
+    color: #F9F0DE; 
+    padding: 5px 0; 
+    text-align: center; 
+    display: inline-block;
+    width: 45%;
+    border: white;
+    border-radius: 40px; 
+    cursor: pointer; 
+    transition: background-color 0.3s ease; 
+}
+
+.btns:hover {
+    background-color: #022135; 
+}
+
+#eliminar, #cambiar{
+    margin-top: 15px;
+    width: 60%;
+}
+
+.input-field{
+    font-size: 15px;
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    height: 45px;
+    width: 100%;
+    padding: 0 10px 0 45px;
+    border: none;
+    border-radius: 30px;
+    outline: none;
+    transition: .2s ease;
+}
+
+#email{
+    width: 225%;   
+}
+
+.input-field:hover, .input-field:focus{
+    background: rgba(255, 255, 255, 0.25);
+}
+
+::-webkit-input-placeholder{
+    color: #fff;
+}
+
+.input-box i{
+    position: relative;
+    top: -35px;
+    left: 17px;
+    color: #fff;
+}
+
+.input-box.bxs-hide {
+    display: none;
+}
