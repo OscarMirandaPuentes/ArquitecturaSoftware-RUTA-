@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import com.ruta.rutaarch.entities.User;
 import com.ruta.rutaarch.repositories.UsuarioRepository;
+import com.ruta.rutaarch.services.UserService;
 
 import java.util.List;
 
@@ -12,41 +13,31 @@ import java.util.List;
 public class UserController {
 
     @Autowired
-    private UsuarioRepository UserRepository;
+    private UserService userService;
 
-    // Obtener todos los Users
-    @GetMapping
-    public List<User> obtenerTodosUsers() {
-        return UserRepository.findAll();
-    }
 
     // Crear un nuevo User
     @PostMapping
-    public User crearUser(@RequestBody User User) {
-        return UserRepository.save(User);
+    public Boolean crearUser(@RequestBody User User) {
+        return userService.saveUser(User);
     }
 
     // Obtener un User por ID
-    @GetMapping("/{id}")
-    public User obtenerUserPorId(@PathVariable Long id) {
-        return UserRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("User no encontrado con id " + id));
-    }
+    @GetMapping
+    public User obtenerUserPorId(@RequestParam String email, @RequestParam String password) {
+    return userService.findUserbyEmail(email);
+}
 
     // Actualizar un User
-    @PutMapping("/{id}")
-    public User actualizarUser(@PathVariable Long id, @RequestBody User UserDetalles) {
-        User User = UserRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("User no encontrado con id " + id));
-        User.setName(UserDetalles.getName());
-        User.setEmail(UserDetalles.getEmail());
-        return UserRepository.save(User);
+    @PutMapping
+    public boolean actualizarUser(@RequestBody String email, @RequestBody User UserDetalles) {
+        return userService.updateUser(email, UserDetalles);
     }
 
     // Eliminar un User
-    @DeleteMapping("/{id}")
-    public String eliminarUser(@PathVariable Long id) {
-        UserRepository.deleteById(id);
+    @DeleteMapping
+    public String eliminarUser(@RequestBody String email) {
+        userService.deleteUser(email);
         return "User eliminado con éxito";
     }
 }

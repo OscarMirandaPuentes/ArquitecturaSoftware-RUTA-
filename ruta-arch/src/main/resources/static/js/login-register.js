@@ -33,7 +33,7 @@ btnLogin.addEventListener('click', async function(event) {
     }
 
     password2 =await calcularHash(password);
-    ajaxLogin("LOGIN", email, password2)
+    ajaxLogin(email, password2)
     .then(function(response) {
         console.log('Inicio exitoso:', response);
         document.cookie = `email=${email}; path=/; secure`;
@@ -59,7 +59,7 @@ btnRegister.addEventListener('click', async function(event) {
 
     password2 =await calcularHash(password);
     console.log(password2)
-    ajaxRegister("CREATE",name, nickname, email, password2)
+    ajaxRegister(name, nickname, email, password2)
     .then(function(response) {
         console.log('Registro exitoso:', response);
         goLogin();
@@ -71,19 +71,20 @@ btnRegister.addEventListener('click', async function(event) {
 });
 
 
-function ajaxRegister(action, name, nickname, email, password) {
+function ajaxRegister(name, nickname, email, password) {
     return new Promise((resolve, reject) => {
         let myData = {
-            action: action,
             name: name,
-            nickname: nickname,
+            username: nickname,
+            password: password,
             email: email,
-            password: password
         };
         $.ajax({
-            url: '/ruta/usuario',
+            url: '/Users',
             type: 'POST',
-            data: myData,
+            contentType:"application/json",
+  		    dataType:"json",
+            data: JSON.stringify(myData),
             success: function (r) {
                 resolve(r);
             },
@@ -94,19 +95,15 @@ function ajaxRegister(action, name, nickname, email, password) {
     });
 }
 
-function ajaxLogin(action, email, password) {
+function ajaxLogin(email, password) {
     return new Promise((resolve, reject) => {
-        let myData = {
-            action: action,
-            email: email,
-            password: password
-        };
         $.ajax({
-            url: '/ruta/usuario',
-            type: 'POST',
-            data: myData,
+            url: '/Users?email=' + encodeURIComponent(email) + '&password=' + encodeURIComponent(password),
+            type: 'GET',
+            contentType: "application/json",
+            dataType: "json",
             success: function (r) {
-                resolve(r); 
+                resolve(r);
             },
             error: function (err) {
                 reject(err);
