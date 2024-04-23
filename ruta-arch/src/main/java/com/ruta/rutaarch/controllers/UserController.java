@@ -2,11 +2,13 @@ package com.ruta.rutaarch.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import com.ruta.rutaarch.entities.User;
+
+import com.ruta.rutaarch.entities.user.User;
 import com.ruta.rutaarch.repositories.UsuarioRepository;
 import com.ruta.rutaarch.services.UserService;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/Users")
@@ -24,7 +26,7 @@ public class UserController {
 
     // Obtener un User por ID
     @GetMapping
-    public User obtenerUserPorId(@RequestParam String email, @RequestParam String password) {
+    public Optional<User> obtenerUserPorId(@RequestParam String email, @RequestParam String password) {
     return userService.findUserbyEmail(email);
 }
 

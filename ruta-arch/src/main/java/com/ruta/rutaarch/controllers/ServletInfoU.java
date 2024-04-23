@@ -3,13 +3,14 @@ package com.ruta.rutaarch.controllers;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import com.ruta.rutaarch.entities.User;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
+import com.ruta.rutaarch.entities.user.User;
 import com.ruta.rutaarch.managers.UserManager;
 
 /**

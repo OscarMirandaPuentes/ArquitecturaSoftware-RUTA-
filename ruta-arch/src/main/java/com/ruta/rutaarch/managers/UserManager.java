@@ -7,9 +7,9 @@ import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 import jakarta.persistence.NoResultException;
 
-import com.ruta.rutaarch.entities.User;
-
 import java.util.List;
+
+import com.ruta.rutaarch.entities.user.User;
 
 public class UserManager {
 
