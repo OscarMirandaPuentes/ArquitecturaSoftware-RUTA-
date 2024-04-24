@@ -2,7 +2,6 @@ package com.ruta.rutaarch.config;
 
 import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.RequiredArgsConstructor;
-import com.ruta.rutaarch.Auditing.ApplicationAuditAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.AuditorAware;
@@ -37,10 +36,6 @@ public class ApplicationConfig {
     return authProvider;
   }
 
-  @Bean
-  public AuditorAware<Integer> auditorAware() {
-    return new ApplicationAuditAware();
-  }
 
   @Bean
   public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
