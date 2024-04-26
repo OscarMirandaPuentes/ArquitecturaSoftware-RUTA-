@@ -1,4 +1,37 @@
+function ajaxUserInfo() {
+    // Obtener el correo electrónico del localStorage
+    var email = localStorage.email;
+
+    // Verificar si se encontró un correo electrónico en el localStorage
+    if (email) {
+    // Datos que deseas enviar al servidor
+    var requestData = {
+        "email": email
+    };
+        $.ajax({
+            url: "/api/user/info",
+            type: 'POST',
+            contentType: "application/json",
+            data: JSON.stringify(requestData),
+            dataType: "json",
+            beforeSend: function(xhr) {
+                // Obtener el token de la cookie
+                var token = getCookie("access_token");
+                if (token) {
+                    // Agregar el token JWT a la cabecera de autorización
+                    xhr.setRequestHeader("Authorization", "Bearer " + token);
+                }
+            },
+            success: function (r) {
+                console.log(r)
+                document.getElementById('nombreU').textContent = r.name
+            },
+        });
+}
+}
+
 document.addEventListener('DOMContentLoaded', function () {
+    ajaxUserInfo()
     
     document.getElementById('inicio').addEventListener('click', function () {
         window.location.href ='home.html';
@@ -36,26 +69,20 @@ function limpiarCookies() {
     });
 }
 
-function nombreMenu() {
-    let myData = {
-        action: "EMAIL"
-    };
-    var email = document.cookie.replace(/(?:(?:^|.*;\s*)email\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+
     
-        // Agregar la cookie al encabezado de la solicitud
-        $.ajax({
-            url: '/ruta/info',
-            type: 'POST',
-            data: myData,
-            xhrFields: {
-                withCredentials: true
-            },
-            headers: {
-                'Cookie': 'email=' + email 
-            },
-            success: function (r) {
-                console.log(r)
-                document.getElementById('nombreU').textContent = r
-            }
-        });
-    } 
+    function getCookie(cname) {
+        let name = cname + "=";
+        let decodedCookie = decodeURIComponent(document.cookie);
+        let ca = decodedCookie.split(';');
+        for(let i = 0; i <ca.length; i++) {
+          let c = ca[i];
+          while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+          }
+          if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+          }
+        }
+        return "";
+      }

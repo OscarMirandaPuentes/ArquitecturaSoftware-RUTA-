@@ -56,7 +56,9 @@ public class SecurityConfiguration {
             "/mazos/**",
             "/movimiento/**",
             "/jugadores/**",
-            "/configuration/security/**"};
+            "/configuration/security/**",
+            "/api/user/info/**"
+        };
     private final JwtAuthenticationFilter jwtAuthFilter;
     private final AuthenticationProvider authenticationProvider;
     private final LogoutHandler logoutHandler;

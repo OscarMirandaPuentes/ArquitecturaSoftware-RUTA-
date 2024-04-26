@@ -116,6 +116,7 @@ function ajaxLogin(email, password) {
             data: JSON.stringify(myData),
             dataType: "json",
             success: function (r) {
+                localStorage.email = myData.email;
                 setCookie("access_token", r['access_token'], 1);
                 setCookie("refresh_token", r['refresh_token'], 1);
                 resolve(r);
