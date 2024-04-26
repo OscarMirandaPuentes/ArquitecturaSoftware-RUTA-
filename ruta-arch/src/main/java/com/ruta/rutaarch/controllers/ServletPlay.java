@@ -13,7 +13,7 @@ import com.ruta.rutaarch.modelo.Administrador;
 import com.ruta.rutaarch.modelo.Carta;
 
 
-@WebServlet("/jugar")
+@WebServlet("api/jugar")
 public class ServletPlay extends HttpServlet {
     private static final long serialVersionUID = 1L;
     Administrador a;
@@ -21,6 +21,7 @@ public class ServletPlay extends HttpServlet {
     public ServletPlay (){
         super();
         a = ServletStart.getAdministrador();
+        System.out.println("play " + a);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

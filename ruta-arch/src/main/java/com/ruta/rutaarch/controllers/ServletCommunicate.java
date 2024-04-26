@@ -13,9 +13,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.io.PrintWriter;
+import com.google.gson.Gson;
 
 
-@WebServlet("/communicate")
+@WebServlet("/api/communicate")
 public class ServletCommunicate extends HttpServlet {
     private static final long serialVersionUID = 1L;
     Administrador a;
@@ -23,6 +24,7 @@ public class ServletCommunicate extends HttpServlet {
     public ServletCommunicate(){
         super();
         a = ServletStart.getAdministrador();
+        System.out.println("comm" + a);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -60,6 +62,19 @@ public class ServletCommunicate extends HttpServlet {
                 i++;
             }
         }
+
+        // Convierte el envío a formato JSON
+        Gson gson = new Gson();
+        String envioJson = gson.toJson(envio);
+
+        // Establece el tipo de contenido de la respuesta como JSON
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+
+        // Escribe el envío JSON en el cuerpo de la respuesta
+        System.out.println(envioJson);
+        out.print(envioJson);
+        out.flush();
 
     }
 

@@ -38,15 +38,20 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public Optional<User> findUserbyEmail(String email) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication != null && authentication.isAuthenticated()) {
-            String userEmail = authentication.getName(); // Assuming email is used as username
-            return userRepository.findByEmail(userEmail);
-        } else {
-            return Optional.empty();
+public Optional<User> findUserbyEmail(String email) {
+    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    if (authentication != null && authentication.isAuthenticated()) {
+        Object principal = authentication.getPrincipal();
+        if (principal instanceof User) {
+            User user = (User) principal;
+            if (user.getEmail().equals(email)) {
+                return Optional.of(user);
+            }
         }
     }
+    return Optional.empty();
+}
+
 
     @Override
 public Boolean updateUser(String id, User userUpdates) {

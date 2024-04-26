@@ -13,7 +13,7 @@ import com.ruta.rutaarch.modelo.Mazo;
 import java.io.IOException;
 
 
-    @WebServlet("/start")
+    @WebServlet("api/start")
     public class ServletStart extends HttpServlet {
         private static final long serialVersionUID = 1L;
         private static Administrador a;
@@ -31,6 +31,7 @@ import java.io.IOException;
             if(a.getJ().getM() == null){
                 Mazo mazo = new Mazo();
                 a.iniciarJuego(mazo);
+                
             }  
         }
 

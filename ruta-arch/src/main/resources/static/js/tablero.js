@@ -47,7 +47,7 @@ function jugar(id, posCarta, accion) {
         accion: accion
     };
     $.ajax({
-        url: '/ruta/jugar',
+        url: '/api/jugar',
         type: 'POST',
         data: myData,
         success: function (r) {
@@ -61,7 +61,7 @@ function refresh(id) {
         id: id,
     };
     $.ajax({
-        url: '/ruta/communicate',
+        url: '/api/communicate',
         type: 'GET',
         data: myData,
         dataType: 'json',

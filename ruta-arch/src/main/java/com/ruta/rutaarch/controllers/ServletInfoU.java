@@ -16,7 +16,7 @@ import com.ruta.rutaarch.managers.UserManager;
 /**
  * Servlet implementation class MyServlet
  */
-@WebServlet("/info")
+@WebServlet("api/info")
 public class ServletInfoU extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
