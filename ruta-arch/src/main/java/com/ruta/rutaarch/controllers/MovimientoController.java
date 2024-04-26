@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/movimientos")
+@RequestMapping("api/movimientos")
 public class MovimientoController {
 
     private final MovimientoService movimientoService;

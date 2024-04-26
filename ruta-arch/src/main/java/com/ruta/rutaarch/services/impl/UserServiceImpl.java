@@ -3,6 +3,8 @@ package com.ruta.rutaarch.services.impl;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.ruta.rutaarch.entities.user.User;
@@ -37,7 +39,13 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public Optional<User> findUserbyEmail(String email) {
-        return userRepository.findByEmail(email);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.isAuthenticated()) {
+            String userEmail = authentication.getName(); // Assuming email is used as username
+            return userRepository.findByEmail(userEmail);
+        } else {
+            return Optional.empty();
+        }
     }
 
     @Override
@@ -47,7 +55,7 @@ public Boolean updateUser(String id, User userUpdates) {
         if (userOptional.isPresent()) {
             User user = userOptional.get();
             user.setName(userUpdates.getName());
-            user.setUserName(userUpdates.getUsername());
+            user.setNick(userUpdates.getNick());
             user.setEmail(userUpdates.getEmail());
             userRepository.save(user);
             return true;

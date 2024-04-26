@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/jugadores")
+@RequestMapping("api/jugadores")
 public class JugadorController {
 
     private final JugadorService jugadorService;

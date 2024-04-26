@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/mazos")
+@RequestMapping("api/mazos")
 public class MazoController {
 
     private final MazoService mazoService;
