@@ -8,27 +8,22 @@ import com.ruta.rutaarch.repositories.UsuarioRepository;
 import com.ruta.rutaarch.services.UserService;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/Users")
+@RequestMapping("api/user")
 public class UserController {
 
     @Autowired
     private UserService userService;
 
-
-    // Crear un nuevo User
-    @PostMapping
-    public Boolean crearUser(@RequestBody User User) {
-        return userService.saveUser(User);
+    @PostMapping("/info")
+    public Optional<User> infoUser(@RequestBody Map<String, String> requestBody) {
+        String email = requestBody.get("email");
+        System.out.println(userService.findUserbyEmail(email));
+        return userService.findUserbyEmail(email);
     }
-
-    // Obtener un User por ID
-    @GetMapping
-    public Optional<User> obtenerUserPorId(@RequestParam String email, @RequestParam String password) {
-    return userService.findUserbyEmail(email);
-}
 
     // Actualizar un User
     @PutMapping

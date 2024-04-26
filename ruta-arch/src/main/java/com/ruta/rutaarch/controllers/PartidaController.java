@@ -11,7 +11,7 @@ import java.util.Date;
 import java.util.List;
 
 @RestController
-@RequestMapping("/partidas")
+@RequestMapping("api/partidas")
 public class PartidaController {
 
     private final PartidaService partidaService;
