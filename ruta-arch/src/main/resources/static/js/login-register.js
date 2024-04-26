@@ -75,17 +75,49 @@ function ajaxRegister(name, nickname, email, password) {
     return new Promise((resolve, reject) => {
         let myData = {
             name: name,
-            username: nickname,
+            nick: nickname,
+            password: password,
+            email: email,
+            role: "USER"
+        };
+        $.ajax({
+            url:"/api/v1/auth/register",
+            type:"POST",
+            contentType:"application/json",
+            dataType:"json",
+
+            data:JSON.stringify(myData),
+
+            success: function(rta) {
+                localStorage.email = myData.email
+                resolve(rta)
+            },
+            error: function(err) {
+                reject(err)
+            },
+            complete: function(xhr, status) {
+                //alert('Petición realizada');
+            }
+ });
+
+});
+}  
+
+function ajaxLogin(email, password) {
+    return new Promise((resolve, reject) => {
+        let myData = {
             password: password,
             email: email,
         };
         $.ajax({
-            url: '/Users',
+            url: "/api/v1/auth/authenticate",
             type: 'POST',
-            contentType:"application/json",
-  		    dataType:"json",
+            contentType: "application/json",
             data: JSON.stringify(myData),
+            dataType: "json",
             success: function (r) {
+                setCookie("access_token", r['access_token'], 1);
+                setCookie("refresh_token", r['refresh_token'], 1);
                 resolve(r);
             },
             error: function (err) {
@@ -95,19 +127,12 @@ function ajaxRegister(name, nickname, email, password) {
     });
 }
 
-function ajaxLogin(email, password) {
-    return new Promise((resolve, reject) => {
-        $.ajax({
-            url: '/Users?email=' + encodeURIComponent(email) + '&password=' + encodeURIComponent(password),
-            type: 'GET',
-            contentType: "application/json",
-            dataType: "json",
-            success: function (r) {
-                resolve(r);
-            },
-            error: function (err) {
-                reject(err);
-            }
-        });
-    });
+function setCookie(name, value, days) {
+    var expires = "";
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + (value || "")  + expires + "; path=/";
 }

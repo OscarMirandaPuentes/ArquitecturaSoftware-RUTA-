@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 import java.util.Date;
 import java.util.List;
 
-@Repository
 public interface PartidaRepository extends JpaRepository<Partida, Long> {
     // Finds all Partida entries by estado
     List<Partida> findAllByEstado(String estado);
