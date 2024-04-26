@@ -47,6 +47,15 @@ public class SecurityConfiguration {
             "/webjars/**",
             "/swagger-ui.html",
             "/Users/**",
+            "/ruta/**",
+            "/cartas/**",
+            "/movimientos/**",
+            "/equipos/**",
+            "/pilas/**",
+            "/partidas/**",
+            "/mazos/**",
+            "/movimiento/**",
+            "/jugadores/**",
             "/configuration/security/**"};
     private final JwtAuthenticationFilter jwtAuthFilter;
     private final AuthenticationProvider authenticationProvider;

@@ -32,8 +32,8 @@ btnLogin.addEventListener('click', async function(event) {
         return;
     }
 
-    password2 =await calcularHash(password);
-    ajaxLogin(email, password2)
+    //password2 =await calcularHash(password);
+    ajaxLogin(email, password)
     .then(function(response) {
         console.log('Inicio exitoso:', response);
         document.cookie = `email=${email}; path=/; secure`;
