@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public interface CartaRepository extends JpaRepository<Carta, Long> {
 
     List<Carta> findByNombre(String nombre);
