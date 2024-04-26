@@ -57,9 +57,9 @@ btnRegister.addEventListener('click', async function(event) {
         return;
     }
 
-    password2 =await calcularHash(password);
-    console.log(password2)
-    ajaxRegister(name, nickname, email, password2)
+    //password2 =await calcularHash(password);
+    //console.log(password2)
+    ajaxRegister(name, nickname, email, password)
     .then(function(response) {
         console.log('Registro exitoso:', response);
         goLogin();
