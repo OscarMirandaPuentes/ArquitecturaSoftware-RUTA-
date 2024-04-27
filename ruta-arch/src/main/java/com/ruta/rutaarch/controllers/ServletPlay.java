@@ -21,7 +21,6 @@ public class ServletPlay extends HttpServlet {
     public ServletPlay (){
         super();
         a = ServletStart.getAdministrador();
-        System.out.println("play " + a);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -57,7 +57,6 @@ public class SecurityConfiguration {
             "/movimiento/**",
             "/jugadores/**",
             "/configuration/security/**",
-            "/api/user/info/**"
         };
     private final JwtAuthenticationFilter jwtAuthFilter;
     private final AuthenticationProvider authenticationProvider;

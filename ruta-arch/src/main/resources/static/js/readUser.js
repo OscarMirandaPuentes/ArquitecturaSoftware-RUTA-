@@ -53,6 +53,10 @@ function ajaxUserInfo() {
             },
             success: function (r) {
                 console.log(r)
+                nombre.textContent = r.name;
+                nombreUsuario.textContent = r.name;
+                apodoPerfil.textContent = r.nick;
+                correoPerfil.textContent = r.email
                 resolve(r);
             },
             error: function (err) {

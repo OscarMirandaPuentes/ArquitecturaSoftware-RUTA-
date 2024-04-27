@@ -24,7 +24,6 @@ public class ServletCommunicate extends HttpServlet {
     public ServletCommunicate(){
         super();
         a = ServletStart.getAdministrador();
-        System.out.println("comm" + a);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -54,7 +53,8 @@ public class ServletCommunicate extends HttpServlet {
 
 
         int id = Integer.parseInt(request.getParameter("id"));
-
+        System.out.println(id +" " + a.getActualPos());
+        
         if (id == a.getActualPos()) {
             int i = 1;
             for(Carta carta: a.getJugadorActual().getMano()){

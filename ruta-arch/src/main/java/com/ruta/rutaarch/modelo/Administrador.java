@@ -33,7 +33,7 @@ public class Administrador {
 
 	public void validarPosicionJugador() {
         actualPos++;
-	    if (actualPos == this.getJ().getEquipo1().getJugadores().size()) {
+	    if (actualPos == this.getJ().getEquipo1().getJugadores().size() * 2) {
 	        jugadorActualPos = 0;
 	        actualPos = 0;
             obtenerJugadorActual();

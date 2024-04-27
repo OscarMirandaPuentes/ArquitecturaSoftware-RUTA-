@@ -34,10 +34,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
 
-    var nombreJugador = localStorage.getItem('nombreJugador'); // Se obtiene el nombre
-    if (nombreJugador) {
-        document.getElementById('nombreJ').textContent = nombreJugador;
-    }
+    setName()
 });
 
 function jugar(id, posCarta, accion) {
@@ -56,9 +53,9 @@ function jugar(id, posCarta, accion) {
     });
 }
 
-function refresh(id) {
+function refresh() {
     let myData = {
-        id: id,
+        id: localStorage.id,
     };
     $.ajax({
         url: '/api/communicate',
@@ -77,5 +74,54 @@ function updateWin(datos){
         reemplazarURLCarta(carta, valor); // Llamar a la función reemplazarURLCarta con cada clave y valor
     }
 }
+
+function setName() {
+    // Obtener el correo electrónico del localStorage
+    var userEmail = localStorage.email;
+
+    // Verificar si se encontró un correo electrónico en el localStorage
+    if (userEmail) {
+    // Datos que deseas enviar al servidor
+    var requestData = {
+        email: userEmail
+    };
+        $.ajax({
+            url: "/api/user/info",
+            type: 'POST',
+            contentType: "application/json",
+            data: JSON.stringify(requestData),
+            dataType: "json",
+            beforeSend: function(xhr) {
+                // Obtener el token de la cookie
+                var token = getCookie("access_token");
+                if (token) {
+                    // Agregar el token JWT a la cabecera de autorización
+                    xhr.setRequestHeader("Authorization", "Bearer " + token);
+                }
+            },
+            success: function (r) {
+                document.getElementById('nombreJ').textContent = r.name;
+            }
+
+        });
+
+    }
+}
+
+function getCookie(cname) {
+    let name = cname + "=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(';');
+    for(let i = 0; i <ca.length; i++) {
+      let c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  }
 
 

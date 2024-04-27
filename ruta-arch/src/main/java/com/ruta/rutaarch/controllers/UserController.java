@@ -26,9 +26,10 @@ public class UserController {
     }
 
     // Actualizar un User
-    @PutMapping
-    public boolean actualizarUser(@RequestBody String email, @RequestBody User UserDetalles) {
-        return userService.updateUser(email, UserDetalles);
+    @PutMapping("{email}")
+    public boolean actualizarUser(@PathVariable String email, @RequestBody User userDetalles) {
+        System.out.println(email);
+        return userService.updateUser(email, userDetalles);
     }
 
     // Eliminar un User

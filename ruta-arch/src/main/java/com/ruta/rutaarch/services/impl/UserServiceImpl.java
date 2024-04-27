@@ -55,21 +55,24 @@ public Optional<User> findUserbyEmail(String email) {
 
     @Override
 public Boolean updateUser(String id, User userUpdates) {
-    try {
-        Optional<User> userOptional = userRepository.findByEmail(id);
-        if (userOptional.isPresent()) {
-            User user = userOptional.get();
-            user.setName(userUpdates.getName());
-            user.setNick(userUpdates.getNick());
-            user.setEmail(userUpdates.getEmail());
-            userRepository.save(user);
-            return true;
-        } else {
-            return false; // No se encontró el usuario con el email dado
+    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    if (authentication != null && authentication.isAuthenticated()){
+        try {
+            Optional<User> userOptional = userRepository.findByEmail(id);
+            if (userOptional.isPresent()) {
+                User user = userOptional.get();
+                user.setName(userUpdates.getName());
+                user.setNick(userUpdates.getNick());
+                user.setEmail(userUpdates.getEmail());
+                userRepository.save(user);
+                return true;
+            } else {
+                return false; // No se encontró el usuario con el email dado
+            }
+        } catch (Exception e) {
+            return false; // Ocurrió un error al actualizar el usuario
         }
-    } catch (Exception e) {
-        return false; // Ocurrió un error al actualizar el usuario
     }
+    return false;
 }
-
 }

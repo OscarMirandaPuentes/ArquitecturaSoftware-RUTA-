@@ -31,12 +31,45 @@ document.addEventListener('DOMContentLoaded', function() {
         const apodo = document.getElementById('nickname').value;
         const correo = document.getElementById('email').value;
         const imagen = document.getElementById('profile-pic').src;
-
-        location.reload()
+        updateUser(nombre, apodo, correo)
+        //location.reload()
 
         // código para enviar los datos al servidor 
+        
     });
 });
+
+function updateUser(name, nick, email){
+    let userDetalles = {
+            name: name,
+            nick: nick,
+            email: email
+    };
+
+    $.ajax({
+        type: "PUT", // Método HTTP a utilizar
+        url: "api/user/" + localStorage.email, // URL del endpoint en el servidor
+        contentType: "application/json", // Tipo de contenido que se está enviando
+        data: JSON.stringify(userDetalles),
+        beforeSend: function(xhr) {
+            // Obtener el token de la cookie
+            var token = getCookie("access_token");
+            if (token) {
+                // Agregar el token JWT a la cabecera de autorización
+                xhr.setRequestHeader("Authorization", "Bearer " + token);
+            }
+        }, // Convertir los datos del usuario a formato JSON
+        success: function(response) {
+            // La solicitud fue exitosa
+            localStorage.email = email
+            console.log("Usuario actualizado correctamente");
+            console.log("Respuesta del servidor:", response);
+        },
+        error: function(xhr, status, error) {
+            console.error("Error al actualizar el usuario:", error);
+        }
+    });
+}
 
 function elegirImagen() {
 

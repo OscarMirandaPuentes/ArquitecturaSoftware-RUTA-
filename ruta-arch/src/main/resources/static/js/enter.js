@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
     
     form.addEventListener('submit', function (event) {
         event.preventDefault();
-        ajaxUserInfo();
+        ajaxInsertar();
     });
 
     var btnIniciar = document.getElementById('btn-iniciar');
@@ -32,19 +32,20 @@ function iniciar() {
         type: 'GET',
         success: function (r) {
             console.log("Juego iniciado")
+            localStorage.id = id.value
         }
     });
 }
 
-function ajaxUserInfo() {
+function ajaxInsertar() {
     // Obtener el correo electrónico del localStorage
-    var email = localStorage.email;
+    var userEmail = localStorage.email;
 
     // Verificar si se encontró un correo electrónico en el localStorage
-    if (email) {
+    if (userEmail) {
     // Datos que deseas enviar al servidor
     var requestData = {
-        "email": email
+        email: userEmail
     };
         $.ajax({
             url: "/api/user/info",
