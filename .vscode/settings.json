@@ -1,0 +1,19 @@
+{
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default",
+                "enableSsl": "Disabled"
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 3306,
+            "driver": "MySQL",
+            "name": "ruta",
+            "database": "ruta",
+            "username": "admin",
+            "askForPassword": true
+        }
+    ],
+    "java.compile.nullAnalysis.mode": "automatic"
+}

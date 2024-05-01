@@ -6,9 +6,6 @@ import com.ruta.rutaarch.config.JwtService;
 import com.ruta.rutaarch.entities.auth.AuthenticationRequest;
 import com.ruta.rutaarch.entities.auth.AuthenticationResponse;
 import com.ruta.rutaarch.entities.auth.RegisterRequest;
-import com.ruta.rutaarch.entities.token.Token;
-import com.ruta.rutaarch.entities.token.TokenRepository;
-import com.ruta.rutaarch.entities.token.TokenType;
 import com.ruta.rutaarch.entities.user.User;
 import com.ruta.rutaarch.repositories.UsuarioRepository;
 
@@ -30,7 +27,6 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class AuthenticationService {
   private final UsuarioRepository repository;
-  private final TokenRepository tokenRepository;
   private final PasswordEncoder passwordEncoder;
   private final JwtService jwtService;
   private final AuthenticationManager authenticationManager;
@@ -72,27 +68,6 @@ public class AuthenticationService {
         .build();
   }
 
-  private void saveUserToken(User user, String jwtToken) {
-    var token = Token.builder()
-        .user(user)
-        .token(jwtToken)
-        .tokenType(TokenType.BEARER)
-        .expired(false)
-        .revoked(false)
-        .build();
-    tokenRepository.save(token);
-  }
-
-  private void revokeAllUserTokens(User user) {
-    var validUserTokens = tokenRepository.findAllValidTokenByUser(user.getId());
-    if (validUserTokens.isEmpty())
-      return;
-    validUserTokens.forEach(token -> {
-      token.setExpired(true);
-      token.setRevoked(true);
-    });
-    tokenRepository.saveAll(validUserTokens);
-  }
 
   public void refreshToken(
           HttpServletRequest request,
