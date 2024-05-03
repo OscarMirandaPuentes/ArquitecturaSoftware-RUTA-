@@ -13,6 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("api/partidas")
 public class PartidaController {
+    //TODO: Logica del servlet
 
     private final PartidaService partidaService;
 

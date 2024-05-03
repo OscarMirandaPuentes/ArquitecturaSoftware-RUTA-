@@ -55,8 +55,6 @@ public Optional<User> findUserbyEmail(String email) {
 
     @Override
 public Boolean updateUser(String id, User userUpdates) {
-    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-    if (authentication != null && authentication.isAuthenticated()){
         try {
             Optional<User> userOptional = userRepository.findByEmail(id);
             if (userOptional.isPresent()) {
@@ -72,7 +70,5 @@ public Boolean updateUser(String id, User userUpdates) {
         } catch (Exception e) {
             return false; // Ocurrió un error al actualizar el usuario
         }
-    }
-    return false;
 }
 }

@@ -42,7 +42,6 @@ public class AuthenticationService {
     var savedUser = repository.save(user);
     var jwtToken = jwtService.generateToken(user);
     var refreshToken = jwtService.generateRefreshToken(user);
-    saveUserToken(savedUser, jwtToken);
     return AuthenticationResponse.builder()
         .accessToken(jwtToken)
             .refreshToken(refreshToken)
@@ -60,8 +59,6 @@ public class AuthenticationService {
         .orElseThrow();
     var jwtToken = jwtService.generateToken(user);
     var refreshToken = jwtService.generateRefreshToken(user);
-    revokeAllUserTokens(user);
-    saveUserToken(user, jwtToken);
     return AuthenticationResponse.builder()
         .accessToken(jwtToken)
             .refreshToken(refreshToken)
@@ -86,8 +83,6 @@ public class AuthenticationService {
               .orElseThrow();
       if (jwtService.isTokenValid(refreshToken, user)) {
         var accessToken = jwtService.generateToken(user);
-        revokeAllUserTokens(user);
-        saveUserToken(user, accessToken);
         var authResponse = AuthenticationResponse.builder()
                 .accessToken(accessToken)
                 .refreshToken(refreshToken)
@@ -96,4 +91,17 @@ public class AuthenticationService {
       }
     }
   }
+
+  public AuthenticationResponse NewTokenUser(String email) {
+    System.out.println(email);
+    var user = repository.findByEmail(email)
+    .orElseThrow();
+    var jwtToken = jwtService.generateToken(user);
+    var refreshToken = jwtService.generateRefreshToken(user);
+    return AuthenticationResponse.builder()
+        .accessToken(jwtToken)
+            .refreshToken(refreshToken)
+        .build();
+  }
+
 }
