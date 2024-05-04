@@ -11,7 +11,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import com.ruta.rutaarch.entities.user.User;
-import com.ruta.rutaarch.managers.UserManager;
 
 /**
  * Servlet implementation class MyServlet
@@ -32,35 +31,35 @@ public class ServletInfoU extends HttpServlet {
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String action = request.getParameter("action");
-		UserManager mp = new UserManager();
-		String result = null;
-		Cookie[] cookies = request.getCookies();
+		// String action = request.getParameter("action");
+		// //UserManager mp = new UserManager();
+		// String result = null;
+		// Cookie[] cookies = request.getCookies();
 
-		String email = null;
-        if (cookies != null) {
-            for (Cookie cookie : cookies) {
-                if (cookie.getName().equals("email")) {
-                    email = cookie.getValue();
-                    break;
-                }
-            }
-        }
-	
-		if(action != null && action.equals("EMAIL")) {
-			User u = mp.getUserByEmail(email);
-			if(u != null) {
-				result = u.getName();
-			} else {
-				result = "User not found for email: " + email;
-			}
-		} else {
-			result = "Invalid action";
-		}
-	
-		response.setContentType("text/plain");
-		response.setCharacterEncoding("UTF-8");
-		response.getWriter().write(result);
+		// String email = null;
+		// if (cookies != null) {
+		// 	for (Cookie cookie : cookies) {
+		// 		if (cookie.getName().equals("email")) {
+		// 			email = cookie.getValue();
+		// 			break;
+		// 		}
+		// 	}
+		// }
+
+		// if(action != null && action.equals("EMAIL")) {
+		// 	//User u = mp.getUserByEmail(email);
+		// 	if(u != null) {
+		// 		result = u.getName();
+		// 	} else {
+		// 		result = "User not found for email: " + email;
+		// 	}
+		// } else {
+		// 	result = "Invalid action";
+		// }
+
+		// response.setContentType("text/plain");
+		// response.setCharacterEncoding("UTF-8");
+		// response.getWriter().write(result);
 	}
 	
 }

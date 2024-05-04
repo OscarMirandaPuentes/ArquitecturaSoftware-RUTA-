@@ -72,12 +72,12 @@ public class PartidaServiceImpl implements PartidaService {
     public int getEquipoGanador(Long partidaId) {
         Partida partida = partidaRepository.findById(partidaId).orElse(null);
         if (partida != null) {
-            Integer resultadoEquipo1 = partida.getResultadoEquipo1();
-            Integer resultadoEquipo2 = partida.getResultadoEquipo2();
+            //Integer resultadoEquipo1 = partida.getResultadoEquipo1();
+            //Integer resultadoEquipo2 = partida.getResultadoEquipo2();
 
-            if (resultadoEquipo1 != null && resultadoEquipo2 != null) {
-                return (resultadoEquipo1 > resultadoEquipo2) ? 1 : 2;
-            }
+            //if (resultadoEquipo1 != null && resultadoEquipo2 != null) {
+              //  return (resultadoEquipo1 > resultadoEquipo2) ? 1 : 2;
+            //}
         }
         return 0; // Assuming 0 means no winner or data is incomplete
     }

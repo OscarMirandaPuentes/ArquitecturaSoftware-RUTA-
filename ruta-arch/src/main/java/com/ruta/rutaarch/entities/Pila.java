@@ -14,7 +14,7 @@ public class Pila {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @OneToOne
     private Equipo equipo;
 
     @Column(name = "tipo_pila")

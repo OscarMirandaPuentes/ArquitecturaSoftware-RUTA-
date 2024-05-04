@@ -12,15 +12,7 @@ public class Partida {
     private Long id;
 
     @Column(nullable = true)
-    private Date fechaInicio;
-
-    private Date fechaFin;
-
-    @Column(nullable = true)
-    private Integer resultadoEquipo1;
-
-    @Column(nullable = true)
-    private Integer resultadoEquipo2;
+    private String Ganador;
 
     @Column(nullable = false)
     private String estado; //partida terminada, pausada 
@@ -40,38 +32,6 @@ public class Partida {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Date getFechaInicio() {
-        return fechaInicio;
-    }
-
-    public void setFechaInicio(Date fechaInicio) {
-        this.fechaInicio = fechaInicio;
-    }
-
-    public Date getFechaFin() {
-        return fechaFin;
-    }
-
-    public void setFechaFin(Date fechaFin) {
-        this.fechaFin = fechaFin;
-    }
-
-    public int getResultadoEquipo1() {
-        return resultadoEquipo1;
-    }
-
-    public void setResultadoEquipo1(int resultadoEquipo1) {
-        this.resultadoEquipo1 = resultadoEquipo1;
-    }
-
-    public int getResultadoEquipo2() {
-        return resultadoEquipo2;
-    }
-
-    public void setResultadoEquipo2(int resultadoEquipo2) {
-        this.resultadoEquipo2 = resultadoEquipo2;
     }
 
     public String getEstado() {
