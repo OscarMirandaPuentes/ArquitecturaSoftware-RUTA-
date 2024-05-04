@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     botonEliminarCuenta.addEventListener('click', function() {
         console.log('Eliminar cuenta');
+        deleteUser();
     });
 
     btnCancel.addEventListener('click', function() {
@@ -31,7 +32,12 @@ document.addEventListener('DOMContentLoaded', function() {
         const apodo = document.getElementById('nickname').value;
         const correo = document.getElementById('email').value;
         const imagen = document.getElementById('profile-pic').src;
-        updateUser(nombre, apodo, correo)
+        updateUser(nombre, apodo, correo).then(function(response) {
+            console.log('Cambio exitoso:', response);
+        })
+        .catch(function(error) {
+            console.error('Error en la solicitud:', error);
+        });
         //location.reload()
 
         // código para enviar los datos al servidor 
@@ -40,36 +46,50 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function updateUser(name, nick, email){
-    let userDetalles = {
+    return new Promise((resolve, reject) => {
+        let myData = {
             name: name,
             nick: nick,
-            email: email
+            email: email,
+        };
+        $.ajax({
+            url: "/api/user/" + localStorage.email,
+            type: 'PUT',
+            contentType: "application/json",
+            data: JSON.stringify(myData),
+            dataType: "json",
+            success: function (r) {
+                localStorage.email = myData.email;
+                setCookie("access_token", r['access_token'], 1);
+                setCookie("refresh_token", r['refresh_token'], 1);
+                resolve(r);
+            },
+            error: function (err) {
+                reject(err);
+            }
+        });
+    });
+}
+
+function deleteUser(){
+    let email = {
+            "email": localStorage.email
     };
 
     $.ajax({
-        type: "PUT", // Método HTTP a utilizar
-        url: "api/user/" + localStorage.email, // URL del endpoint en el servidor
+        type: "DELETE", // Corregir el método HTTP a utilizar
+        url: "/api/user", // URL del endpoint en el servidor
         contentType: "application/json", // Tipo de contenido que se está enviando
-        data: JSON.stringify(userDetalles),
-        beforeSend: function(xhr) {
-            // Obtener el token de la cookie
-            var token = getCookie("access_token");
-            if (token) {
-                // Agregar el token JWT a la cabecera de autorización
-                xhr.setRequestHeader("Authorization", "Bearer " + token);
-            }
-        }, // Convertir los datos del usuario a formato JSON
+        data: JSON.stringify(email),
         success: function(response) {
             // La solicitud fue exitosa
-            localStorage.email = email
-            console.log("Usuario actualizado correctamente");
-            console.log("Respuesta del servidor:", response);
-        },
-        error: function(xhr, status, error) {
-            console.error("Error al actualizar el usuario:", error);
+            console.log(response)
+            limpiarCookies();
+            window.location.href ='login-register.html';
         }
     });
 }
+
 
 function elegirImagen() {
 
@@ -94,4 +114,14 @@ function elegirImagen() {
         reader.readAsDataURL(file);
     });
     input.click();
+}
+
+function setCookie(name, value, days) {
+    var expires = "";
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + (value || "")  + expires + "; path=/";
 }

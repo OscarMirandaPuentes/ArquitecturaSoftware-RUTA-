@@ -44,8 +44,9 @@ public class UserController {
 
     // Eliminar un User
     @DeleteMapping
-    public String eliminarUser(@RequestBody String email) {
-        userService.deleteUser(email);
+    public String eliminarUser(@RequestBody Map<String, String> requestBody) {
+        System.out.println(requestBody.get("email"));
+        userService.deleteUser(requestBody.get("email"));
         return "User eliminado con éxito";
     }
 }

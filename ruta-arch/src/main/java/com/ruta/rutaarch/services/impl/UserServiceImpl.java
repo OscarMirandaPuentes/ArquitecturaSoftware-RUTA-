@@ -29,12 +29,18 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public Boolean deleteUser(String id) {
+        System.out.println(id);
         try {
-            //userRepository.deleteById(id);
+            Optional<User> userOptional = userRepository.findByEmail(id);
+            if (userOptional.isPresent()){
+                User user = userOptional.get();
+                userRepository.deleteById(user.getId());
             return true;
+            }
        } catch (Exception e) {
             return false;
        }
+        return false;
     }
 
     @Override
