@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "carta")
 public class Carta implements Serializable{
-
+    //TODO:Conexion con usuario
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

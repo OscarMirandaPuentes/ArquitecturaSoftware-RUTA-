@@ -54,11 +54,6 @@ public class PartidaServiceImpl implements PartidaService {
     }
 
     @Override
-    public List<Partida> getPartidasByFecha(Date fechaInicio, Date fechaFin) {
-        return partidaRepository.findAllByFechaInicioBetween(fechaInicio, fechaFin);
-    }
-
-    @Override
     @Transactional
     public void actualizarEstadoPartida(Long partidaId, String nuevoEstado) {
         Partida partida = partidaRepository.findById(partidaId).orElse(null);

@@ -11,7 +11,6 @@ public interface PartidaService {
     Partida updatePartida(Partida partida);
     void deletePartida(Long id);
     List<Partida> getPartidasByEstado(String estado);
-    List<Partida> getPartidasByFecha(Date fechaInicio, Date fechaFin);
     void actualizarEstadoPartida(Long partidaId, String nuevoEstado);
     int getEquipoGanador(Long partidaId);
     void eliminarTodasLasPartidas();

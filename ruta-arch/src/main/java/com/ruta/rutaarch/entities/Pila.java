@@ -14,14 +14,15 @@ public class Pila {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
-    private Equipo equipo;
-
     @Column(name = "tipo_pila")
     private String tipoPila; // Indica el tipo de pila: distancia, velocidad, seguridad o batalla
 
     @OneToMany
     private List<Carta> cartas = new ArrayList<>();
+
+    @ManyToOne
+    @JoinColumn(name = "equipo_id") 
+    private Equipo equipo;
 
     public Long getId() {
         return id;

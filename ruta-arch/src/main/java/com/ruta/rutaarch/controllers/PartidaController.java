@@ -67,9 +67,4 @@ public class PartidaController {
         return new ResponseEntity<>(partidas, HttpStatus.OK);
     }
 
-    @GetMapping("/fechas")
-    public ResponseEntity<List<Partida>> getPartidasByFecha(@RequestParam Date fechaInicio, @RequestParam Date fechaFin) {
-        List<Partida> partidas = partidaService.getPartidasByFecha(fechaInicio, fechaFin);
-        return new ResponseEntity<>(partidas, HttpStatus.OK);
-    }
 }

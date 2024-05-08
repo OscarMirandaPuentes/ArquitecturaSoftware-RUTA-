@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "jugador")
 public class Jugador {
+    //TODO:Conexion con mano de cartas
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,6 +15,7 @@ public class Jugador {
 
     //muchos jugadores a un equipo
     @ManyToOne
+    @JoinColumn(name = "equipo_id") 
     private Equipo equipo;
 
     public Long getId() {

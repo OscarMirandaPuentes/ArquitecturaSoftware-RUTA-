@@ -21,7 +21,7 @@ public class Partida {
     private String jugadorTurno; //dependiendo del equipo
 
     //una partida tiene "muchos" equipos
-    @Column(nullable = true)
+    @Column
     @OneToMany(mappedBy = "partida", cascade = CascadeType.ALL)
     private List<Equipo> equipos; // se asocia con equipo, equipo con jugador y jugador con mazo
     //para poder obtener el mazo de un jugador
