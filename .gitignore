@@ -1,7 +1,8 @@
 /.idea
 /workspace.xml
 /out
-/lib
+/lib/
+/.vscode
 
 
 # Ignorar archivos generados automáticamente
