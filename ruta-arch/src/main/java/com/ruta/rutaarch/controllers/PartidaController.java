@@ -2,6 +2,8 @@ package com.ruta.rutaarch.controllers;
 
 import com.ruta.rutaarch.entities.Partida;
 import com.ruta.rutaarch.services.PartidaService;
+import com.ruta.rutaarch.services.impl.PartidaServiceImpl;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,16 +17,12 @@ import java.util.List;
 public class PartidaController {
     //TODO: Logica del servlet
 
-    private final PartidaService partidaService;
-
     @Autowired
-    public PartidaController(PartidaService partidaService) {
-        this.partidaService = partidaService;
-    }
+    private PartidaServiceImpl partidaService;
 
     @PostMapping
-    public ResponseEntity<Partida> createPartida(@RequestBody Partida partida) {
-        Partida createdPartida = partidaService.savePartida(partida);
+    public ResponseEntity<Partida> createPartida() {
+        Partida createdPartida = partidaService.createPartida();
         return new ResponseEntity<>(createdPartida, HttpStatus.CREATED);
     }
 

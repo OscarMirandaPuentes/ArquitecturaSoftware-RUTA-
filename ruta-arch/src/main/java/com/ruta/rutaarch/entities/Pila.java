@@ -1,8 +1,6 @@
 package com.ruta.rutaarch.entities;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.*;
 
@@ -12,14 +10,17 @@ public class Pila {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
     @Column(name = "tipo_pila")
     private String tipoPila; // Indica el tipo de pila: distancia, velocidad, seguridad o batalla
 
-    @OneToMany
-    private List<Carta> cartas = new ArrayList<>();
+    @OneToOne(mappedBy = "pila", cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
+    private Carta cartaTope;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "equipo_id") 
     private Equipo equipo;
@@ -48,34 +49,22 @@ public class Pila {
         this.tipoPila = tipoPila;
     }
 
-    ////////////////
-    public List<Carta> getCartas() {
-        return cartas;
+    public Carta getCartaTope() {
+        return cartaTope;
     }
 
-    public List<Carta> getPilaDistancia() {
-        return filtrarPorTipoPila("distancia");
+    public void setCartaTope(Carta cartaTope) {
+        this.cartaTope = cartaTope;
     }
 
-    public List<Carta> getPilaSeguridad() {
-        return filtrarPorTipoPila("seguridad");
+    public Equipo getEquipo() {
+        return equipo;
     }
 
-    public List<Carta> getPilaVelocidad() {
-        return filtrarPorTipoPila("velocidad");
+    public void setEquipo(Equipo equipo) {
+        this.equipo = equipo;
     }
 
-    public List<Carta> getPilaBatalla() {
-        return filtrarPorTipoPila("batalla");
-    }
+    
 
-    private List<Carta> filtrarPorTipoPila(String tipoPila) {
-        List<Carta> cartasPorTipo = new ArrayList<>();
-        for (Carta carta : cartas) {
-            if (carta.getTipoPila().equals(tipoPila)) {
-                cartasPorTipo.add(carta);
-            }
-        }
-        return cartasPorTipo;
-    }
 }

@@ -1,6 +1,5 @@
 package com.ruta.rutaarch.entities;
 import jakarta.persistence.*;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -23,8 +22,11 @@ public class Partida {
     //una partida tiene "muchos" equipos
     @Column
     @OneToMany(mappedBy = "partida", cascade = CascadeType.ALL)
-    private List<Equipo> equipos; // se asocia con equipo, equipo con jugador y jugador con mazo
-    //para poder obtener el mazo de un jugador
+    private List<Equipo> equipos; 
+
+    @OneToOne(mappedBy = "partida", cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
+    private Mazo mazo;
 
     public Long getId() {
         return id;
@@ -56,7 +58,27 @@ public class Partida {
 
     public void setEquipos(List<Equipo> equipos) {
         this.equipos = equipos;
-    }   
+    }
+
+    public String getGanador() {
+        return Ganador;
+    }
+
+    public void setGanador(String ganador) {
+        Ganador = ganador;
+    }
+
+    public Mazo getMazo() {
+        return mazo;
+    }
+
+    public void setMazo(Mazo mazo) {
+        this.mazo = mazo;
+    }
+
+    
+    
+    
 }
 
 

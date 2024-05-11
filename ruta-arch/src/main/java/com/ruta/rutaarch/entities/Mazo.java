@@ -1,7 +1,9 @@
 package com.ruta.rutaarch.entities;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
-import com.ruta.rutaarch.modelo.Carta;
 
 @Entity
 @Table(name = "mazo")
@@ -11,11 +13,15 @@ public class Mazo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne // un mazo para un jugador
-    private Jugador jugador;
-
-    @Column(nullable = false)
+    @OneToMany(mappedBy = "mazo")
     private List<Carta> cartas;
+
+    @JsonIgnore
+    @OneToOne
+    @MapsId
+    @JoinColumn(name = "partida_id")
+    private Partida partida;
+
 
     public Long getId() {
         return id;
@@ -25,20 +31,20 @@ public class Mazo {
         this.id = id;
     }
 
-    public Jugador getJugador() {
-        return jugador;
-    }
-
-    public void setJugador(Jugador jugador) {
-        this.jugador = jugador;
-    }
-
     public List<Carta> getCartas() {
         return cartas;
     }
 
     public void setCartas(List<Carta> cartas) {
         this.cartas = cartas;
+    }
+
+    public Partida getPartida() {
+        return partida;
+    }
+
+    public void setPartida(Partida partida) {
+        this.partida = partida;
     }
 
     

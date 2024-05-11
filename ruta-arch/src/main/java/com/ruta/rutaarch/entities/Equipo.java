@@ -1,6 +1,8 @@
 package com.ruta.rutaarch.entities;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -14,6 +16,7 @@ public class Equipo {
     @Column
     private int puntaje;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "partida_id") 
     private Partida partida;
