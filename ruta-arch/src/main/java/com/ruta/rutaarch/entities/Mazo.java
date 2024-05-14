@@ -13,7 +13,7 @@ public class Mazo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(mappedBy = "mazo")
+    @OneToMany(mappedBy = "mazo", cascade = CascadeType.ALL)
     private List<Carta> cartas;
 
     @JsonIgnore

@@ -53,7 +53,6 @@ import java.io.IOException;
         }
 
         public static Administrador getAdministrador() {
-            // TODO Auto-generated method stub
             return a;
         }
     }

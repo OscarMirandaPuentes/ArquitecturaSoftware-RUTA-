@@ -8,7 +8,6 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "jugador")
 public class Jugador {
-    //TODO:Conexion con mano de cartas
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

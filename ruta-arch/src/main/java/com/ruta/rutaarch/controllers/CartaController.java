@@ -1,7 +1,6 @@
 package com.ruta.rutaarch.controllers;
 import com.ruta.rutaarch.entities.Carta;
 import com.ruta.rutaarch.services.CartaService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +12,6 @@ public class CartaController {
 
     private final CartaService cartaService;
 
-    @Autowired
     public CartaController(CartaService cartaService) {
         this.cartaService = cartaService;
     }

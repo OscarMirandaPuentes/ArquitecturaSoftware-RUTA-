@@ -15,7 +15,6 @@ import java.util.List;
 @RestController
 @RequestMapping("api/partidas")
 public class PartidaController {
-    //TODO: Logica del servlet
 
     @Autowired
     private PartidaServiceImpl partidaService;

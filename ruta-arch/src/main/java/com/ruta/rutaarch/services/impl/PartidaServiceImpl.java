@@ -22,6 +22,9 @@ public class PartidaServiceImpl implements PartidaService {
     @Autowired
     private MazoServiceImpl mazoService;
 
+    @Autowired
+    private EquipoServiceImpl equipoService;
+
     public PartidaServiceImpl(PartidaRepository partidaRepository) {
         this.partidaRepository = partidaRepository;
     }
@@ -37,14 +40,18 @@ public class PartidaServiceImpl implements PartidaService {
         Partida partida = new Partida();
         partida.setEstado("Iniciada");
         partida.setJugadorTurno("0");
+
         List<Equipo> equipos = new ArrayList<>();
         Equipo eq1 = new Equipo();
         eq1.setPartida(partida);
+        equipoService.llernarPilas(eq1);
         Equipo eq2 = new Equipo();
         eq2.setPartida(partida);
+        equipoService.llernarPilas(eq2);
         equipos.add(eq1);
         equipos.add(eq2);
         partida.setEquipos(equipos);
+
         Mazo mazo = new Mazo();
         mazo.setPartida(partida);
         mazoService.iniciarMazo(mazo);

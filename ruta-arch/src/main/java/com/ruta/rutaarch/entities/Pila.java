@@ -10,19 +10,19 @@ public class Pila {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private Long id;
 
     @Column(name = "tipo_pila")
     private String tipoPila; // Indica el tipo de pila: distancia, velocidad, seguridad o batalla
 
-    @OneToOne(mappedBy = "pila", cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "carta_id")
     private Carta cartaTope;
 
-    @JsonIgnore
-    @ManyToOne
+    
+    @ManyToOne 
     @JoinColumn(name = "equipo_id") 
+    @JsonIgnore
     private Equipo equipo;
 
     public Long getId() {

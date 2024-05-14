@@ -1,9 +1,7 @@
 package com.ruta.rutaarch.services.impl;
 
 import com.ruta.rutaarch.entities.Carta;
-import com.ruta.rutaarch.entities.Equipo;
 import com.ruta.rutaarch.entities.Mazo;
-import com.ruta.rutaarch.entities.Partida;
 import com.ruta.rutaarch.repositories.MazoRepository;
 import com.ruta.rutaarch.services.MazoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,13 +14,8 @@ import java.util.List;
 
 @Service
 public class MazoServiceImpl implements MazoService {
-
-    private final MazoRepository mazoRepository;
-
     @Autowired
-    public MazoServiceImpl(MazoRepository mazoRepository) {
-        this.mazoRepository = mazoRepository;
-    }
+    private MazoRepository mazoRepository;
 
     @Override
     @Transactional
@@ -54,99 +47,134 @@ public class MazoServiceImpl implements MazoService {
 
     public void iniciarMazo(Mazo mazo){
         List<Carta> cartas = new ArrayList<>();
+        crearCartasPeligro(mazo, cartas);
+        crearCartasSoluciones(mazo, cartas);
+        crearCartasSeguridad(mazo, cartas);
+        crearCartasDistancia(mazo, cartas);
         mazo.setCartas(cartas);
-        crearCartasPeligro(mazo);
-        crearCartasSoluciones(mazo);
-        crearCartasSeguridad(mazo);
-        crearCartasDistancia(mazo);
         mezclarCartas(mazo);
     }
 
-    private void crearCartasPeligro(Mazo mazo) {
-        Carta sinGasolina = new Carta("Sin gasolina");
+    private void crearCartasPeligro(Mazo mazo, List<Carta> cartas) {
+        Carta sinGasolina = new Carta();
+        sinGasolina.setNombre("Sin gasolina");
         sinGasolina.setMazo(mazo);
-        Carta pinchazo = new Carta("Pinchazo");
+
+        Carta pinchazo = new Carta();
+        pinchazo.setNombre("Pinchazo");
         pinchazo.setMazo(mazo);
-        Carta accidente = new Carta("Accidente");
+
+        Carta accidente = new Carta();
+        accidente.setNombre("Accidente");
         accidente.setMazo(mazo);
     
         for (int i = 0; i < 3; i++) {
-            mazo.getCartas().add(sinGasolina);
-            mazo.getCartas().add(pinchazo);
-            mazo.getCartas().add(accidente);
+            cartas.add(sinGasolina);
+            cartas.add(pinchazo);
+            cartas.add(accidente);
         }
-    
+        
+        Carta limiteVel = new Carta();
+        limiteVel.setNombre("Límite de velocidad");
+        limiteVel.setMazo(mazo);
         for (int i = 0; i < 4; i++) {
-            mazo.getCartas().add(new Carta("Límite de velocidad"));
+            cartas.add(limiteVel);
         }
     
+        Carta pare = new Carta();
+        pare.setNombre("Pare");
+        pare.setMazo(mazo);
         for (int i = 0; i < 5; i++) {
-            mazo.getCartas().add(new Carta("Pare"));
+            cartas.add(pare);
         }   
     }
     
-    private void crearCartasSoluciones(Mazo mazo) {
-        Carta gasolina = new Carta("Gasolina");
+    private void crearCartasSoluciones(Mazo mazo, List<Carta> cartas) {
+        Carta gasolina = new Carta();
+        gasolina.setNombre("Gasolina");
         gasolina.setMazo(mazo);
-        Carta llantaRepuesto = new Carta("Llanta de repuesto");
+
+        Carta llantaRepuesto = new Carta();
+        llantaRepuesto.setNombre("Llanta de repuesto");
         llantaRepuesto.setMazo(mazo);
-        Carta reparacion = new Carta("Reparación");
+
+        Carta reparacion = new Carta();
+        reparacion.setNombre("Reparación");
         reparacion.setMazo(mazo);
-        Carta finLimite = new Carta("Fin de límite");
+
+        Carta finLimite = new Carta();
+        finLimite.setNombre("Fin de límite");
         finLimite.setMazo(mazo);
     
         for (int i = 0; i < 6; i++) {
-            mazo.getCartas().add(gasolina);
-            mazo.getCartas().add(llantaRepuesto);
-            mazo.getCartas().add(reparacion);
-            mazo.getCartas().add(finLimite);
+            cartas.add(gasolina);
+            cartas.add(llantaRepuesto);
+            cartas.add(reparacion);
+            cartas.add(finLimite);
         }
     
-        Carta siga = new Carta("Siga");
+        Carta siga = new Carta();
+        siga.setNombre("Siga");
         siga.setMazo(mazo);
         for (int i = 0; i < 14; i++) {
-            mazo.getCartas().add(siga);
+            cartas.add(siga);
         }
     }
     
-    private void crearCartasSeguridad(Mazo mazo) {
-        Carta cisterna = new Carta("Cisterna");
+    private void crearCartasSeguridad(Mazo mazo, List<Carta> cartas) {
+        Carta cisterna = new Carta();
+        cisterna.setNombre("Cisterna");
         cisterna.setMazo(mazo);
-        Carta llantaIrrompible = new Carta("Llanta irrompible");
+
+        Carta llantaIrrompible = new Carta();
+        llantaIrrompible.setNombre("Llanta irrompible");
         llantaIrrompible.setMazo(mazo);
-        Carta asAlVolante = new Carta("As al volante");
+
+        Carta asAlVolante = new Carta();
+        asAlVolante.setNombre("As al volante");
         asAlVolante.setMazo(mazo);
-        Carta viaLibre = new Carta("Vía libre");
+
+        Carta viaLibre = new Carta();
+        viaLibre.setNombre("Vía libre");
         viaLibre.setMazo(mazo);
     
-        mazo.getCartas().add(cisterna);
-        mazo.getCartas().add(llantaIrrompible);
-        mazo.getCartas().add(asAlVolante);
-        mazo.getCartas().add(viaLibre);
+        cartas.add(cisterna);
+        cartas.add(llantaIrrompible);
+        cartas.add(asAlVolante);
+        cartas.add(viaLibre);
     }
     
-    private void crearCartasDistancia(Mazo mazo) {
-        Carta distancia200 = new Carta("Distancia 200");
+    private void crearCartasDistancia(Mazo mazo, List<Carta> cartas) {
+        Carta distancia200 = new Carta();
+        distancia200.setNombre("Distancia 200");
         distancia200.setMazo(mazo);
-        Carta distancia100 = new Carta("Distancia 100");
+
+        Carta distancia100 = new Carta();
+        distancia100.setNombre("Distancia 100");
         distancia100.setMazo(mazo);
-        Carta distancia75 = new Carta("Distancia 75");
+
+        Carta distancia75 = new Carta();
+        distancia75.setNombre("Distancia 75");
         distancia75.setMazo(mazo);
-        Carta distancia50 = new Carta("Distancia 50");
+
+        Carta distancia50 = new Carta();
+        distancia50.setNombre("Distancia 50");
         distancia50.setMazo(mazo);
-        Carta distancia25 = new Carta("Distancia 25");
+
+        Carta distancia25 = new Carta();
+        distancia25.setNombre("Distancia 25");
         distancia25.setMazo(mazo);
     
         for (int i = 0; i < 4; i++) {
-            mazo.getCartas().add(distancia200);
+            cartas.add(distancia200);
         }
         for (int i = 0; i < 12; i++) {
-            mazo.getCartas().add(distancia100);
+            cartas.add(distancia100);
         }
         for (int i = 0; i < 10; i++) {
-            mazo.getCartas().add(distancia75);
-            mazo.getCartas().add(distancia50);
-            mazo.getCartas().add(distancia25);   
+            cartas.add(distancia75);
+            cartas.add(distancia50);
+            cartas.add(distancia25);   
         }
     }
 
