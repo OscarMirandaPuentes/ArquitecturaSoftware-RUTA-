@@ -54,5 +54,12 @@ public class Jugador {
         this.equipo = equipo;
     }
 
+    public List<Carta> getMano() {
+        return mano;
+    }
+
+    public void setMano(List<Carta> mano) {
+        this.mano = mano;
+    }
     
 }

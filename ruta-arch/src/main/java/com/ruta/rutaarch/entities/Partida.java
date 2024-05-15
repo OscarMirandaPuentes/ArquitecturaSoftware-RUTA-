@@ -17,7 +17,10 @@ public class Partida {
     private String estado; //partida terminada, pausada 
 
     @Column(nullable = false)
-    private String jugadorTurno; //dependiendo del equipo
+    private int jugadorTurno; //dependiendo del equipo
+
+    @Column(nullable = false)
+    private int numJugadores; //dependiendo del equipo
 
     //una partida tiene "muchos" equipos
     @Column
@@ -44,14 +47,6 @@ public class Partida {
         this.estado = estado;
     }
 
-    public String getJugadorTurno() {
-        return jugadorTurno;
-    }
-
-    public void setJugadorTurno(String jugadorTurno) {
-        this.jugadorTurno = jugadorTurno;
-    }
-
     public List<Equipo> getEquipos() {
         return equipos;
     }
@@ -76,6 +71,19 @@ public class Partida {
         this.mazo = mazo;
     }
 
+    public void setJugadorTurno(int jugadorTurno) {
+        this.jugadorTurno = jugadorTurno;
+    }
+
+    public int getNumJugadores() {
+        return numJugadores;
+    }
+
+    public void setNumJugadores(int numJugadores) {
+        this.numJugadores = numJugadores;
+    }
+
+    
     
     
     

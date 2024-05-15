@@ -20,8 +20,8 @@ public class PartidaController {
     private PartidaServiceImpl partidaService;
 
     @PostMapping
-    public ResponseEntity<Partida> createPartida() {
-        Partida createdPartida = partidaService.createPartida();
+    public ResponseEntity<Partida> createPartida(@RequestBody int numPlayers) {
+        Partida createdPartida = partidaService.createPartida(numPlayers);
         return new ResponseEntity<>(createdPartida, HttpStatus.CREATED);
     }
 

@@ -36,10 +36,11 @@ public class PartidaServiceImpl implements PartidaService {
     }
 
 
-    public Partida createPartida() {
+    public Partida createPartida(int numPlayers) {
         Partida partida = new Partida();
         partida.setEstado("Iniciada");
-        partida.setJugadorTurno("0");
+        partida.setNumJugadores(numPlayers);
+        partida.setJugadorTurno(0);
 
         List<Equipo> equipos = new ArrayList<>();
         Equipo eq1 = new Equipo();
