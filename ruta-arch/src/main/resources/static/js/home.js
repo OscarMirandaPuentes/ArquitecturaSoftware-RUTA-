@@ -4,6 +4,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     document.getElementById('unirse').addEventListener('click', function () {
-        window.location.href = 'games.html'; 
+        window.location.href = 'join.html'; 
     });
 });
