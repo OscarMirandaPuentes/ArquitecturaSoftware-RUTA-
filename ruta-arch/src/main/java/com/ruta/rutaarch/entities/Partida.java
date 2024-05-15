@@ -1,6 +1,5 @@
 package com.ruta.rutaarch.entities;
 import jakarta.persistence.*;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -18,13 +17,19 @@ public class Partida {
     private String estado; //partida terminada, pausada 
 
     @Column(nullable = false)
-    private String jugadorTurno; //dependiendo del equipo
+    private int jugadorTurno; //dependiendo del equipo
+
+    @Column(nullable = false)
+    private int numJugadores; //dependiendo del equipo
 
     //una partida tiene "muchos" equipos
-    @Column(nullable = true)
+    @Column
     @OneToMany(mappedBy = "partida", cascade = CascadeType.ALL)
-    private List<Equipo> equipos; // se asocia con equipo, equipo con jugador y jugador con mazo
-    //para poder obtener el mazo de un jugador
+    private List<Equipo> equipos; 
+
+    @OneToOne(mappedBy = "partida", cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
+    private Mazo mazo;
 
     public Long getId() {
         return id;
@@ -42,21 +47,46 @@ public class Partida {
         this.estado = estado;
     }
 
-    public String getJugadorTurno() {
-        return jugadorTurno;
-    }
-
-    public void setJugadorTurno(String jugadorTurno) {
-        this.jugadorTurno = jugadorTurno;
-    }
-
     public List<Equipo> getEquipos() {
         return equipos;
     }
 
     public void setEquipos(List<Equipo> equipos) {
         this.equipos = equipos;
-    }   
+    }
+
+    public String getGanador() {
+        return Ganador;
+    }
+
+    public void setGanador(String ganador) {
+        Ganador = ganador;
+    }
+
+    public Mazo getMazo() {
+        return mazo;
+    }
+
+    public void setMazo(Mazo mazo) {
+        this.mazo = mazo;
+    }
+
+    public void setJugadorTurno(int jugadorTurno) {
+        this.jugadorTurno = jugadorTurno;
+    }
+
+    public int getNumJugadores() {
+        return numJugadores;
+    }
+
+    public void setNumJugadores(int numJugadores) {
+        this.numJugadores = numJugadores;
+    }
+
+    
+    
+    
+    
 }
 
 

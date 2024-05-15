@@ -1,4 +1,8 @@
 package com.ruta.rutaarch.entities;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -13,8 +17,18 @@ public class Jugador {
     private String nombre;
 
     //muchos jugadores a un equipo
+    @JsonIgnore
     @ManyToOne
+    @JoinColumn(name = "equipo_id") 
     private Equipo equipo;
+
+    @ManyToMany
+    @JoinTable(
+        name = "jugador_carta",
+        joinColumns = @JoinColumn(name = "jugador_id"),
+        inverseJoinColumns = @JoinColumn(name = "carta_id")
+    )
+    private List<Carta> mano;
 
     public Long getId() {
         return id;
@@ -40,16 +54,12 @@ public class Jugador {
         this.equipo = equipo;
     }
 
-    public Mazo getMazo() {
-        return mazo;
+    public List<Carta> getMano() {
+        return mano;
     }
 
-    public void setMazo(Mazo mazo) {
-        this.mazo = mazo;
+    public void setMano(List<Carta> mano) {
+        this.mano = mano;
     }
-
-    @OneToOne(mappedBy = "jugador", cascade = CascadeType.ALL)
-    private Mazo mazo;
-
     
 }

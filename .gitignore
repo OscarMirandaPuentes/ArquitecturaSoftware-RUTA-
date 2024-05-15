@@ -1,7 +1,8 @@
 /.idea
 /workspace.xml
 /out
-/lib
+/lib/
+/.vscode
 
 
 # Ignorar archivos generados automáticamente
@@ -9,10 +10,6 @@
 *.jar
 *.iml
 *.sql
-
-# Ignorar archivos de configuración local
-.vscode/
-.idea/
 
 target/
 pom.xml.tag
@@ -31,3 +28,18 @@ buildNumber.properties
 .project
 # JDT-specific (Eclipse Java Development Tools)
 .classpath
+
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
+
+# Local History for Visual Studio Code
+.history/
+
+# Built Visual Studio Code Extensions
+*.vsix
+
+

@@ -1,6 +1,8 @@
 package com.ruta.rutaarch.entities;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -11,12 +13,21 @@ public class Equipo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column
+    private int puntaje;
+
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "partida_id") 
     private Partida partida;
 
     @OneToMany(mappedBy = "equipo", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Jugador> jugadores;
+
+    @JsonIgnore
+    @Column
+    @OneToMany(mappedBy = "equipo", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Pila> pilas;
 
     public Long getId() {
         return id;
@@ -40,6 +51,22 @@ public class Equipo {
 
     public void setJugadores(List<Jugador> jugadores) {
         this.jugadores = jugadores;
+    }
+
+    public int getPuntaje() {
+        return puntaje;
+    }
+
+    public void setPuntaje(int puntaje) {
+        this.puntaje = puntaje;
+    }
+
+    public List<Pila> getPilas() {
+        return pilas;
+    }
+
+    public void setPilas(List<Pila> pilas) {
+        this.pilas = pilas;
     }
 
     

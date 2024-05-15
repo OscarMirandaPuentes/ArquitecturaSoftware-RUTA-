@@ -1,7 +1,5 @@
 package com.ruta.rutaarch.controllers;
 
-
-import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -55,7 +53,6 @@ import java.io.IOException;
         }
 
         public static Administrador getAdministrador() {
-            // TODO Auto-generated method stub
             return a;
         }
     }

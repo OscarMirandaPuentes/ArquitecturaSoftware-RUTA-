@@ -1,21 +1,28 @@
 package com.ruta.rutaarch.entities;
-import java.io.Serializable;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "carta")
-public class Carta implements Serializable{
-
+public class Carta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column
     private String nombre;
 
-    @Column(nullable = false)
-    private String tipoPila;
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "mazo_id") 
+    private Mazo mazo;
+
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "jugador_id") 
+    private Jugador jugador;
 
 
     public Long getId() {
@@ -34,12 +41,27 @@ public class Carta implements Serializable{
         this.nombre = nombre;
     }
 
-    public String getTipoPila() {
-        return tipoPila;
+
+
+    public Mazo getMazo() {
+        return mazo;
     }
 
-    public void setTipoPila(String tipoPila) {
-        this.tipoPila = tipoPila;
+
+    public void setMazo(Mazo mazo) {
+        this.mazo = mazo;
     }
+
+
+    public Jugador getJugador() {
+        return jugador;
+    }
+
+
+    public void setJugador(Jugador jugador) {
+        this.jugador = jugador;
+    }
+
+    
 
 }
