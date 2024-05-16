@@ -14,12 +14,11 @@ document.addEventListener('DOMContentLoaded', function () {
     
     form.addEventListener('submit', function (event) {
         event.preventDefault();
-        ajaxInsertar();
-    });
+        //localStorage.setItem('id', id.value); // Se almacena en memoria local
+        //nombrePj(team)
 
-    var btnIniciar = document.getElementById('btn-iniciar');
-    btnIniciar.addEventListener('click', function() {
         if (id.value != '') {
+            iniciarJuego();
             iniciar();
             window.location.href = 'tablero.html';
         }
