@@ -24,10 +24,17 @@ public class Equipo {
     @OneToMany(mappedBy = "equipo", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Jugador> jugadores;
 
-    @JsonIgnore
     @Column
-    @OneToMany(mappedBy = "equipo", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Pila> pilas;
+    private String pillaBatalla;
+
+    @Column
+    private String pillaDistancia;
+
+    @Column
+    private String pillaVelocidad;
+
+    @Column
+    private List<String> seguridad;
 
     public Long getId() {
         return id;
@@ -61,13 +68,38 @@ public class Equipo {
         this.puntaje = puntaje;
     }
 
-    public List<Pila> getPilas() {
-        return pilas;
+    public String getPillaBatalla() {
+        return pillaBatalla;
     }
 
-    public void setPilas(List<Pila> pilas) {
-        this.pilas = pilas;
+    public void setPillaBatalla(String pillaBatalla) {
+        this.pillaBatalla = pillaBatalla;
     }
 
+    public String getPillaDistancia() {
+        return pillaDistancia;
+    }
+
+    public void setPillaDistancia(String pillaDistancia) {
+        this.pillaDistancia = pillaDistancia;
+    }
+
+    public String getPillaVelocidad() {
+        return pillaVelocidad;
+    }
+
+    public void setPillaVelocidad(String pillaVelocidad) {
+        this.pillaVelocidad = pillaVelocidad;
+    }
+
+    public List<String> getSeguridad() {
+        return seguridad;
+    }
+
+    public void setSeguridad(List<String> seguridad) {
+        this.seguridad = seguridad;
+    }
+
+    
     
 }

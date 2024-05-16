@@ -17,7 +17,7 @@ public class Partida {
     private String estado; //partida terminada, pausada 
 
     @Column(nullable = false)
-    private int jugadorTurno; //dependiendo del equipo
+    private long jugadorTurno; //dependiendo del equipo
 
     @Column(nullable = false)
     private int numJugadores; //dependiendo del equipo
@@ -71,8 +71,8 @@ public class Partida {
         this.mazo = mazo;
     }
 
-    public void setJugadorTurno(int jugadorTurno) {
-        this.jugadorTurno = jugadorTurno;
+    public void setJugadorTurno(Long long1) {
+        this.jugadorTurno = long1;
     }
 
     public int getNumJugadores() {
@@ -83,10 +83,10 @@ public class Partida {
         this.numJugadores = numJugadores;
     }
 
-    
-    
-    
-    
+    public Long getJugadorTurno() {
+        return jugadorTurno;
+    }
+
 }
 
 
