@@ -22,9 +22,6 @@ public class PartidaServiceImpl implements PartidaService {
     @Autowired
     private MazoServiceImpl mazoService;
 
-    @Autowired
-    private EquipoServiceImpl equipoService;
-
     public PartidaServiceImpl(PartidaRepository partidaRepository) {
         this.partidaRepository = partidaRepository;
     }
@@ -40,15 +37,17 @@ public class PartidaServiceImpl implements PartidaService {
         Partida partida = new Partida();
         partida.setEstado("Iniciada");
         partida.setNumJugadores(numPlayers);
-        partida.setJugadorTurno(0);
+        partida.setJugadorTurno((long) 0);
 
         List<Equipo> equipos = new ArrayList<>();
+        List<String> seg1 = new ArrayList<>();
+        List<String> seg2 = new ArrayList<>();
         Equipo eq1 = new Equipo();
+        eq1.setSeguridad(seg1);
         eq1.setPartida(partida);
-        equipoService.llernarPilas(eq1);
         Equipo eq2 = new Equipo();
+        eq2.setSeguridad(seg2);
         eq2.setPartida(partida);
-        equipoService.llernarPilas(eq2);
         equipos.add(eq1);
         equipos.add(eq2);
         partida.setEquipos(equipos);
@@ -131,6 +130,21 @@ public class PartidaServiceImpl implements PartidaService {
             //}
         }
         return 0; // Assuming 0 means no winner or data is incomplete
+    }
+
+    @Override
+    public Jugador getJugadorById(Long idPartida, int idJugador) {
+        Partida partida = getPartidaById(idPartida);
+
+        for (Equipo equipo : partida.getEquipos()) {
+            for (Jugador jugador : equipo.getJugadores()) {
+                if (jugador.getId() == idJugador) {
+                    return jugador;
+                }
+            }
+        }
+
+        return null;
     }
 
 

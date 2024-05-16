@@ -152,27 +152,27 @@ public class MazoServiceImpl implements MazoService {
       
         for (int i = 0; i < 4; i++) {
             Carta distancia200 = new Carta();
-            distancia200.setNombre("Distancia 200");
+            distancia200.setNombre("200");
             distancia200.setMazo(mazo);
             cartas.add(distancia200);
         }
         for (int i = 0; i < 12; i++) {
             Carta distancia100 = new Carta();
-            distancia100.setNombre("Distancia 100");
+            distancia100.setNombre("100");
             distancia100.setMazo(mazo);
             cartas.add(distancia100);
         }
         for (int i = 0; i < 10; i++) {
             Carta distancia75 = new Carta();
-            distancia75.setNombre("Distancia 75");
+            distancia75.setNombre("75");
             distancia75.setMazo(mazo);
 
             Carta distancia50 = new Carta();
-            distancia50.setNombre("Distancia 50");
+            distancia50.setNombre("50");
             distancia50.setMazo(mazo);
 
             Carta distancia25 = new Carta();
-            distancia25.setNombre("Distancia 25");
+            distancia25.setNombre("25");
             distancia25.setMazo(mazo);
 
             cartas.add(distancia75);
