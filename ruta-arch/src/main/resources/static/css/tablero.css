@@ -127,3 +127,30 @@ h2{
     cursor: pointer; 
     transition: background-color 0.3s ease; 
 }
+
+.imagenes-pequenas {
+    display: flex;
+    margin-left: 20%;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+.imagenes-pequenas img {
+    width: 50px; 
+    height: auto;
+    filter: grayscale(100%);
+    transition: filter 0.3s;
+}
+
+.imagenes-pequenas img[title]:hover::after {
+    content: attr(title);
+    position: absolute;
+    background: rgba(0, 0, 0, 0.75);
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    top: 10px;
+    left: 10px;
+    white-space: nowrap;
+    z-index: 10;
+}
