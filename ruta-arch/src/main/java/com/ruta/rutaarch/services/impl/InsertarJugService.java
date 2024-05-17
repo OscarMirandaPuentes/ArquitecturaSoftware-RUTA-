@@ -12,7 +12,6 @@ import com.ruta.rutaarch.entities.Jugador;
 import com.ruta.rutaarch.entities.Partida;
 import com.ruta.rutaarch.entities.user.User;
 import com.ruta.rutaarch.repositories.JugadorRepository;
-import com.ruta.rutaarch.repositories.MazoRepository;
 import com.ruta.rutaarch.repositories.PartidaRepository;
 import com.ruta.rutaarch.repositories.UsuarioRepository;
 
@@ -24,9 +23,6 @@ public class InsertarJugService {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
-
-    @Autowired
-    private MazoRepository mazoRepository;
 
     @Autowired
     private JugadorRepository jugadorRepository;
@@ -43,6 +39,15 @@ public class InsertarJugService {
                 jugador.setEquipo(partida.getEquipos().get(numEquipo - 1));
                 jugadorRepository.save(jugador);
                 setMano(jugador, partida);
+                if (partida.getEquipos().get(0).getJugadores().size() == 1 && (numEquipo - 1) == 0) {
+                    List<Carta> manoInicial = jugador.getMano();
+                    Carta carta = partida.getMazo().getCartas().remove(0);
+                    carta.setJugador(jugador);
+                    carta.setMazo(null);
+                    manoInicial.add(carta);
+                    jugador.setMano(manoInicial);
+                    partida.setJugadorTurno(jugador.getId());
+                }
                 return partidaRepository.save(partida);
             }
         }
@@ -56,7 +61,7 @@ public class InsertarJugService {
 
     public void setMano(Jugador jugador, Partida partida){
         List<Carta> manoInicial = new ArrayList<>();
-        for (int i = 0; i < 7; i++) {
+        for (int i = 0; i < 6; i++) {
             Carta carta = partida.getMazo().getCartas().remove(0);
             carta.setJugador(jugador);
             carta.setMazo(null);

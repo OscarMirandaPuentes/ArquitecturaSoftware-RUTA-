@@ -1,5 +1,6 @@
 package com.ruta.rutaarch.services;
 
+import com.ruta.rutaarch.entities.Jugador;
 import com.ruta.rutaarch.entities.Partida;
 import java.util.Date;
 import java.util.List;
@@ -15,4 +16,5 @@ public interface PartidaService {
     int getEquipoGanador(Long partidaId);
     void eliminarTodasLasPartidas();
     long obtenerNumeroTotalDePartidas();
+    Jugador getJugadorById(Long id, int jugadorId);
 }
