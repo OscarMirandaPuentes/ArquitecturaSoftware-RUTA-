@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
     
     form.addEventListener('submit', function (event) {
         event.preventDefault();
-        window.location.href = 'enter.html';
+        iniciarPartida(input.value)
     });
 });
 
@@ -16,3 +16,22 @@ input.addEventListener('input', function() {
         input.value = '';
     }
 });
+
+function iniciarPartida(numPlayers) {
+    $.ajax({
+        url: '/api/partidas',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(numPlayers),
+        success: function (r) {
+            localStorage.idPartida = r.id;
+            window.location.href = 'enter.html';
+        },
+        error: function (xhr, status, error) {
+            console.error("Error: " + error);
+            console.error("Status: " + status);
+            console.dir(xhr);
+        }
+    });
+}
+

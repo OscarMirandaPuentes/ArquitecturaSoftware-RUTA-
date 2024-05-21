@@ -17,8 +17,14 @@ public class JugadorController {
     private InsertarJugService jugadorService;
 
     @PostMapping
-    public ResponseEntity<Partida> createJugador(@RequestBody insertJugadorRequest request) {
-        Partida partida = jugadorService.insertJugador(request.getEmail(), request.getIdPartida(), request.getNumEquipo());
-        return new ResponseEntity<>(partida, HttpStatus.CREATED);
+    public ResponseEntity<String> createJugador(@RequestBody insertJugadorRequest request) {
+        String response = jugadorService.insertJugador(request.getEmail(), request.getIdPartida(), request.getNumEquipo());
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
+    }
+
+    @PostMapping("/join")
+    public ResponseEntity<String> joinJugador(@RequestBody insertJugadorRequest request) {
+        String response = jugadorService.verficarEntrada(request.getEmail(),request.getIdPartida());
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 }

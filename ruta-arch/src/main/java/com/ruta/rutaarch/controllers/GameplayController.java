@@ -15,7 +15,7 @@ public class GameplayController {
     private GameplayService gameplayService;
 
     @PostMapping
-    public ResponseEntity<Boolean> createJugador(@RequestBody JugadaRequest request) {
+    public ResponseEntity<Boolean> hacerJugada(@RequestBody JugadaRequest request) {
         boolean response = gameplayService.jugada(request.getIdPartida(), request.getIdPlayer(), request.getAccion(), request.getPosCarta());
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }

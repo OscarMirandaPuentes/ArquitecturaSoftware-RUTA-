@@ -1,7 +1,6 @@
 package com.ruta.rutaarch.controllers;
 
 import com.ruta.rutaarch.entities.Partida;
-import com.ruta.rutaarch.services.PartidaService;
 import com.ruta.rutaarch.services.impl.PartidaServiceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +8,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
 import java.util.List;
 
 @RestController

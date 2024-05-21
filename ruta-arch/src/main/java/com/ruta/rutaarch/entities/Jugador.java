@@ -2,6 +2,7 @@ package com.ruta.rutaarch.entities;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.ruta.rutaarch.entities.user.User;
 
 import jakarta.persistence.*;
 
@@ -22,7 +23,12 @@ public class Jugador {
     @JoinColumn(name = "equipo_id") 
     private Equipo equipo;
 
-    @ManyToMany
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "user_id") 
+    private User user;
+
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
         name = "jugador_carta",
         joinColumns = @JoinColumn(name = "jugador_id"),
@@ -60,6 +66,14 @@ public class Jugador {
 
     public void setMano(List<Carta> mano) {
         this.mano = mano;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
     
 }

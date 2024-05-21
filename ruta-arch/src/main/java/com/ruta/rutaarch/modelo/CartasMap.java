@@ -6,11 +6,13 @@ public class CartasMap {
     HashMap<String, String> cartasPorTipo = new HashMap<>();
     HashMap<String, String> cartasCounter = new HashMap<>();
     HashMap<String, String> cartasInmunidad = new HashMap<>();
+    HashMap<String, String> pilaLlegada = new HashMap<>();
 
     public CartasMap() {
         llenarCounter();
         llenarInmunidad();
         llenarTipo();
+        llenarPila();
     }
 
     public void llenarTipo(){
@@ -50,6 +52,28 @@ public class CartasMap {
         cartasInmunidad.put("Límite de velocidad", "Vía libre");
     }
 
+    public void llenarPila(){
+        pilaLlegada.put("Sin gasolina", "pilaBatalla");
+        pilaLlegada.put("Pinchazo", "pilaBatalla");
+        pilaLlegada.put("Accidente", "pilaBatalla");
+        pilaLlegada.put("Límite de velocidad", "pilaVelocidad");
+        pilaLlegada.put("Pare", "pilaBatalla");
+        pilaLlegada.put("Gasolina", "pilaBatalla");
+        pilaLlegada.put("Llanta de repuesto", "pilaBatalla");
+        pilaLlegada.put("Reparación", "pilaBatalla");
+        pilaLlegada.put("Fin de límite", "pilaVelocidad");
+        pilaLlegada.put("Siga", "pilaBatalla");
+        pilaLlegada.put("Cisterna", "Seguridad");
+        pilaLlegada.put("Llanta irrompible", "Seguridad");
+        pilaLlegada.put("As al volante", "Seguridad");
+        pilaLlegada.put("Vía libre", "Seguridad");
+        pilaLlegada.put("200", "pilaDistancia");
+        pilaLlegada.put("100", "pilaDistancia");
+        pilaLlegada.put("75", "pilaDistancia");
+        pilaLlegada.put("50", "pilaDistancia");
+        pilaLlegada.put("25", "pilaDistancia");
+    }
+
     public HashMap<String, String> getCartasPorTipo() {
         return cartasPorTipo;
     }
@@ -62,5 +86,8 @@ public class CartasMap {
         return cartasInmunidad;
     }
 
-    
+    public HashMap<String, String> getPilaLlegada() {
+        return pilaLlegada;
+    }
+
 }

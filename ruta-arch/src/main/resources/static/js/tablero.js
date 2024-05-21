@@ -11,14 +11,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
         $('#usar').on('click', function() {
             var posCarta = parseInt(cartaId.match(/\d+/)[0]) - 1;
-            jugar(id, posCarta, 0)
+            jugar(localStorage.idPartida, localStorage.idPlayer , posCarta, 0)
             $.modal.close();
             alert('Has elegido usar la carta.');
         });
 
         $('#descartar').on('click', function() {
             var numeroCarta = parseInt(cartaId.match(/\d+/)[0]);
-            jugar(id, numeroCarta, 1)
+            jugar(localStorage.idPartida, localStorage.idPlayer , numeroCarta, 1)
             $.modal.close();
             alert('Has elegido descartar la carta.');
         });
@@ -37,16 +37,18 @@ document.addEventListener('DOMContentLoaded', function () {
     setName()
 });
 
-function jugar(id, posCarta, accion) {
+function jugar(idPartida, idPlayer, posCarta, accion) {
     let myData = {
-        id: id,
+        idPartida: idPartida,
+        idPlayer: idPlayer,
         posCarta: posCarta,
         accion: accion
     };
     $.ajax({
-        url: '/api/jugar',
+        url: '/api/jugada',
         type: 'POST',
-        data: myData,
+        data: JSON.stringify(myData),
+        contentType: 'application/json',  // Specify the content type as JSON
         success: function (r) {
             console.log(r)
         }
@@ -54,20 +56,23 @@ function jugar(id, posCarta, accion) {
 }
 
 function refresh() {
-    let myData = {
-        id: localStorage.id,
-    };
+    let idPartida = localStorage.idPartida; // Assuming you store idPartida in localStorage
+    let idPlayer = localStorage.idPlayer; // Assuming you store idPlayer in localStorage
     $.ajax({
-        url: '/api/communicate',
+        url: `/api/visual/partida/${idPartida}/jugador/${idPlayer}`,
         type: 'GET',
-        data: myData,
         dataType: 'json',
         success: function (r) {
-            console.log(r)
-            updateWin(r)
+            console.log(r);
+            updateWin(r);
+        },
+        error: function (xhr, status, error) {
+            console.error(xhr.responseText);
+            // Handle error accordingly
         }
     });
 }
+
 
 function updateWin(datos){
     for (const [carta, valor] of Object.entries(datos)) {

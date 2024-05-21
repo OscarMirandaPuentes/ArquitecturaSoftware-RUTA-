@@ -14,6 +14,7 @@ var datos = [
 ];
 
 function obtenerDatosPartidas() {
+    //TODO:Historial
     $.ajax({
         url: 'tu_url_de_solicitud_ajax', // URL de tu solicitud AJAX
         type: 'GET', // Método de la solicitud (GET, POST, etc.)

@@ -9,6 +9,7 @@ import com.ruta.rutaarch.entities.Carta;
 import com.ruta.rutaarch.entities.Equipo;
 import com.ruta.rutaarch.entities.Jugador;
 import com.ruta.rutaarch.entities.Partida;
+import com.ruta.rutaarch.modelo.CartasMap;
 import com.ruta.rutaarch.services.impl.ReglasImpl;
 
 @Service
@@ -19,6 +20,8 @@ public class GameplayService {
 
     @Autowired
     PartidaService partidaService;
+
+    CartasMap cartasMap = new CartasMap();
 
     public void validarPosicionJugador(Partida partida, int idJugador){
         Jugador jugadorActual = partidaService.getJugadorById(partida.getId(), idJugador);
@@ -83,6 +86,7 @@ public class GameplayService {
             if(ans){
                 jugador.getMano().get(posCarta).setJugador(null);
                 jugador.getMano().remove(posCarta);
+                ubicarCartaPila(carta, partida, jugador);
             }
         }
 
@@ -97,6 +101,8 @@ public class GameplayService {
         }
        }
 
+       partidaService.savePartida(partida);
+
        return ans;
     }
 
@@ -107,6 +113,41 @@ public class GameplayService {
         carta.setMazo(null);
         manoInicial.add(carta);
         jugador.setMano(manoInicial);
+    }
+
+    public void ubicarCartaPila(String carta, Partida partida, Jugador jugador){
+        String pilaDestino = cartasMap.getPilaLlegada().get(carta);
+        String tipoCarta = cartasMap.getCartasPorTipo().get(carta);
+
+        if(pilaDestino.equals("pilaBatalla") && tipoCarta.equals("Defensa")){
+            jugador.getEquipo().setPillaBatalla(carta);
+        }
+
+        if(pilaDestino.equals("pilaDistancia") && tipoCarta.equals("Distancia")){
+            jugador.getEquipo().setPillaDistancia(carta);
+        }
+
+        if(pilaDestino.equals("Seguridad") && tipoCarta.equals("Seguridad")){
+            jugador.getEquipo().getSeguridad().add(carta);
+        }
+
+        if(pilaDestino.equals("pilaBatalla") && tipoCarta.equals("Peligro")){
+            if(jugador.getEquipo().getId() % 2 == 0){
+                partida.getEquipos().get(0).setPillaBatalla(carta);
+            }
+            else{
+                partida.getEquipos().get(1).setPillaBatalla(carta);
+            }
+        }
+
+        if(pilaDestino.equals("pilaVelocidad") && tipoCarta.equals("Peligro")){
+            if(jugador.getEquipo().getId() % 2 == 0){
+                partida.getEquipos().get(0).setPillaVelocidad(carta);
+            }
+            else{
+                partida.getEquipos().get(1).setPillaVelocidad(carta);
+            }
+        }
     }
 }
 

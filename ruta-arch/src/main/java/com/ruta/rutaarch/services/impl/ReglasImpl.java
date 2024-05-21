@@ -49,8 +49,8 @@ public class ReglasImpl {
         }
         else if(tipoCarta.equals("Distancia")){
             int puntos = Integer.parseInt(carta);
-            if(topeVel.equals("Siga")){
-                if (topeBat.equals("Limite de velocidad") && puntos > 51) {
+            if(topeBat.equals("Siga")){
+                if (topeVel.equals("Limite de velocidad") && puntos > 51) {
                     return false;
                 }
                 else{

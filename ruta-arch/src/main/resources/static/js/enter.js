@@ -14,87 +14,37 @@ document.addEventListener('DOMContentLoaded', function () {
     
     form.addEventListener('submit', function (event) {
         event.preventDefault();
-        //localStorage.setItem('id', id.value); // Se almacena en memoria local
-        //nombrePj(team)
 
         if (id.value != '') {
-            iniciarJuego();
-            iniciar();
-            window.location.href = 'tablero.html';
+            ingresarPJ(localStorage.email, localStorage.idPartida, id.value)
+            
         }
     });
 });
 
-function iniciar() {
+function ingresarPJ(email, idPartida, numEquipo) {
+    let myData = {
+        email: email,
+        idPartida: idPartida,
+        numEquipo: numEquipo
+    };
+    
     $.ajax({
-        url: '/api/start',
-        type: 'GET',
+        url: '/api/jugadores',
+        type: 'POST',
+        data: JSON.stringify(myData),  // Convert the data object to a JSON string
+        contentType: 'application/json',  // Specify the content type as JSON
         success: function (r) {
-            console.log("Juego iniciado")
-            localStorage.id = id.value
+            console.log("Personaje agregado");
+            let parts = r.split(" ");
+            let id = parts[1];
+            localStorage.idPlayer = id;
+            window.location.href = 'tablero.html';
         }
     });
 }
+ 
 
-function ajaxInsertar() {
-    // Obtener el correo electrónico del localStorage
-    var userEmail = localStorage.email;
-
-    // Verificar si se encontró un correo electrónico en el localStorage
-    if (userEmail) {
-    // Datos que deseas enviar al servidor
-    var requestData = {
-        email: userEmail
-    };
-        $.ajax({
-            url: "/api/user/info",
-            type: 'POST',
-            contentType: "application/json",
-            data: JSON.stringify(requestData),
-            dataType: "json",
-            beforeSend: function(xhr) {
-                // Obtener el token de la cookie
-                var token = getCookie("access_token");
-                if (token) {
-                    // Agregar el token JWT a la cabecera de autorización
-                    xhr.setRequestHeader("Authorization", "Bearer " + token);
-                }
-            },
-            success: function (r) {
-                var name = r.name
-                console.log(name)
-                ingresarPJ(id.value, name)
-            }
-
-        });
-
-    }
-}
-
-
-function ingresarPJ(id, nombre) {
-    console.log(id)
-    let myData = {
-        id: id,
-        nombre: nombre
-    };
-    
-        // Agregar la cookie al encabezado de la solicitud
-        $.ajax({
-            url: '/api/start',
-            type: 'POST',
-            data: myData,
-            success: function (r) {
-                console.log("Personaje agregado")
-            }
-        });
-} 
-
-        
-function iniciarJuego() {
-    iniciar()
-    console.log('El juego ha comenzado');
-}
 
 function getCookie(cname) {
     let name = cname + "=";

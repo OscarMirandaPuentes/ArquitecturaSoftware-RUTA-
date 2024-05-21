@@ -7,6 +7,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.ruta.rutaarch.entities.Jugador;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -28,6 +30,10 @@ public class User implements UserDetails {
   private String nick;
   private String email;
   private String password;
+
+  @Column
+  @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+  private List<Jugador> players;
 
   @Enumerated(EnumType.STRING)
   private Role role;
