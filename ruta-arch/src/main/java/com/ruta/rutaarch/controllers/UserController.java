@@ -3,14 +3,16 @@ package com.ruta.rutaarch.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import com.ruta.rutaarch.entities.Partida;
 import com.ruta.rutaarch.entities.auth.AuthenticationResponse;
 import com.ruta.rutaarch.entities.user.User;
+import com.ruta.rutaarch.services.HistorialService;
 import com.ruta.rutaarch.services.UserService;
 import com.ruta.rutaarch.services.impl.AuthenticationService;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -22,14 +24,22 @@ public class UserController {
     private UserService userService;
 
     @Autowired
+    private HistorialService historialService;
+
+    @Autowired
     private AuthenticationService authenticationService;
 
 
     @PostMapping("/info")
     public Optional<User> infoUser(@RequestBody Map<String, String> requestBody) {
         String email = requestBody.get("email");
-        System.out.println(userService.findUserbyEmail(email));
         return userService.findUserbyEmail(email);
+    }
+
+    @PostMapping("/historial")
+    public List<Partida> historialUser(@RequestBody String email) {
+        System.out.println(email);
+        return historialService.mostrarHistorial(email);
     }
 
     // Actualizar un User

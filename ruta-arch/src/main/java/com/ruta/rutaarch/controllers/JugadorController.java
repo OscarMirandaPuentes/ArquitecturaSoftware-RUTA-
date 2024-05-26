@@ -1,6 +1,5 @@
 package com.ruta.rutaarch.controllers;
 
-import com.ruta.rutaarch.entities.Partida;
 import com.ruta.rutaarch.request.insertJugadorRequest;
 import com.ruta.rutaarch.services.impl.InsertarJugService;
 

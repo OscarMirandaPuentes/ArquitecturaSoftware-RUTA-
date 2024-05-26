@@ -1,29 +1,12 @@
-var datos = [
-    {
-        numero: '01',
-        idPartida: '123',
-        fecha_i: '01/01/2024',
-        fecha_f: '01/01/2024'
-    },
-    {
-        numero: '02',
-        idPartida: '456',
-        fecha_i: '04/11/2024',
-        fecha_f: ''
-    }
-];
-
-function obtenerDatosPartidas() {
+function obtenerDatosPartidas(email) {
     $.ajax({
-        url: 'tu_url_de_solicitud_ajax', // URL de tu solicitud AJAX
-        type: 'GET', // Método de la solicitud (GET, POST, etc.)
+        url: "/api/user/historial", // URL de tu solicitud AJAX
+        type: 'POST', // Método de la solicitud (GET, POST, etc.)
+        contentType: 'text/plain', // Especifica el tipo de contenido como texto
+        data: email, // Envía el email como texto
         dataType: 'json', 
         success: function(response) {
-            if (response.success) {
-                agregarDatosTabla(response.data);
-            } else {
-                console.error('Error en la solicitud AJAX');
-            }
+            agregarDatosTabla(response);
         },
         error: function(xhr, status, error) {
             console.error('Error en la solicitud AJAX:', error);
@@ -38,18 +21,15 @@ function agregarDatosTabla(datosPartidas) {
 
     datosPartidas.forEach(function(partida) {
         var fila = document.createElement('tr');
-        fila.innerHTML = '<td>' + partida.numero + '</td>' +
-                         '<td>' + partida.idPartida + '</td>' +
-                         '<td>' + partida.fecha_i + '</td>' +
-                         '<td>' + partida.fecha_f + '</td>';
+        fila.innerHTML = '<td>' + partida.id + '</td>' +
+                         '<td>' + partida.estado + '</td>' +
+                         '<td>' + partida.ganador + '</td>';
         cuerpoTabla.appendChild(fila);
     });
 }
 
-agregarDatosTabla(datos) //Datos prueba
-
 window.onload = function() {
-    obtenerDatosPartidas();
+    obtenerDatosPartidas(localStorage.email);
 };
 
 function redirigirAHistorial(idPartida) {

@@ -2,7 +2,6 @@ package com.ruta.rutaarch.services;
 
 import com.ruta.rutaarch.entities.Jugador;
 import com.ruta.rutaarch.entities.Partida;
-import java.util.Date;
 import java.util.List;
 
 public interface PartidaService {
