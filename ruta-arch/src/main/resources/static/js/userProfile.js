@@ -28,17 +28,20 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     btnSave.addEventListener('click', function(event) {
+
+        event.preventDefault();
+
         const nombre = document.getElementById('name').value;
         const apodo = document.getElementById('nickname').value;
         const correo = document.getElementById('email').value;
         const imagen = document.getElementById('profile-pic').src;
         updateUser(nombre, apodo, correo).then(function(response) {
             console.log('Cambio exitoso:', response);
+            location.reload();
         })
         .catch(function(error) {
             console.error('Error en la solicitud:', error);
         });
-        //location.reload()
 
         // código para enviar los datos al servidor 
         

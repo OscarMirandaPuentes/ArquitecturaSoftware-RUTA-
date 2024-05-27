@@ -31,26 +31,28 @@ public class ReglasImpl {
                 if (topeBat.equals(cartasMap.getCartasCounter().get(carta))) {
                     return true;
                 }
-                else if (topeDis.equals(cartasMap.getCartasCounter().get(carta))) {
-                    return true;
-                }
                 else if(carta.equals("Siga") && cartasMap.getCartasPorTipo().get(topeBat).equals("Defensa")){
                     return true;
                 }
                 else{
                     return false;
                 }
-            }else{
+            }
+            else if(topeDis != null){
+                if (topeDis.equals(cartasMap.getCartasCounter().get(carta))) {
+                    return true;
+            }
+            else{
                 if (carta.equals("Siga")) {
                     return true;
                 }
             }
-
+        }
         }
         else if(tipoCarta.equals("Distancia")){
             int puntos = Integer.parseInt(carta);
             if(topeBat.equals("Siga")){
-                if (topeVel.equals("Limite de velocidad") && puntos > 51) {
+                if (topeVel!= null && topeVel.equals("Limite de velocidad") && puntos > 51) {
                     return false;
                 }
                 else{
@@ -60,6 +62,7 @@ public class ReglasImpl {
         }
         return false;
     }
+    
 
     public boolean revisarSeguridad(String carta, List<String> seguridad){
         for (String name : seguridad) {

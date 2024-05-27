@@ -31,8 +31,8 @@ function ajaxUserInfo() {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    ajaxUserInfo()
     
+    ajaxUserInfo()
     document.getElementById('inicio').addEventListener('click', function () {
         window.location.href ='home.html';
     });
@@ -61,6 +61,8 @@ document.addEventListener('DOMContentLoaded', function () {
         limpiarCookies();
         window.location.href ='login-register.html';
     });
+
+    
 });
 
 function limpiarCookies() {

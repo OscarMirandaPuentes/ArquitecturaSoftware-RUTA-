@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
         $('#descartar').on('click', function() {
-            var numeroCarta = parseInt(cartaId.match(/\d+/)[0]);
+            var numeroCarta = parseInt(cartaId.match(/\d+/)[0] - 1);
             jugar(localStorage.idPartida, localStorage.idPlayer , numeroCarta, 1)
             $.modal.close();
             alert('Has elegido descartar la carta.');
@@ -51,6 +51,7 @@ function jugar(idPartida, idPlayer, posCarta, accion) {
         contentType: 'application/json',  // Specify the content type as JSON
         success: function (r) {
             console.log(r)
+            refresh()
         }
     });
 }

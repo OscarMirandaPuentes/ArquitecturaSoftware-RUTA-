@@ -125,6 +125,7 @@ public class GameplayService {
 
         if(pilaDestino.equals("pilaDistancia") && tipoCarta.equals("Distancia")){
             jugador.getEquipo().setPillaDistancia(carta);
+            jugador.getEquipo().setPuntaje(jugador.getEquipo().getPuntaje() + Integer.parseInt(carta));
         }
 
         if(pilaDestino.equals("Seguridad") && tipoCarta.equals("Seguridad")){

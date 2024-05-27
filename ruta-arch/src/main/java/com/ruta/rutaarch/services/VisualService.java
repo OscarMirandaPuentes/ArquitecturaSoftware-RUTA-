@@ -39,11 +39,21 @@ public class VisualService {
                 envio.put("PBatallaE1", equipo1.getPillaBatalla());
                 envio.put("PDistanciaE1", equipo1.getPillaDistancia());
                 envio.put("PVelocidadE1", equipo1.getPillaVelocidad());
+
+                for (String carta : equipo1.getSeguridad()) {
+                    envio.put("Seguridad1", carta);
+                }
     
                 Equipo equipo2 = equipos.get(1);
                 envio.put("PBatallaE2", equipo2.getPillaBatalla());
                 envio.put("PDistanciaE2", equipo2.getPillaDistancia());
                 envio.put("PVelocidadE2", equipo2.getPillaVelocidad());
+
+                System.out.println(equipo1.getSeguridad());
+                System.out.println(equipo2.getSeguridad());
+                for (String carta : equipo2.getSeguridad()) {
+                    envio.put("Seguridad2", carta);
+                }
     
             int i = 1;
             for (Carta carta : jugador.getMano()) {
